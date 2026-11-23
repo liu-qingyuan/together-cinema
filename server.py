@@ -15,6 +15,7 @@ from aiohttp import WSMsgType, web
 from parallel_upload import ParallelUploads
 from conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
 from danmaku import DanmakuStore
+from covers import SharedCovers
 from external_media import ExternalMedia
 from subtitles import list_subtitles, subtitle_path, remove_subtitles
 
@@ -132,6 +133,7 @@ def create_app(data_dir=None, password=None, secure=None):
     key = hashlib.sha256(('watch-session:' + password).encode()).digest()
     secure = secure if secure is not None else os.environ.get('COOKIE_SECURE', 'true') == 'true'
     rooms = {'01': Room('01')}
+    cover_members = {}
 
     def room_code(value):
         if not isinstance(value, str):
@@ -178,6 +180,7 @@ def create_app(data_dir=None, password=None, secure=None):
     reserve = int(os.environ.get('RESERVE_BYTES', str(2 * 1024**3)))
     max_upload = int(os.environ.get('MAX_UPLOAD_BYTES', str(8 * 1024**3)))
     parallel_uploads = ParallelUploads(media, max_upload, reserve)
+    covers = SharedCovers(data_dir, reserve)
 
     def files():
         return {p.name: p for p in media.iterdir()
@@ -206,7 +209,8 @@ def create_app(data_dir=None, password=None, secure=None):
             scheme = 'https' if secure else request.scheme
             if origin != scheme + '://' + request.host:
                 raise web.HTTPForbidden(text='来源不匹配')
-        if (request.path.startswith('/api/') and request.path != '/api/login' or
+        public_cover_read = request.path == '/api/covers' and request.method in ('GET', 'HEAD')
+        if (request.path.startswith('/api/') and request.path != '/api/login' and not public_cover_read or
                 request.path.startswith('/media/') or request.path == '/ws'):
             if not authenticated(request):
                 raise web.HTTPUnauthorized(text='请先登录')
@@ -229,6 +233,43 @@ def create_app(data_dir=None, password=None, secure=None):
             raise web.HTTPNotFound()
         return web.FileResponse(APP_DIR / 'assets' / 'scenes' / name,
                                 headers={'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'public, max-age=3600'})
+
+    def require_cover_member(request):
+        member = cover_members.get(request.headers.get('X-Room-Member', ''))
+        if not member or member[0].closed or member[1] != request.cookies.get('watch_session'):
+            raise web.HTTPForbidden(text='请先连接放映室，再修改全站封面')
+
+    async def cover_catalog(request):
+        return web.json_response(covers.catalog(), headers={'Cache-Control': 'no-store'})
+
+    async def cover_asset(request):
+        path = covers.asset(request.match_info['id'], request.match_info['size'])
+        return web.FileResponse(path, headers={'Content-Type': 'image/webp',
+                                               'X-Content-Type-Options': 'nosniff',
+                                               'Cache-Control': 'no-store'})
+
+    async def cover_select(request):
+        require_cover_member(request)
+        try:
+            body = await request.clone(client_max_size=4096).json()
+            ident = body.get('id')
+        except (ValueError, AttributeError):
+            raise web.HTTPBadRequest(text='封面信息无效')
+        return web.json_response(await covers.select(ident))
+
+    async def cover_delete(request):
+        require_cover_member(request)
+        return web.json_response(await covers.delete(request.match_info['id']))
+
+    async def cover_upload(request):
+        require_cover_member(request)
+        if request.content_type != 'multipart/form-data':
+            raise web.HTTPBadRequest(text='请选择图片文件')
+        reader = await request.multipart()
+        part = await reader.next()
+        if part is None or part.name != 'cover' or not part.filename:
+            raise web.HTTPBadRequest(text='请选择图片文件')
+        return web.json_response(await covers.upload(part), status=201)
 
     async def login(request):
         # X-Real-IP is overwritten by our loopback-only reverse proxy.
@@ -455,7 +496,9 @@ def create_app(data_dir=None, password=None, secure=None):
         signal_times = []
         if room.host is None:
             room.host = peer
-        await ws.send_json({'type':'hello','id':peer,'room':room.code,'chat':room.chat})
+        member_token = secrets.token_urlsafe(32)
+        cover_members[member_token] = (ws, request.cookies.get('watch_session'))
+        await ws.send_json({'type':'hello','id':peer,'room':room.code,'chat':room.chat,'member_token':member_token})
         await room.broadcast()
         try:
             async for msg in ws:
@@ -548,6 +591,7 @@ def create_app(data_dir=None, password=None, secure=None):
                 except (ValueError, TypeError):
                     continue
         finally:
+            cover_members.pop(member_token, None)
             room.clients.pop(peer, None)
             room.members.pop(peer,None)
             room.last_used = time.monotonic()
@@ -641,6 +685,11 @@ def create_app(data_dir=None, password=None, secure=None):
 
     app.router.add_get('/healthz', health)
     app.router.add_get('/scenes/{name}', scene_asset)
+    app.router.add_get('/api/covers', cover_catalog)
+    app.router.add_post('/api/covers', cover_upload)
+    app.router.add_put('/api/covers/current', cover_select)
+    app.router.add_delete('/api/covers/{id}', cover_delete)
+    app.router.add_get('/covers/{id}/{size}.webp', cover_asset)
     app.router.add_post('/api/network/resolve', network_resolve)
     app.router.add_get('/api/network/stats', network_stats)
     app.router.add_get('/api/network/{source_id}/source', network_describe)

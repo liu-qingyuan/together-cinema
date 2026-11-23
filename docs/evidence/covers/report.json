@@ -1,0 +1,59 @@
+[
+  {
+    "current": "custom",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.018
+  },
+  {
+    "current": "galaxy",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.022
+  },
+  {
+    "current": "custom",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.021
+  },
+  {
+    "current": "custom",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.023
+  },
+  {
+    "current": "custom",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.019
+  },
+  {
+    "current": "custom",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.02
+  },
+  {
+    "current": "sky",
+    "no_media_reload": true,
+    "subtitles_preserved": true,
+    "voice_connected": true,
+    "drift_seconds": 0.02
+  },
+  {
+    "independent_browser_processes": 2,
+    "read_only_visitor": true,
+    "login_only_write_HTTP": 403,
+    "fake_test_microphones": true,
+    "real_WebRTC_audio_bytes_increased": true,
+    "browser_errors": []
+  }
+]
