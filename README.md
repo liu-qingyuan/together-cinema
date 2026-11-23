@@ -13,7 +13,7 @@
 - **保留字幕**：文字字幕，以及受支持的 PGS 图片字幕；全屏包含字幕和弹幕。不是任意 MKV／字幕编码的通用解码器。
 - **聊天与语音**：房间文本聊天；配置 TURN + HTTPS 后可使用 WebRTC 语音、音量控制与声波显示。
 - **可选网络片源**：直连或服务器中转；启用 `network` 后支持 YouTube 和通用动态网页探测。不绕过登录、验证码或 DRM，不保证所有网站可用。
-- **轻量陪伴界面**：六套原创矢量背景、CSS 动效；播放时降低背景动态，支持减少动态效果偏好。不含第三方图片 CDN 或统计脚本。
+- **展厅与放映室**：普通入口先逛默认封面的展厅，下滑查看有权限访问的片库；房间邀请经校验直达放映室。六套原创矢量背景保留，进入放映室后装饰动效停止，支持减少动态效果偏好。不含第三方图片 CDN 或统计脚本。
 
 ## 快速开始
 
@@ -25,7 +25,7 @@
 ./install.sh
 ```
 
-打开 **http://127.0.0.1:8080**，输入 2～8 位字母或数字房间码。朋友使用同一个部署、同一个房间码进入。默认仅本机访问，不是公网发布。
+打开 **http://127.0.0.1:8080** 先浏览展厅，再输入 2～8 位字母或数字房间码进入放映室。朋友可使用房间里复制的 `/?room=AB` 邀请直接会合，无需先逛展厅。普通入口即使记住了上次房间也不会自动入房；无授权会话时不展示私人片单。默认仅本机访问，不是公网发布。
 
 ### 给异地朋友使用
 
@@ -87,6 +87,17 @@ pip install -r requirements.txt
 # 测试依赖系统 ffmpeg / ffprobe
 python -m unittest discover -v
 ```
+
+可选的真实浏览器验收（需本机 Chrome、系统 ffmpeg 和专用本地 Compose 测试实例）：
+
+```sh
+pip install playwright
+python scripts/gallery_smoke.py http://127.0.0.1:8080
+# 使用 Playwright Chromium 时先 playwright install chromium，再加 --channel chromium
+# 可加 --artifacts /tmp/gallery-evidence 保存截图，不保存 Cookie 或会话
+```
+
+脚本用两个独立浏览器进程检查两条入口、片库权限和真实同步播放，只上传／删除自己生成的测试短片。手机尺寸模拟不代表手机实机验收。
 
 [贡献指南](CONTRIBUTING.md) · [架构](docs/architecture.md) · [发布检查](docs/releasing.md) · [第三方授权](THIRD_PARTY_NOTICES.md)
 
