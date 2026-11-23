@@ -1,5 +1,13 @@
 # Together Cinema · 一起看
 
+[![MIT 许可证](https://img.shields.io/github/license/liu-qingyuan/together-cinema)](LICENSE)
+[![最新版本](https://img.shields.io/github/v/release/liu-qingyuan/together-cinema)](https://github.com/liu-qingyuan/together-cinema/releases/latest)
+[![主分支测试与容器冒烟测试](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml?query=branch%3Amain)
+[![Docker Compose 部署](https://img.shields.io/badge/Docker-Compose-2496ED)](docs/deployment.md)
+[![功能建议与问题反馈](https://img.shields.io/badge/feedback-GitHub_Issues-475569)](https://github.com/liu-qingyuan/together-cinema/issues/new/choose)
+[![订阅版本更新](https://img.shields.io/badge/RSS-releases-e78024)](https://github.com/liu-qingyuan/together-cinema/releases.atom)
+[![订阅主分支提交](https://img.shields.io/badge/RSS-commits-e78024)](https://github.com/liu-qingyuan/together-cinema/commits/main.atom)
+
 **不同的地方，同一场电影。** 和朋友同步播放、边看边聊，把一起看过的片留成一本放映手记。
 
 [看 20 秒演示](docs/showcase/tour.webp)　·　[用 Docker 部署](#快速开始)　·　[看全部截图](docs/showcase/README.md)　·　[English](README.en.md)

@@ -1,5 +1,13 @@
 # Together Cinema
 
+[![MIT license](https://img.shields.io/github/license/liu-qingyuan/together-cinema)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/liu-qingyuan/together-cinema)](https://github.com/liu-qingyuan/together-cinema/releases/latest)
+[![Main branch tests and container smoke](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml?query=branch%3Amain)
+[![Deploy with Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED)](docs/deployment.md)
+[![Feature requests and bug reports](https://img.shields.io/badge/feedback-GitHub_Issues-475569)](https://github.com/liu-qingyuan/together-cinema/issues/new/choose)
+[![Release feed](https://img.shields.io/badge/RSS-releases-e78024)](https://github.com/liu-qingyuan/together-cinema/releases.atom)
+[![Main branch commit feed](https://img.shields.io/badge/RSS-commits-e78024)](https://github.com/liu-qingyuan/together-cinema/commits/main.atom)
+
 **Different places. The same moment.** A self-hosted watch-party space: synchronized playback, a shared library, text chat, optional WebRTC voice, subtitles and lightweight scenes.
 
 [中文 README](README.md) · [Deployment](docs/deployment.md) · [Security](SECURITY.md)
