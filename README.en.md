@@ -43,7 +43,7 @@ No automatic backups or global Docker prune. Updating source and rerunning the i
 - Local MP4/WebM; background MKV/AVI processing prioritizes compatible video remuxing, otherwise bounded conversion.
 - Text and supported PGS subtitles; stage fullscreen keeps subtitle/danmaku overlays.
 - Sync play/pause/seek/rate, hold-to-speed-up, keyboard control, shared danmaku and room chat.
-- Six original SVG scenes; no external image CDN or analytics.
+- Eight personal room wallpapers from credited illustrators and photographers, with source links; no external image CDN or analytics.
 - This is an early source-release candidate. An Android Quark half-covered video report is unresolved; device emulation is not real-device certification.
 - No published image registry, public demo, star count or release badge is claimed yet.
 

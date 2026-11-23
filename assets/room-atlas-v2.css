@@ -1,0 +1,95 @@
+/* Personal room scenery only. Nothing here is mounted over the video stage. */
+body[data-view=room] .scene-photo{opacity:.14;background-position:50% 47%}
+body[data-view=room] .scene-world::after{opacity:.64}
+#app .room-heading{isolation:isolate;overflow:hidden;display:flex;justify-content:space-between;align-items:end;gap:20px;margin:22px 0;padding:clamp(22px,3vw,46px);min-height:clamp(185px,19vw,284px);border-radius:20px;background:#24383d;color:white}
+#app .room-heading::before,.atlas-plate .atlas-art{content:"";position:absolute;inset:-4%;z-index:-2;background:var(--scene-image) center 53% / cover no-repeat;pointer-events:none}
+#app .room-heading::after,.atlas-plate::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,rgba(9,21,27,.78),rgba(9,21,27,.04) 96%)}
+#app .room-heading .eyebrow{color:#fff;opacity:.89;font:600 10px/1.3 system-ui;letter-spacing:.19em;margin:0 0 12px}
+#app .room-heading .room-title{margin:0;color:#fff;font-weight:400;font-size:clamp(28px,3.7vw,60px);letter-spacing:.045em}
+#app .room-heading .room-title em{color:inherit;font-style:normal}
+.atlas-jump,.atlas-stamp,.atlas-glass{background:#25333bf2;color:white;border:1px solid #ffffff70;box-shadow:inset 0 1px 1px #ffffff80,inset 0 -1px 1px #ffffff21,0 3px 14px #00111c23}
+.atlas-jump{flex:none;padding:11px 17px;border-radius:40px;font-size:12px;letter-spacing:.06em;text-decoration:none}
+#atmosphere{--al-ink:var(--text);--al-muted:var(--secondary);position:relative;margin:20px 0 36px;padding:clamp(22px,4vw,58px);border:1px solid var(--stroke);border-radius:22px;background:var(--surface);color:var(--al-ink);scroll-margin-top:14px}
+.atlas-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
+.atlas-kicker,.atlas-counter,.atlas-index,.atlas-english{font:550 10px/1.45 ui-monospace,monospace;letter-spacing:.16em}
+.atlas-kicker{color:var(--scene-accent);margin:0 0 10px}
+#atmosphere h2{font:400 clamp(28px,3.1vw,46px)/1.2 Georgia,"Songti SC",serif;letter-spacing:.055em;margin:0;color:inherit}
+.atlas-head>p,.atlas-foot{margin:0;font-size:12px;color:var(--al-muted);line-height:1.7}
+.atlas-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(245px,1fr);gap:clamp(18px,3vw,42px);align-items:stretch}
+.atlas-plate{position:relative;isolation:isolate;margin:0;overflow:hidden;border-radius:14px;background:#3b5053;min-height:310px;color:white;display:flex;align-items:end}
+.atlas-plate .atlas-art{inset:-7%;transform:translateY(var(--atlas-y,0px));background-position:center 50%}
+.atlas-plate::after{background:linear-gradient(0deg,#101a23c9,transparent 64%)}
+.atlas-plate figcaption{padding:clamp(18px,2.3vw,38px);z-index:1}
+.atlas-stamp{position:absolute;top:17px;left:18px;padding:7px 12px;border-radius:25px;font-size:10px;letter-spacing:.18em}
+.atlas-plate h3{color:white;font:400 clamp(33px,3.7vw,58px)/1.2 Georgia,"Songti SC",serif;letter-spacing:.08em;margin:4px 0 10px}
+.atlas-plate p{margin:0;font-size:12px;color:#fff;letter-spacing:.06em}
+.atlas-english{color:#f3e4c9}
+#atmosphere .scene-grid{display:grid;grid-template-columns:1fr;gap:0;align-content:center;border-top:1px solid #ffffff30}
+#atmosphere .scene-choice{color:var(--al-ink);position:relative;display:grid;grid-template-columns:36px 72px 1fr 28px;gap:12px;align-items:center;width:100%;padding:9px 9px 9px 0;border:0;border-bottom:1px solid #ffffff25;border-radius:0;background:transparent;outline-offset:0;text-align:left}
+#atmosphere .scene-choice:is(:hover,:focus-visible){background:#536f8612}
+#atmosphere .scene-choice:focus-visible,#atmosphere .atlas-glass:focus-within{outline:2px solid #316682;outline-offset:2px}
+#atmosphere .scene-choice[aria-pressed=true]{outline:none;background:#ffffff0c}
+#atmosphere .scene-choice[aria-pressed=true]:focus-visible{outline:2px solid #316682}
+#atmosphere .scene-choice img{width:72px;height:43px;aspect-ratio:auto;object-fit:cover;border-radius:4px;transform:none}
+#atmosphere .scene-choice span{display:block;background:none;padding:0}
+.atlas-index{text-align:center;color:var(--al-muted)}
+#atmosphere .atlas-label{font:500 16px/1.45 "Songti SC",Georgia,serif;letter-spacing:.07em}
+#atmosphere .atlas-label small{display:block;color:var(--al-muted);font:10px/1.5 system-ui;margin-top:2px}
+.atlas-dot{width:24px;height:24px;display:grid;place-items:center;border-radius:100%;border:1px solid #657b8c77;color:var(--al-muted);font:14px/1 system-ui}
+.atlas-dot::after{content:'↗';opacity:.65}
+[aria-pressed=true] .atlas-dot{border-color:#547987;background:#dcecf1;box-shadow:inset 0 1px 2px #fffc}
+[aria-pressed=true] .atlas-dot::after{content:'✓';opacity:1}
+#atmosphere .scene-tools{margin-top:19px;display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-start;gap:12px;color:var(--al-muted);font-size:11px}
+#atmosphere .scene-tools a{margin-left:auto;color:var(--scene-accent)}
+.atlas-glass{padding:7px 12px;border-radius:24px}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .atlas-jump,.atlas-stamp,.atlas-glass{background:linear-gradient(155deg,#f0ffff3f,#23363f67 45%,#83989e48);backdrop-filter:blur(12px) saturate(1.45);-webkit-backdrop-filter:blur(12px) saturate(1.45);text-shadow:0 1px 4px #132026}
+}
+@media(max-width:760px){
+ #app .room-heading{min-height:166px;gap:8px;padding:20px;border-radius:14px;margin:12px 0}
+ .atlas-jump{font-size:11px;padding:8px 12px}
+ #atmosphere{padding:18px 14px;border-radius:15px}.atlas-head{margin-bottom:15px}.atlas-head>p{display:none}
+ .atlas-layout{grid-template-columns:1fr;gap:14px}
+ .atlas-plate{min-height:0;aspect-ratio:1.65}.atlas-plate h3{font-size:29px;margin:2px 0 5px}.atlas-plate figcaption{padding:14px}.atlas-stamp{top:10px;left:12px;font-size:9px}
+ #atmosphere .scene-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px}
+ #atmosphere .scene-choice{grid-template-columns:38px minmax(0,1fr) 17px;gap:7px;padding:8px 2px;min-height:52px}
+ #atmosphere .scene-choice img{width:38px;height:34px}
+ #atmosphere .scene-choice .atlas-index{display:none}#atmosphere .atlas-label{font-size:13px;white-space:nowrap}
+ .atlas-dot{width:17px;height:17px;font-size:10px}
+ #atmosphere .scene-tools{flex-direction:row;align-items:center}#atmosphere .scene-tools a{margin-left:0}
+}
+@media(prefers-reduced-transparency:reduce),(forced-colors:active){.atlas-jump,.atlas-stamp,.atlas-glass{background:#243139;backdrop-filter:none;-webkit-backdrop-filter:none}}
+/* Single optical highlight inside the two glass controls, never across the video. */
+.atlas-jump,.atlas-stamp{position:relative;isolation:isolate;overflow:hidden}
+.atlas-stamp{position:absolute}
+.atlas-jump::before,.atlas-stamp::before{content:"";position:absolute;pointer-events:none;inset:0;border-radius:inherit;background:linear-gradient(126deg,transparent 18%,#ffffff50 35%,transparent 54%);background-size:230% 100%;background-position:100% 0;opacity:.65}
+[data-room-motion] .atlas-jump:is(:hover,:focus-visible)::before{background-position:0 0;transition:background-position .52s}
+[data-room-motion] #atmosphere .scene-choice img{transition:transform .32s cubic-bezier(.2,.75,.3,1)}
+[data-room-motion] #atmosphere .scene-choice:hover img{transform:scale(1.08)}
+@media(prefers-reduced-transparency:reduce){.atlas-jump::before,.atlas-stamp::before{display:none}}
+/* One frosted control surface: the selected artwork tints the glass from behind. */
+#atmosphere .scene-grid{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--stroke);border-radius:19px;padding:8px 13px;background:#fafbf9;box-shadow:0 4px 18px #193d500a}
+#atmosphere .scene-grid::before,#atmosphere .scene-grid::after{content:"";position:absolute;pointer-events:none;z-index:-1}
+#atmosphere .scene-grid::before{inset:-24px;background:var(--scene-image) center/cover;filter:blur(14px) saturate(.8);opacity:.08}
+#atmosphere .scene-grid::after{inset:0;border-radius:inherit;background:linear-gradient(145deg,#ffffff50,transparent 60%,#e9f3f530);box-shadow:inset 1px 1px 1px #fff8,inset -1px -1px 2px #eafbff55}
+#atmosphere .scene-grid .scene-choice{border-color:var(--stroke)}
+#atmosphere .scene-grid .scene-choice:last-child{border-bottom-color:transparent}
+#atmosphere .scene-grid .scene-choice[aria-pressed=true]{border-radius:12px;background:linear-gradient(120deg,#d9e9ee,#eff4f3);box-shadow:inset 1px 1px 1px #ffffff87,inset -1px -1px 1px #92aabd40;color:var(--al-ink)}
+#atmosphere .atlas-index,#atmosphere .atlas-label small{color:var(--al-muted)}
+@media(max-width:760px){#atmosphere .scene-grid{padding:5px 7px;gap:0 6px;border-radius:12px}}
+@media(prefers-reduced-transparency:reduce),(forced-colors:active){#atmosphere .scene-grid::before,#atmosphere .scene-grid::after{display:none}}
+.atlas-credit{color:#fff;font:500 12px/1.5 system-ui;text-decoration-color:#ffffff90;text-underline-offset:3px}
+.atlas-credit:focus-visible{outline:2px solid white}
+#app .room-heading::before,.atlas-plate .atlas-art{background-position:center var(--atlas-focus,50%)}
+.atlas-plate[data-portrait]{background:#f2f5f4;border:1px solid var(--stroke)}
+.atlas-plate[data-portrait] .atlas-art{inset:0 0 0 28%;background-size:contain;background-position:70% 50%;transform:none}
+.atlas-plate[data-portrait]::after{background:none}
+@media(max-width:760px){.atlas-plate[data-portrait]{aspect-ratio:1.3}.atlas-plate[data-portrait] .atlas-art{left:16%;background-position:right center}}
+/* Daylight plate: shade the caption instead of greying out the sky. */
+body:is([data-scene=anime],[data-scene=tech],[data-scene=cartoon]) .atlas-plate:not([data-portrait])::after{background:linear-gradient(0deg,#142d48bd,transparent 40%)}
+
+#atmosphere .atlas-glass{background:#f6f8f8;color:var(--al-ink);border-color:var(--stroke);text-shadow:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+/* On vertical photographs the spare space is a mat, not a black letterbox. */
+.atlas-plate[data-portrait] figcaption{background:#f2f5f4f7;border-top-right-radius:16px}
+.atlas-plate[data-portrait] :is(h3,.atlas-credit){color:var(--al-ink);text-decoration-color:currentColor}
+.atlas-plate[data-portrait] .atlas-english{color:var(--al-muted)}

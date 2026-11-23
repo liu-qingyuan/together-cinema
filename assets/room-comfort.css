@@ -1,0 +1,70 @@
+/* A photographic opening and a foreground settings sheet, in natural document order. */
+#roomOpening,#advancedControls{--rim:clamp(22px,5.3vw,80px);--type:"Songti SC","STSong","Noto Serif CJK SC",Georgia,serif}
+#advancedControls{position:relative;isolation:isolate;margin:clamp(32px,5vw,72px) 0 0;scroll-margin-top:0;background:#243436}
+/* Use the viewport width naturally (no 100vw scrollbar overhang).
+   Only the content below the landscape inherits the reading-width constraint. */
+body[data-view=room] main{max-width:none;padding:0}
+.room-content{box-sizing:border-box;max-width:1600px;margin:auto;padding:clamp(18px,3vw,44px) 4vw 24px}
+body[data-view=room] #app{background:linear-gradient(to bottom,var(--paper) 100svh,transparent calc(100svh + 90px))}
+.comfort-hero{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;display:grid;grid-template-rows:1fr auto;min-height:100vh;min-height:100svh;margin:0;background:#263840;padding:clamp(100px,16vh,180px) max(var(--rim),env(safe-area-inset-right)) max(5svh,env(safe-area-inset-bottom),28px) max(var(--rim),env(safe-area-inset-left));color:white}
+.comfort-hero::before{content:"";position:absolute;inset:auto 0 0;height:clamp(20px,4svh,54px);background:linear-gradient(transparent,var(--paper));pointer-events:none}
+.comfort-photo,.comfort-hero::after{content:"";position:absolute;inset:0;pointer-events:none}
+.comfort-photo{z-index:-2;background:var(--scene-image) center var(--atlas-focus,50%)/cover no-repeat}
+.comfort-hero::after{z-index:-1;background:linear-gradient(0deg,#101d27aa,transparent 80%),linear-gradient(90deg,#16242a6b,transparent 68%)}
+.comfort-kicker,.comfort-num,.comfort-foot{font:600 10px/1.5 ui-monospace,SFMono-Regular,monospace;letter-spacing:.14em}
+.opening-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid #ffffff70;padding-top:6px}
+.comfort-intro{align-self:end;margin:42px 0 clamp(28px,6vh,72px)}
+.comfort-kicker{display:flex;align-items:center;gap:12px}.comfort-kicker i{width:28px;border-top:1px solid}
+#openingTitle{font:400 clamp(52px,6.8vw,106px)/1.08 var(--type);letter-spacing:-.055em;color:inherit;margin:24px 0 20px}
+.comfort-intro p,.comfort-sheet-intro p{font:450 15px/1.85 system-ui;letter-spacing:.045em;margin:0}
+.opening-actions a{display:inline-flex;align-items:center;gap:14px;min-height:44px;color:inherit;text-decoration:none;font:500 13px/1.5 system-ui}.comfort-foot a span{font-size:20px}
+.comfort-sheet{position:relative;z-index:1;box-sizing:border-box;min-height:76vh;min-height:76svh;scroll-margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(310px,1.05fr);align-items:center;gap:clamp(28px,7vw,110px);padding:clamp(49px,7vw,104px) var(--rim);border-radius:clamp(25px,3vw,46px) clamp(25px,3vw,46px) 0 0;color:#213737;background:radial-gradient(ellipse at 90% 7%,#e9f2f2,transparent 57%),#fafaf8;box-shadow:inset 0 1px 0 #ffffffe0}
+.comfort-sheet::before{content:"";position:absolute;top:13px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:9px;background:#586c6942}
+.comfort-sheet-intro .comfort-kicker{color:#425e5c}.comfort-sheet-intro h3{font:400 clamp(34px,4.5vw,70px)/1.2 var(--type);letter-spacing:-.035em;margin:18px 0 12px}
+.comfort-sheet-intro p{color:#455b57}
+.opening-actions a:focus-visible{outline:2px solid white;outline-offset:2px}
+.comfort-panel{position:relative;align-self:center;background:#f7f8f4;color:#1d2d30;border:1px solid #fff9;border-radius:25px;padding:6px clamp(16px,2.4vw,34px);box-shadow:inset 0 1px 0 #fff,0 16px 48px #0d24242b}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ @media(prefers-reduced-transparency:no-preference){
+ .comfort-panel{background:linear-gradient(125deg,#ffffffed,#f1f7f8c9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+ }
+}
+.comfort-panel details+details{border-top:1px solid #32424632}
+.comfort-panel summary{list-style:none;display:grid;grid-template-columns:22px 1fr 24px;gap:8px;align-items:center;padding:17px 0;min-height:52px;cursor:pointer;font:600 17px/1.4 system-ui;color:inherit}
+.comfort-panel summary::-webkit-details-marker{display:none}.comfort-num{font-size:10px;color:#4a605f}
+.comfort-panel summary i{position:relative;width:23px;height:23px;border:1px solid #33494855;border-radius:50%}
+.comfort-panel summary i::before,.comfort-panel summary i::after{content:"";position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:9px;height:1px;background:currentColor}
+.comfort-panel details:not([open]) summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.comfort-content{padding:0 0 15px}.comfort-panel :is(label,output,select,button){font:500 13px/1.4 system-ui}
+.comfort-range{display:grid;grid-template-columns:1fr auto;align-items:center;margin:2px 0 9px}
+.comfort-range output{font-variant-numeric:tabular-nums;color:#3b5357}
+.comfort-range input[type=range]{grid-column:1/-1;width:100%;height:26px;padding:0;margin:0;background:transparent;accent-color:#306664;cursor:pointer;border:0}
+.comfort-choice,.comfort-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.comfort-choice{justify-content:space-between}.comfort-choice select,.comfort-panel button{max-width:100%;min-height:36px;color:#203a3d;border:1px solid #546a6e55;border-radius:18px;background:#ffffffa8;padding:6px 14px}
+.comfort-panel button:enabled:hover,.comfort-panel summary:hover i{background:#fff}
+.comfort-help,.comfort-guidance{font:400 12px/1.65 system-ui;letter-spacing:0;color:#425457;margin:10px 0 6px}
+.comfort-guidance{font-size:14px;color:#253c3c;margin:0 0 16px}.comfort-panel .comfort-reset{border:0;background:transparent;padding:5px 1px;text-decoration:underline;text-underline-offset:4px}
+.comfort-panel :is(summary,input,select,button):focus-visible{outline:2px solid #005b83;outline-offset:2px}
+
+@media(max-width:760px){
+ .room-content{padding-inline:5vw}
+ .comfort-hero{padding-top:max(148px,calc(132px + env(safe-area-inset-top)))}#openingTitle{font-size:clamp(52px,12.5vw,78px)}
+ .comfort-sheet{grid-template-columns:minmax(0,1fr);align-content:center;gap:22px;padding:44px var(--rim) 34px}
+ .comfort-sheet-intro h3{margin:10px 0 6px}.comfort-intro p,.comfort-sheet-intro p{font-size:13px}.comfort-sheet-intro br{display:none}
+ .comfort-panel{border-radius:19px}.comfort-panel summary{min-height:48px;padding:13px 0}.comfort-panel button,.comfort-choice select{min-height:44px}.comfort-range input[type=range]{height:34px}
+}
+@media(forced-colors:active){.comfort-hero::after,.comfort-photo{display:none}.comfort-panel,.comfort-panel summary i{border:1px solid ButtonText}}
+
+@media(max-height:520px) and (orientation:landscape){.comfort-hero{padding-top:112px;padding-bottom:20px}.comfort-intro{margin:0 0 12px}#openingTitle{font-size:40px;margin:12px 0}.comfort-foot a{min-height:40px}}
+
+/* The picture lingers as an opaque reading surface rises over it. No wheel interception. */
+.room-floor{position:relative;background:linear-gradient(var(--paper) 0 44svh,transparent 100svh)}
+#openingFilm{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center var(--atlas-focus,50%);opacity:0;pointer-events:none}
+#openingFilm[data-ready]{opacity:1}
+@media(prefers-reduced-motion:no-preference){
+ body[data-room-motion] .opening-track{margin-bottom:-38svh}
+ body[data-room-motion] .opening-track::after{content:'';display:block;height:38svh}
+ body[data-room-motion] #roomOpening{position:sticky;top:0}
+}
+
+.opening-track{position:relative}.opening-window{position:absolute;inset:0 0 auto;height:100vh;height:100svh;pointer-events:none}

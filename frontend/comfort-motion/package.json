@@ -1,0 +1,13 @@
+{
+  "name": "together-cinema-comfort-motion",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "motion": "12.23.24"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

@@ -1,41 +1,5 @@
 [
   {
-    "key": "anime",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
-    "key": "tech",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
-    "key": "cartoon",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
-    "key": "cute",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
-    "key": "minimal",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
-    "key": "real",
-    "author": "Together Cinema contributors",
-    "license": "MIT",
-    "source": "Original vector artwork included in this repository; see LICENSE"
-  },
-  {
     "key": "sky",
     "title": "Sky Backgrounds",
     "author": "Unicorn Creates",
@@ -46,7 +10,10 @@
     "source": "https://unicorncreates.itch.io/sky-backgrounds",
     "original": "https://img.itch.zone/aW1hZ2UvNDMxOTM4MS8yNTgxNDE1NS5qcGc=/original/RcHjox.jpg",
     "changes": "Together Cinema: selected the author's 1280x720 daytime JPEG; desktop retains the full composition; mobile crops x=400..880 to 480x720; converted to WebP quality 84. No AI generation or repainting. Not MIT licensed.",
-    "files": ["v1-sky-desktop.webp", "v1-sky-mobile.webp"]
+    "files": [
+      "v1-sky-desktop.webp",
+      "v1-sky-mobile.webp"
+    ]
   },
   {
     "key": "galaxy",
@@ -59,6 +26,166 @@
     "source": "https://commons.wikimedia.org/wiki/File:Milky_way_in_Elbrus.jpg",
     "original": "https://upload.wikimedia.org/wikipedia/commons/5/55/Milky_way_in_Elbrus.jpg",
     "changes": "Together Cinema: resized the full 3648x5472 photograph to 960x1440 (desktop) and 480x720 (mobile), WebP quality 86; metadata removed. No crop, recoloring or AI generation. Not MIT licensed.",
-    "files": ["v1-galaxy-desktop.webp", "v1-galaxy-mobile.webp"]
+    "files": [
+      "v1-galaxy-desktop.webp",
+      "v1-galaxy-mobile.webp"
+    ]
+  },
+  {
+    "key": "anime",
+    "collection": "room",
+    "title": "盛夏晴空",
+    "genre": "动漫",
+    "english": "SUMMER SKIES",
+    "author": "Unicorn Creates",
+    "source": "https://unicorncreates.itch.io/sky-backgrounds",
+    "original": "https://unicorncreates.itch.io/sky-backgrounds",
+    "original_dimensions": [
+      1920,
+      1080
+    ],
+    "focus": 0.48,
+    "portrait": false,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing.",
+    "original_file": "SkyBGs_v1.1.zip / SkyBGs_v1.1/sky_day.webp",
+    "revision": "sky-day-1"
+  },
+  {
+    "key": "minimal",
+    "collection": "room",
+    "title": "雨中巴黎",
+    "genre": "写实街拍",
+    "english": "PARIS IN RAIN",
+    "author": "Ana Vieira",
+    "source": "https://www.pexels.com/photo/black-and-white-photo-of-a-cobblestone-street-between-buildings-in-paris-on-a-rainy-day-20889037/",
+    "original": "https://images.pexels.com/photos/20889037/pexels-photo-20889037.jpeg",
+    "original_dimensions": [
+      3456,
+      5184
+    ],
+    "focus": 0.45,
+    "portrait": true,
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing."
+  },
+  {
+    "key": "cute",
+    "collection": "room",
+    "title": "午睡时间",
+    "genre": "可爱",
+    "english": "SLEEPY AFTERNOON",
+    "author": "Dimitar Dimitrov",
+    "source": "https://www.pexels.com/photo/a-close-up-shot-of-a-sleeping-cat-7249473/",
+    "original": "https://images.pexels.com/photos/7249473/pexels-photo-7249473.jpeg",
+    "original_dimensions": [
+      5184,
+      3456
+    ],
+    "focus": 0.48,
+    "portrait": false,
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing."
+  },
+  {
+    "key": "portrait",
+    "collection": "room",
+    "title": "额间轻吻",
+    "genre": "双人肖像",
+    "english": "A FOREHEAD KISS",
+    "author": "Andriyko Podilnyk",
+    "source": "https://unsplash.com/photos/man-kissing-womans-forehead-3p6RZXty-7c",
+    "original": "https://images.unsplash.com/photo-1555516573-f60567b82fed",
+    "original_dimensions": [
+      4000,
+      6000
+    ],
+    "focus": 0.35,
+    "portrait": true,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing.",
+    "revision": "3p6RZXty-7c"
+  },
+  {
+    "key": "real",
+    "collection": "room",
+    "title": "山野晨雾",
+    "genre": "山水风景",
+    "english": "ALPINE MIST",
+    "author": "Felix Mittermeier",
+    "source": "https://www.pexels.com/photo/green-mountains-photo-1269808/",
+    "original": "https://images.pexels.com/photos/1269808/pexels-photo-1269808.jpeg",
+    "original_dimensions": [
+      8738,
+      4915
+    ],
+    "focus": 0.55,
+    "portrait": false,
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing."
+  },
+  {
+    "key": "cartoon",
+    "collection": "room",
+    "title": "樱花小径",
+    "genre": "春日风景",
+    "english": "CHERRY BLOSSOM WALK",
+    "author": "来源：Pexels",
+    "source": "https://www.pexels.com/photo/serene-cherry-blossom-pathway-in-springtime-31727069/",
+    "original": "https://images.pexels.com/photos/31727069/pexels-photo-31727069.jpeg",
+    "original_dimensions": [
+      3814,
+      5467
+    ],
+    "focus": 0.7,
+    "portrait": true,
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing.",
+    "revision": "31727069"
+  },
+  {
+    "key": "future",
+    "collection": "room",
+    "title": "白色轨道",
+    "genre": "未来建筑",
+    "english": "OCULUS",
+    "author": "David Vives",
+    "source": "https://www.pexels.com/photo/oculus-interior-architecture-in-new-york-city-36050278/",
+    "original": "https://images.pexels.com/photos/36050278/pexels-photo-36050278.jpeg",
+    "original_dimensions": [
+      4608,
+      3072
+    ],
+    "focus": 0.5,
+    "portrait": false,
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing."
+  },
+  {
+    "key": "tech",
+    "collection": "room",
+    "title": "涩谷十字路口",
+    "genre": "都市霓虹",
+    "english": "SHIBUYA CROSSING",
+    "author": "Sarmat Batagov",
+    "source": "https://unsplash.com/photos/busy-city-intersection-at-night-with-bright-lights-2HbkIQeZRBc",
+    "original": "https://images.unsplash.com/photo-1764418658910-c00b609c089e",
+    "original_dimensions": [
+      4000,
+      6000
+    ],
+    "focus": 0.51,
+    "portrait": true,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "changes": "Aspect ratio preserved; resized and compressed to WebP, metadata removed. Thumbnails and room backgrounds may be cropped by layout. No generative editing.",
+    "revision": "2HbkIQeZRBc"
   }
 ]

@@ -2,6 +2,7 @@
 .env
 .env.*
 *.mp4
+!assets/room-art/anime-opening-v1.mp4
 *.mkv
 *.avi
 *.ts
@@ -13,3 +14,4 @@ docs
 test_*.py
 test-fixtures
 .install.lock
+/frontend/comfort-motion/node_modules/

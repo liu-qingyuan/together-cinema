@@ -1,0 +1,65 @@
+.comfort-appearance {padding:16px 0 12px;border-bottom:1px solid var(--group-line)}
+.comfort-appearance label {font-weight:600;font-size:17px}
+.comfort-appearance select {min-width:6em;cursor:pointer}
+.comfort-appearance .comfort-help {margin-bottom:0}
+@media (forced-colors:none) {
+:root[data-appearance=night],html[data-appearance=night] body {
+ --paper:#191b1f;--surface:#24272c;--text:#ebebea;--secondary:#b5b8bc;--stroke:#42474e;--scene-accent:#b3c9d6;
+ --ink:var(--text);--muted:var(--secondary);--accent:var(--scene-accent);--line:var(--stroke);color-scheme:dark;background:var(--paper);color:var(--text)
+}
+html[data-appearance=night] #app{--group-fill:#2e3238;--group-line:#41464d;--group-shadow:inset 0 1px #ffffff09,0 8px 25px #0002}
+html[data-appearance=night] #gallery[data-cover]{--gallery-ink:#f3f3f1;--gallery-muted:#bdc4cb;--gallery-solid:#24272c;--gallery-line:#464c54;background:var(--paper)}
+html[data-appearance=night] #gallery[data-cover] :is(.login-card,.cover-nav button){color:var(--gallery-ink);background:var(--gallery-solid);border-color:var(--gallery-line)}
+html[data-appearance=night] #gallery[data-cover=sky] .login::before{background:linear-gradient(110deg,#0b1724bd,#0d1c2c6b 70%,#10182165)}
+html[data-appearance=night] #gallery [data-cover-choice][aria-pressed=true]{outline:2px solid #b4d0df;outline-offset:-2px}
+html[data-appearance=night] #gallery .error,html[data-appearance=night] #app .error{color:#ffa6ac}
+/* Silver glass over the opening; a solid pearl surface if transparency is unavailable. */
+html[data-appearance=night] #siteNav {--nav-ink:#19232b;--nav-face:linear-gradient(145deg,#f0f2f4,#cbd3db);
+ --glass-wash:linear-gradient(145deg,#ffffffe0 0%,#eef2f6af 40%,#dce3e8a1 74%,#ffffffba);--glass-blur:blur(17px) saturate(1.3)}
+html[data-appearance=night] #siteNav :is(.nav-home,.nav-toggle,.nav-links a){color:var(--nav-ink)}
+html[data-appearance=night] #siteNav :is(.nav-home,.nav-links a:hover,.nav-links a[aria-current=location]){background:#ffffff57}
+html[data-appearance=night] #siteNav[data-compact][data-open] .nav-links{background-color:#e2e7eb}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) and ((mask-composite:exclude) or (-webkit-mask-composite:xor)){
+ @media not (prefers-reduced-transparency:reduce){
+  html[data-appearance=night] #siteNav .nav-bar,html[data-appearance=night] #siteNav[data-compact][data-open] .nav-links{background-color:transparent}
+  html[data-appearance=night] #siteNav .nav-bar::before {box-shadow:inset 0 1px 1px #fff9,inset 0 -1px 2px #ffffff4d}
+ }
+}
+html[data-appearance=night] body[data-view=room] #siteHeader :is(.room-chip,.badge,#roomHeader button,#logout){--edge-fill:#20252bd9;--edge-line:#707680;--edge-ink:#e8ecee}
+@media(hover:hover) and (pointer:fine){
+ html[data-appearance=night] body[data-view=room] #siteHeader :is(.room-chip,.badge,#roomHeader button,#logout):hover{--edge-fill:#f5f6f7;--edge-ink:#20262c;--edge-line:#f3f5f7}
+}
+html[data-appearance=night] body[data-view=room] #siteHeader :is(#roomHeader button,#logout):is(:focus-visible,:active){--edge-fill:#f5f6f7;--edge-ink:#20262c;--edge-line:#f3f5f7}
+@media(prefers-reduced-motion:no-preference){
+ html[data-appearance=night] #siteHeader :is(.room-chip,.badge){transition:background-color .26s,color .18s,border-color .26s}
+}
+html[data-appearance=night] #atmosphere .scene-grid{background:var(--surface);box-shadow:inset 0 1px 0 #ffffff0a}
+html[data-appearance=night] #atmosphere .scene-grid::after{background:linear-gradient(140deg,#ffffff0c,transparent 65%,#d4e0e507);box-shadow:none}
+html[data-appearance=night] #atmosphere .scene-grid .scene-choice:is(:hover,:focus-visible){background:#ffffff0f}
+html[data-appearance=night] #atmosphere .scene-grid .scene-choice[aria-pressed=true]{background:linear-gradient(120deg,#39434a,#30363c);box-shadow:inset 0 0 0 1px #ffffff21}
+html[data-appearance=night] #atmosphere .scene-choice[aria-pressed=true] .atlas-dot{background:#47565e;color:#f0f4f4;border-color:#82939a;box-shadow:none}
+html[data-appearance=night] #atmosphere .atlas-glass{background:var(--group-fill);color:var(--text);border-color:var(--group-line)}
+html[data-appearance=night] #atmosphere .atlas-glass input{accent-color:#b8cbd2}
+html[data-appearance=night] #atmosphere .atlas-plate[data-portrait],html[data-appearance=night] #atmosphere .atlas-plate[data-portrait] figcaption{background:var(--surface)}
+html[data-appearance=night] #atmosphere :is(.scene-choice:focus-visible,.atlas-glass:focus-within){outline-color:#bdd9ea}
+html[data-appearance=night] #app #together {background:#17191c;color:#e8e8e6}
+html[data-appearance=night] .memory-book{background:#202225}
+html[data-appearance=night] #memoryList li{color:#929497}
+html[data-appearance=night] #memoryList li.is-past{color:#86888c}
+html[data-appearance=night] #memoryList li[aria-current=true]{color:#f5f4f1}
+html[data-appearance=night] #together :is(.memory-kicker,.memory-meta,.memory-foot,.memory-foot a,#memoryCaption,time,small){color:#b1b4b7}
+html[data-appearance=night] #together :is(.memory-meta,.memory-foot){border-color:#414348}
+html[data-appearance=night] #app :is(.playback-info,.comfort-panel,.comfort-sheet){background:var(--surface);color:var(--text);box-shadow:var(--group-shadow)}
+html[data-appearance=night] #app :is(.comfort-sheet-intro p,.comfort-kicker,.comfort-num,.comfort-help,.comfort-guidance,.comfort-range output,.comfort-panel button,.comfort-panel select,.room-link,#hostHint,#status,.danmaku-toggle){color:var(--secondary)}
+html[data-appearance=night] #app :is(#danmakuForm,.side-tabs,#retry){background:var(--group-fill);border-color:var(--group-line);color:var(--text)}
+html[data-appearance=night] #app .side-tabs::before{background:#4a5058}
+html[data-appearance=night] #app .side-tabs button,html[data-appearance=night] #app #danmakuText{color:var(--text)}
+html[data-appearance=night] #app #danmakuText::placeholder{color:#b1b4b8}
+html[data-appearance=night] #app #danmakuVisible{background:#282d32;border-color:#969da2}
+html[data-appearance=night] #app #danmakuVisible:checked{background:#e1e6e9}
+html[data-appearance=night] #app #danmakuVisible:checked::after{border-color:#24282c}
+html[data-appearance=night] #app :is(#danmakuSend,#voiceJoin,#chatForm button){border:1px solid #646970}
+html[data-appearance=night] #app :is(.comfort-sheet-intro,.comfort-panel .comfort-guidance,.closing p){color:var(--text)}
+html[data-appearance=night] #app .comfort-panel :is(button,select){color:var(--text);background:var(--group-fill)}
+html[data-appearance=night] #roomDialog{background:var(--surface);color:var(--text);border-color:var(--stroke)}
+}

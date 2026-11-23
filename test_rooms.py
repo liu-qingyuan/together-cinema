@@ -60,3 +60,18 @@ class Checkpoint(Rooms):
   import json,time
   (self.data/'media/fixture.mp4').write_bytes(b'video');p=self.data/'room-checkpoint.json';p.write_text(json.dumps({'file':'fixture.mp4','position':12,'paused':False,'base_rate':1.25,'server_time':time.time()-2}))
   await self.client.close();self.client=TestClient(TestServer(create_app(self.data,'fixture-pass-123',secure=False)));await self.client.start_server();await self.client.post('/api/login',json={'password':'fixture-pass-123'});w,_,state=await self.connect('01');self.assertEqual(state['file'],'fixture.mp4');self.assertFalse(state['paused']);self.assertGreaterEqual(state['position'],14.5);self.assertEqual(state['base_rate'],1.25);self.assertFalse(p.exists());await w.close()
+
+class WelcomeCleanup(unittest.IsolatedAsyncioTestCase):
+ async def test_interrupted_welcome_releases_host_and_member(self):
+  from unittest.mock import patch
+  with tempfile.TemporaryDirectory() as directory:
+   async with TestClient(TestServer(create_app(Path(directory),'fixture-pass-123',secure=False))) as client:
+    await client.post('/api/login',json={'password':'fixture-pass-123'})
+    with patch.object(web.WebSocketResponse,'send_json',side_effect=ConnectionResetError('welcome interrupted')):
+     failed=await client.ws_connect('/ws?room=QA')
+     await failed.receive(timeout=3)
+     await failed.close()
+    async with client.ws_connect('/ws?room=QA') as ws:
+     hello,state=await ws.receive_json(),await ws.receive_json()
+     self.assertEqual(state['online'],1)
+     self.assertEqual(state['host'],hello['id'])

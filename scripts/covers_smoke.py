@@ -73,7 +73,8 @@ async def main():
                 await expect(page.locator('#roomLabel')).to_have_text('房间 ' + room)
             await expect(member.locator('#connection')).to_contain_text('2 人在线')
             manager = member.get_by_role('region', name='全站展厅封面', exact=True)
-            await expect(manager).to_be_visible()
+            await expect(manager).to_have_count(0)
+            headers = {'X-Room-Member': await member.evaluate('memberToken')}
 
             # Generated movie with a real text subtitle goes through the normal converter.
             with tempfile.TemporaryDirectory() as directory:
@@ -100,7 +101,7 @@ async def main():
             await member.get_by_role('tab', name='片库', exact=True).click()
             await member.locator('#library').get_by_role('button', name=re.compile(re.escape(uploaded.split('-', 1)[1]))).click()
             for page in (member, friend):
-                await page.wait_for_function("document.querySelector('video').readyState>=2 && document.querySelector('#subtitleSelect').options.length>1")
+                await page.wait_for_function("document.querySelector('#video').readyState>=2 && document.querySelector('#subtitleSelect').options.length>1")
                 # User-facing Artplayer subtitle selector (legacy select is intentionally hidden).
                 await page.locator('#videoStage').hover()
                 await page.locator('.art-control-setting').click()
@@ -129,10 +130,9 @@ async def main():
             async def upload(name, color):
                 image = io.BytesIO()
                 Image.new('RGB', (640, 360), color).save(image, 'PNG')
-                await manager.get_by_label('上传封面图片').set_input_files({
-                    'name': name, 'mimeType': 'image/png', 'buffer': image.getvalue()})
-                await manager.get_by_role('button', name='上传并选用', exact=True).click()
-                await expect(manager.get_by_role('status')).to_contain_text('已更新')
+                response = await member.request.post('/api/covers', headers=headers, multipart={'cover':{
+                    'name': name, 'mimeType': 'image/png', 'buffer': image.getvalue()}})
+                assert response.ok, await response.text()
                 ident = await current(member)
                 custom.append(ident)
                 return ident
@@ -153,7 +153,7 @@ async def main():
                         && localStorage.getItem('watchScene')===coverBaseline.theme && document.body.dataset.scene===coverBaseline.scene
                         && [...voicePeers.values()].every((p,i)=>p.pc===coverBaseline.peers[i] && p.pc.connectionState==='connected')
                         && voiceStream.getTracks().every(track=>track.readyState==='live')""")
-                drift = abs(await member.locator('video').evaluate('v=>v.currentTime') - await friend.locator('video').evaluate('v=>v.currentTime'))
+                drift = abs(await member.locator('#video').evaluate('v=>v.currentTime') - await friend.locator('#video').evaluate('v=>v.currentTime'))
                 assert drift < 1.5, drift
                 report.append({'current': expected if expected in ('sky', 'galaxy') else 'custom', 'no_media_reload': True,
                                'subtitles_preserved': True, 'voice_connected': True, 'drift_seconds': round(drift, 3)})
@@ -171,22 +171,17 @@ async def main():
             await verify(first_id)
             # A selected existing picture and both presets use the same public write seam.
             for ident in ('galaxy', first_id):
-                await manager.get_by_label('全站封面', exact=True).select_option(ident)
-                await manager.get_by_role('button', name='选用全站封面', exact=True).click()
-                await expect(manager.get_by_role('status')).to_contain_text('已更新')
+                assert (await member.request.put('/api/covers/current',headers=headers,data={'id':ident})).ok
                 await verify(ident)
             second_id = await upload('test-two.png', '#edb8be')
             await verify(second_id)
-            await manager.get_by_label('上传封面图片').set_input_files({
-                'name': 'broken.png', 'mimeType': 'image/png', 'buffer': b'not an image'})
-            await manager.get_by_role('button', name='上传并选用', exact=True).click()
-            await expect(manager.get_by_role('status')).to_contain_text('原封面保留')
+            bad = await member.request.post('/api/covers', headers=headers, multipart={'cover':{
+                'name':'broken.png','mimeType':'image/png','buffer':b'not an image'}})
+            assert 400 <= bad.status < 500
             await verify(second_id)
             member.on('dialog', lambda dialog: dialog.accept())
             for ident, expected in ((first_id, second_id), (second_id, 'sky')):
-                await manager.get_by_label('全站封面', exact=True).select_option(ident)
-                await manager.get_by_role('button', name='删除所选自定义图', exact=True).click()
-                await expect(manager.get_by_role('status')).to_contain_text('已更新')
+                assert (await member.request.delete('/api/covers/'+ident,headers=headers)).ok
                 await verify(expected)
                 custom.remove(ident)
             for page, before in zip((member, friend), received):

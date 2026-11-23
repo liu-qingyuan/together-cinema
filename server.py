@@ -8,6 +8,8 @@ import json
 import math
 import os
 import secrets
+import logging
+import sqlite3
 import time
 from pathlib import Path
 
@@ -15,6 +17,7 @@ from aiohttp import WSMsgType, web
 from parallel_upload import ParallelUploads
 from conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
 from danmaku import DanmakuStore
+from watch_history import WatchHistory, film_title
 from covers import SharedCovers
 from external_media import ExternalMedia
 from subtitles import list_subtitles, subtitle_path, remove_subtitles
@@ -28,6 +31,7 @@ class Room:
         self.code = code
         self.members = {}
         self.chat = []
+        self.remembered_file = None
         self.last_used = time.monotonic()
         self.clients = {}
         self.host = None
@@ -99,6 +103,7 @@ class Room:
             return False
         self.expire_boost()
         if file != self.file:
+            self.remembered_file = None
             self.base_rate = 1.0
         if file != self.file or paused:
             self.playback_rate, self.boost_until = self.base_rate, 0.0
@@ -106,8 +111,10 @@ class Room:
         self.updated = time.monotonic()
         return True
 
-    async def broadcast(self):
+    async def broadcast(self, memory=None):
         state = self.snapshot()
+        if memory is not None:
+            state['memory'] = memory
         self.rate_dirty = False
         for ws in list(self.clients.values()):
             try:
@@ -174,6 +181,7 @@ def create_app(data_dir=None, password=None, secure=None):
             pass
     network = ExternalMedia(os.environ.get('WATCH_EXTRACTOR_URL','http://extractor:8081'),password)
     comments = DanmakuStore(data_dir)
+    history = WatchHistory(data_dir)
     last_comment = {}
     attempts = {}
     upload_lock = asyncio.Lock()
@@ -221,18 +229,27 @@ def create_app(data_dir=None, password=None, secure=None):
 
     async def player_asset(request):
         name = request.match_info['name']
-        if name not in {'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
+        if name not in {'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
             raise web.HTTPNotFound()
         return web.FileResponse(APP_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 
     async def scene_asset(request):
         name = request.match_info['name']
-        names = {f'v1-{key}{suffix}.svg' for key in ('anime', 'tech', 'cartoon', 'cute', 'minimal', 'real') for suffix in ('', '-thumb')}
-        names.update(f'v1-{key}-{size}.webp' for key in ('sky', 'galaxy') for size in ('desktop', 'mobile'))
+        legacy = re.fullmatch(r'v1-(anime|tech|cartoon|cute|minimal|real)(-thumb)?\.svg', name)
+        if legacy:
+            raise web.HTTPFound('/room-art/' + legacy[1] + ('-thumb.webp' if legacy[2] else '-wide.webp'))
+        names = {f'v1-{key}-{size}.webp' for key in ('sky', 'galaxy') for size in ('desktop', 'mobile')}
         if name not in names and name not in {'sources.json', 'LICENSE-CC-BY-4.0.txt'}:
             raise web.HTTPNotFound()
         return web.FileResponse(APP_DIR / 'assets' / 'scenes' / name,
                                 headers={'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'public, max-age=3600'})
+
+    async def room_art(request):
+        name = request.match_info['name']
+        if name != 'anime-opening-v1.mp4' and not re.fullmatch(r'(anime|minimal|cute|portrait|real|cartoon|future|tech)-(wide|compact|thumb)\.webp', name):
+            raise web.HTTPNotFound()
+        return web.FileResponse(APP_DIR / 'assets' / 'room-art' / name,
+                                headers={'X-Content-Type-Options':'nosniff','Cache-Control':'public, max-age=3600'})
 
     def require_cover_member(request):
         member = cover_members.get(request.headers.get('X-Room-Member', ''))
@@ -498,9 +515,14 @@ def create_app(data_dir=None, password=None, secure=None):
             room.host = peer
         member_token = secrets.token_urlsafe(32)
         cover_members[member_token] = (ws, request.cookies.get('watch_session'))
-        await ws.send_json({'type':'hello','id':peer,'room':room.code,'chat':room.chat,'member_token':member_token})
-        await room.broadcast()
         try:
+            try:
+                memories = history.list(room.code)
+            except sqlite3.Error:
+                logging.exception('Could not read screening history')
+                memories = []
+            await ws.send_json({'memories':memories,'type':'hello','id':peer,'room':room.code,'chat':room.chat,'member_token':member_token})
+            await room.broadcast()
             async for msg in ws:
                 if msg.type != WSMsgType.TEXT:
                     continue
@@ -510,7 +532,14 @@ def create_app(data_dir=None, password=None, secure=None):
                         continue
                     if data.get('type') == 'control':
                         if room.update(peer, data, available()):
-                            await room.broadcast()
+                            entry = None
+                            if not room.paused and room.file != room.remembered_file:
+                                try:
+                                    entry = history.record(room.code, film_title(room.file, network))
+                                    room.remembered_file = room.file
+                                except sqlite3.Error:
+                                    logging.exception('Could not save screening history')
+                            await room.broadcast(entry)
                     elif data.get('type') == 'danmaku':
                         name = data.get('file')
                         now = time.monotonic()
@@ -600,6 +629,7 @@ def create_app(data_dir=None, password=None, secure=None):
                 room.reset_boost()
                 room.host = next(iter(room.clients), None)
             if not room.clients:
+                room.remembered_file = None
                 room.position = room.snapshot()['position']
                 room.updated = time.monotonic()
                 room.paused = True
@@ -685,6 +715,7 @@ def create_app(data_dir=None, password=None, secure=None):
 
     app.router.add_get('/healthz', health)
     app.router.add_get('/scenes/{name}', scene_asset)
+    app.router.add_get('/room-art/{name}', room_art)
     app.router.add_get('/api/covers', cover_catalog)
     app.router.add_post('/api/covers', cover_upload)
     app.router.add_put('/api/covers/current', cover_select)

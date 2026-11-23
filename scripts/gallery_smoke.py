@@ -144,12 +144,12 @@ async def main():
             await page.get_by_role('tab', name='片库', exact=True).click()
             await page.locator('#library').get_by_role('button', name=re.compile(re.escape(filename))).click()
             for member in (page, guest):
-                await member.wait_for_function("document.querySelector('video').readyState >= 2")
-                assert uploaded in await member.locator('video').evaluate('video => video.currentSrc')
+                await member.wait_for_function("document.querySelector('#video').readyState >= 2")
+                assert uploaded in await member.locator('#video').evaluate('video => video.currentSrc')
             await page.locator('#videoStage').hover()
             await page.get_by_label('播放', exact=True).click()
             for member in (page, guest):
-                await member.wait_for_function("!document.querySelector('video').paused && document.querySelector('video').currentTime > 1")
+                await member.wait_for_function("!document.querySelector('#video').paused && document.querySelector('#video').currentTime > 1")
 
             # Browsing with an authorized cookie during a screening neither joins nor loads its media.
             browsing = await page.context.new_page()
@@ -163,19 +163,19 @@ async def main():
             assert not browse_sockets
             assert not any(request.method == 'POST' or urlsplit(request.url).path.startswith('/media/') for request in browse_requests)
             await browsing.close()
-            times = [await member.locator('video').evaluate('video => video.currentTime') for member in (page, guest)]
+            times = [await member.locator('#video').evaluate('video => video.currentTime') for member in (page, guest)]
             for member, before in zip((page, guest), times):
-                await member.wait_for_function('before => !document.querySelector("video").paused && document.querySelector("video").currentTime > before + 1', arg=before)
-            drift = abs(await page.locator('video').evaluate('video => video.currentTime') -
-                        await guest.locator('video').evaluate('video => video.currentTime'))
+                await member.wait_for_function('before => !document.querySelector("#video").paused && document.querySelector("#video").currentTime > before + 1', arg=before)
+            drift = abs(await page.locator('#video').evaluate('video => video.currentTime') -
+                        await guest.locator('#video').evaluate('video => video.currentTime'))
             assert drift < 1.5, drift
             await page.locator('#videoStage').hover()
             await page.get_by_label('暂停', exact=True).click()
-            await guest.wait_for_function('document.querySelector("video").paused')
+            await guest.wait_for_function('document.querySelector("#video").paused')
             await page.locator('#videoStage').focus()
             await page.keyboard.press('ArrowRight')
-            target = await page.locator('video').evaluate('video => video.currentTime')
-            await guest.wait_for_function('target => Math.abs(document.querySelector("video").currentTime - target) < .8', arg=target)
+            target = await page.locator('#video').evaluate('video => video.currentTime')
+            await guest.wait_for_function('target => Math.abs(document.querySelector("#video").currentTime - target) < .8', arg=target)
             for member in (page, guest):
                 await expect(member.locator('body')).to_have_class(re.compile('motion-paused'))
             if args.artifacts:
