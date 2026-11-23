@@ -34,5 +34,31 @@
     "author": "Together Cinema contributors",
     "license": "MIT",
     "source": "Original vector artwork included in this repository; see LICENSE"
+  },
+  {
+    "key": "sky",
+    "title": "Sky Backgrounds",
+    "author": "Unicorn Creates",
+    "author_url": "https://unicorncreates.itch.io/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_file": "/scenes/LICENSE-CC-BY-4.0.txt",
+    "source": "https://unicorncreates.itch.io/sky-backgrounds",
+    "original": "https://img.itch.zone/aW1hZ2UvNDMxOTM4MS8yNTgxNDE1NS5qcGc=/original/RcHjox.jpg",
+    "changes": "Together Cinema: selected the author's 1280x720 daytime JPEG; desktop retains the full composition; mobile crops x=400..880 to 480x720; converted to WebP quality 84. No AI generation or repainting. Not MIT licensed.",
+    "files": ["v1-sky-desktop.webp", "v1-sky-mobile.webp"]
+  },
+  {
+    "key": "galaxy",
+    "title": "Milky way in Elbrus",
+    "author": "oliwok",
+    "author_url": "https://commons.wikimedia.org/wiki/User_talk:Oliwok",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_file": "/scenes/LICENSE-CC-BY-4.0.txt",
+    "source": "https://commons.wikimedia.org/wiki/File:Milky_way_in_Elbrus.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/55/Milky_way_in_Elbrus.jpg",
+    "changes": "Together Cinema: resized the full 3648x5472 photograph to 960x1440 (desktop) and 480x720 (mobile), WebP quality 86; metadata removed. No crop, recoloring or AI generation. Not MIT licensed.",
+    "files": ["v1-galaxy-desktop.webp", "v1-galaxy-mobile.webp"]
   }
 ]

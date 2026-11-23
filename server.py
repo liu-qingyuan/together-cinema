@@ -224,7 +224,8 @@ def create_app(data_dir=None, password=None, secure=None):
     async def scene_asset(request):
         name = request.match_info['name']
         names = {f'v1-{key}{suffix}.svg' for key in ('anime', 'tech', 'cartoon', 'cute', 'minimal', 'real') for suffix in ('', '-thumb')}
-        if name not in names and name != 'sources.json':
+        names.update(f'v1-{key}-{size}.webp' for key in ('sky', 'galaxy') for size in ('desktop', 'mobile'))
+        if name not in names and name not in {'sources.json', 'LICENSE-CC-BY-4.0.txt'}:
             raise web.HTTPNotFound()
         return web.FileResponse(APP_DIR / 'assets' / 'scenes' / name,
                                 headers={'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'public, max-age=3600'})

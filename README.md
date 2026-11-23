@@ -13,7 +13,7 @@
 - **保留字幕**：文字字幕，以及受支持的 PGS 图片字幕；全屏包含字幕和弹幕。不是任意 MKV／字幕编码的通用解码器。
 - **聊天与语音**：房间文本聊天；配置 TURN + HTTPS 后可使用 WebRTC 语音、音量控制与声波显示。
 - **可选网络片源**：直连或服务器中转；启用 `network` 后支持 YouTube 和通用动态网页探测。不绕过登录、验证码或 DRM，不保证所有网站可用。
-- **展厅与放映室**：普通入口先逛默认封面的展厅，下滑查看有权限访问的片库；房间邀请经校验直达放映室。六套原创矢量背景保留，进入放映室后装饰动效停止，支持减少动态效果偏好。不含第三方图片 CDN 或统计脚本。
+- **展厅与放映室**：普通入口先逛「动漫天空／雪山银河」展厅，下滑查看有权限访问的片库；房间邀请经校验直达放映室。封面只在本页预览，尚不能全站共享修改；六套个人原创矢量背景保留。展厅素材随部署提供、按视口选尺寸，控制区支持静态不透明回退，入房后停止装饰动效。不含第三方图片 CDN 或统计脚本。
 
 ## 快速开始
 
@@ -97,7 +97,15 @@ python scripts/gallery_smoke.py http://127.0.0.1:8080
 # 可加 --artifacts /tmp/gallery-evidence 保存截图，不保存 Cookie 或会话
 ```
 
-脚本用两个独立浏览器进程检查两条入口、片库权限和真实同步播放，只上传／删除自己生成的测试短片。手机尺寸模拟不代表手机实机验收。
+脚本用两个独立浏览器进程检查两条入口、片库权限和真实同步播放，只上传／删除自己生成的测试短片。
+
+两种展厅预设、资源按需加载、焦点和偏好回退可额外验证：
+
+```sh
+python scripts/gallery_visual_smoke.py http://127.0.0.1:8080 --artifacts /tmp/gallery-visual
+```
+
+请在专用本地 Compose 实例运行；连续重复入房测试可能触发原有登录限流，等待窗口或仅重启专用测试实例后再跑。手机尺寸模拟不代表手机实机验收；[当前画面与真机验收缺口](docs/gallery-visual-acceptance.md)。
 
 [贡献指南](CONTRIBUTING.md) · [架构](docs/architecture.md) · [发布检查](docs/releasing.md) · [第三方授权](THIRD_PARTY_NOTICES.md)
 
@@ -105,4 +113,4 @@ python scripts/gallery_smoke.py http://127.0.0.1:8080
 
 ## License
 
-项目原创代码和矢量背景采用 [MIT](LICENSE)。第三方库及运行时仍遵循各自许可证，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+项目原创代码和矢量背景采用 [MIT](LICENSE)。两套展厅图片为署名保留的 **CC BY 4.0** 作品，不改标 MIT。第三方图片、库及运行时授权详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

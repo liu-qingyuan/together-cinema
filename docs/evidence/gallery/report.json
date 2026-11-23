@@ -1,0 +1,88 @@
+[
+  {
+    "cover": "sky",
+    "device": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "resource": "v1-sky-desktop.webp",
+    "focus_and_library": "passed"
+  },
+  {
+    "cover": "galaxy",
+    "device": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "resource": "v1-galaxy-desktop.webp",
+    "focus_and_library": "passed"
+  },
+  {
+    "cover": "sky",
+    "device": "mobile-emulation",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "resource": "v1-sky-mobile.webp",
+    "focus_and_library": "passed"
+  },
+  {
+    "cover": "galaxy",
+    "device": "mobile-emulation",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "resource": "v1-galaxy-mobile.webp",
+    "focus_and_library": "passed"
+  },
+  {
+    "cover": "sky",
+    "preference": "prefers-reduced-motion",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "cover": "galaxy",
+    "preference": "prefers-reduced-motion",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "cover": "sky",
+    "preference": "prefers-reduced-transparency",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "cover": "galaxy",
+    "preference": "prefers-reduced-transparency",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "cover": "sky",
+    "preference": "static-base-css",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "cover": "galaxy",
+    "preference": "static-base-css",
+    "entry": "passed",
+    "room_resize_cover_downloads": 0
+  },
+  {
+    "narrow_viewport_only": "320x568",
+    "horizontal_overflow": false
+  },
+  {
+    "invitation_cover_downloads": 0,
+    "browser_runtime_errors": [],
+    "real_phone_verified": false,
+    "unsupported_filter_engine_verified": false
+  }
+]

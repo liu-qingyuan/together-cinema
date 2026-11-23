@@ -7,6 +7,23 @@ class SceneDistributionTests(unittest.IsolatedAsyncioTestCase):
   with tempfile.TemporaryDirectory() as d:
    async with TestClient(TestServer(create_app(Path(d),'distribution-fixture-secret',secure=False))) as c:
     r=await c.get('/scenes/v1-anime.svg');self.assertEqual(r.status,200);self.assertIn('<svg',await r.text());self.assertEqual(r.content_type,'image/svg+xml')
-    r=await c.get('/scenes/sources.json');self.assertEqual(r.status,200);self.assertEqual(len(await r.json()),6)
+    r=await c.get('/scenes/sources.json');self.assertEqual(r.status,200);self.assertEqual(len(await r.json()),8)
     for name in ['secret.svg','sources.json.bak','v1-anime.svg%2f..%2fserver.py']:
      self.assertEqual((await c.get('/scenes/'+name)).status,404)
+ async def test_gallery_variants_and_attribution_ship_through_existing_asset_route(self):
+  with tempfile.TemporaryDirectory() as d:
+   async with TestClient(TestServer(create_app(Path(d),'distribution-fixture-secret',secure=False))) as c:
+    for key in ['sky','galaxy']:
+     for size in ['desktop','mobile']:
+      r=await c.get(f'/scenes/v1-{key}-{size}.webp');self.assertEqual(r.status,200)
+      self.assertEqual(r.content_type,'image/webp');self.assertEqual((await r.read())[:4],b'RIFF')
+      self.assertEqual(r.headers['X-Content-Type-Options'],'nosniff')
+    credits=await (await c.get('/scenes/sources.json')).json()
+    for key in ['sky','galaxy']:
+     credit=next(row for row in credits if row['key']==key)
+     self.assertEqual(credit['license'],'CC BY 4.0');self.assertTrue(credit['author']);self.assertTrue(credit['changes'])
+     self.assertTrue(credit['source'].startswith('https://'))
+     self.assertEqual(len(credit['files']),2)
+    r=await c.get('/scenes/LICENSE-CC-BY-4.0.txt');self.assertEqual(r.status,200)
+    self.assertIn('Attribution 4.0 International',await r.text())
+    self.assertEqual((await c.get('/scenes/v1-galaxy-original.jpg')).status,404)
