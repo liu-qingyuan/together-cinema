@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+data/
+*.mp4
+*.mkv
+*.avi
+*.ts
+*.webm
+__pycache__/
+*.pyc
+.venv/
+.install.lock/
+.env.tmp.*
+.DS_Store
