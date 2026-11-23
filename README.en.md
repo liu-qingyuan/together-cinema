@@ -4,6 +4,20 @@
 
 [中文 README](README.md) · [Deployment](docs/deployment.md) · [Security](SECURITY.md)
 
+[20-second walkthrough](docs/showcase/tour.webp) · [Start with Docker](#start) · [Screenshot tour](docs/showcase/README.md)
+
+[![Two independent sessions in one demo room: a light desktop and a dark mobile viewport, paused at the same moment](docs/showcase/hero.webp)](docs/showcase/README.md)
+
+One friend paused the film at 00:13; both screens stopped on the same frame. [Desktop view](docs/showcase/desktop.webp) · [Mobile view](docs/showcase/mobile.webp)
+
+| Enter a room | Choose a film beside the player |
+| --- | --- |
+| [![Room-code entry beneath a starry mountain sky](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![The shared library alongside the player](docs/showcase/library.webp)](docs/showcase/library.webp) |
+| **Browse the screening journal** | **Choose your personal scenery** |
+| [![Filmstrip of built-in sample titles and dates](docs/showcase/journal.webp)](docs/showcase/journal.webp) | [![Cherry-blossom scene in the personal gallery](docs/showcase/scenes.webp)](docs/showcase/scenes.webp) |
+
+[See the full walkthrough, including people, subtitles and artwork credits →](docs/showcase/README.md)
+
 ## Start
 
 Install Docker Engine/Desktop with Compose v2, download this source, then:

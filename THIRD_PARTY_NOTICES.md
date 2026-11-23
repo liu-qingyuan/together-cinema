@@ -41,3 +41,7 @@ WebP derivatives are resized from the listed artists’ published works, not gen
 ## Motion (room settings only)
 
 The optional locally served bundle uses [Motion](https://motion.dev/) 12.23.24 (MIT). Build inputs: `frontend/comfort-motion/package-lock.json`; run `npm ci && npm run build` there to reproduce it. License texts: `LICENSES/comfort-motion.txt`. Docker installation and playback do not require Node or a CDN.
+
+## Documentation screenshots
+
+The [screenshot gallery and optional animated walkthrough](docs/showcase/README.md) use local demonstration rooms and the credited scene derivatives above. The demo film loops the credited Sky Backgrounds opening. The two-screen composite adds device framing and captions. The third-party artwork retains its original terms.

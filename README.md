@@ -1,8 +1,20 @@
-<p align="center"><img src="docs/banner.svg" alt="Together Cinema — Different places. The same moment." width="100%"></p>
+# Together Cinema · 一起看
 
-<p align="center"><b>一起看，把同一段时光留给彼此。</b><br>Self-hosted watch parties with synchronized playback, a shared library, chat and optional voice.</p>
+**不同的地方，同一场电影。** 和朋友同步播放、边看边聊，把一起看过的片留成一本放映手记。
 
-<p align="center"><a href="README.en.md">English</a> · <a href="#快速开始">快速开始</a> · <a href="docs/deployment.md">部署</a> · <a href="SECURITY.md">安全边界</a> · <a href="docs/compatibility.md">兼容性</a></p>
+[看 20 秒演示](docs/showcase/tour.webp)　·　[用 Docker 部署](#快速开始)　·　[看全部截图](docs/showcase/README.md)　·　[English](README.en.md)
+
+[![桌面是日间、手机是夜间：两位示例成员在同一房间，影片同步停在第 13 秒](docs/showcase/hero.webp)](docs/showcase/README.md)
+
+**同一进度，不同习惯。** 上图是两个真实浏览器会话：房主在桌面暂停《云间来信》，手机视口也停在同一幕。[桌面原图](docs/showcase/desktop.webp) · [手机原图](docs/showcase/mobile.webp)
+
+| 入房：输入房间码，和朋友会合 | 选片：片库就在播放器旁边 |
+| --- | --- |
+| [![雪山银河展厅与入房表单](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![房主在播放器右侧查看共享片库](docs/showcase/library.webp)](docs/showcase/library.webp) |
+| **陪伴：沿着胶片翻看放映记录** | **风景：换一幅只属于自己的背景** |
+| [![带日期的黑白胶片手记，此处为内置示例](docs/showcase/journal.webp)](docs/showcase/journal.webp) | [![私人风景选集中的樱花小径](docs/showcase/scenes.webp)](docs/showcase/scenes.webp) |
+
+[继续看：开场大图、房间成员、夜间字幕设置与素材署名 →](docs/showcase/README.md)
 
 ## 它适合谁？
 
