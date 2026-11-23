@@ -10,4 +10,4 @@ Small, testable changes are welcome. Start with an issue describing actual behav
 - New vendored assets must retain their licenses and provenance. No scraped commercial artwork or movie stills for README/demo.
 - No fake reviews, stars, installs, benchmark claims or CI badges. A passing emulator test is not a real-device compatibility guarantee.
 
-The project has no issue tracker or upstream configured in this local candidate. Do not auto-create or auto-close remote issues. Maintainers can enable those workflows after publication.
+Use [GitHub Issues](https://github.com/liu-qingyuan/together-cinema/issues) for requests, triage and the backlog; pull requests are for review. To enable the feature-record hooks in a fresh clone, run `./.feature-docs/run install`.

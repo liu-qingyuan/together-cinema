@@ -16,3 +16,8 @@ __pycache__/
 
 .playwright-cli/
 .playwright/
+
+.ralph/
+AGENTS.md
+.claude/
+CLAUDE.md
