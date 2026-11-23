@@ -13,3 +13,6 @@ __pycache__/
 .install.lock/
 .env.tmp.*
 .DS_Store
+
+.playwright-cli/
+.playwright/

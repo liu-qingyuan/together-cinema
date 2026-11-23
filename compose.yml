@@ -1,0 +1,96 @@
+x-app: &app
+  image: ${COMPOSE_PROJECT_NAME:-together-cinema}-app:local
+  init: true
+  restart: unless-stopped
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  volumes: [media:/data]
+  tmpfs: ['/tmp:size=32m,mode=1777']
+  logging:
+    driver: json-file
+    options: {max-size: 5m, max-file: '2'}
+services:
+  watch:
+    <<: *app
+    build: .
+    ports: ['127.0.0.1:${HOST_PORT:-8080}:8080']
+    environment:
+      WATCH_PASSWORD: ${WATCH_PASSWORD:?Run ./install.sh to create .env}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      RESERVE_BYTES: ${RESERVE_BYTES:-2147483648}
+      WATCH_TURN_URLS: ${WATCH_TURN_URLS:-}
+      WATCH_TURN_SECRET: ${WATCH_TURN_SECRET:-}
+      WATCH_EXTRACTOR_URL: http://extractor:8081
+    mem_limit: 192m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz',timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+  converter:
+    <<: *app
+    pull_policy: never
+    command: [python, conversion.py]
+    network_mode: none
+    environment:
+      RESERVE_BYTES: ${RESERVE_BYTES:-2147483648}
+    depends_on:
+      watch: {condition: service_healthy}
+    mem_limit: 384m
+    cpus: 0.25
+    pids_limit: 64
+  extractor:
+    profiles: [network]
+    build:
+      context: .
+      dockerfile: extractor.Dockerfile
+    image: ${COMPOSE_PROJECT_NAME:-together-cinema}-extractor:local
+    init: true
+    restart: unless-stopped
+    environment:
+      WATCH_PASSWORD: ${WATCH_PASSWORD:?Run ./install.sh}
+    read_only: true
+    tmpfs: ['/tmp:size=96m,uid=10001,gid=10001,mode=0700']
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true, 'seccomp=./browser-seccomp.json']
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 0.5
+    pids_limit: 192
+    ulimits:
+      core: {soft: 0, hard: 0}
+    logging:
+      driver: json-file
+      options: {max-size: 1m, max-file: '2'}
+  https:
+    profiles: [https]
+    image: caddy:2.11.9-alpine
+    restart: unless-stopped
+    entrypoint: [/bin/sh, /etc/caddy/entrypoint.sh]
+    environment:
+      CADDY_SITE: ${CADDY_SITE:-localhost}
+      SITE_PASSWORD: ${SITE_PASSWORD:?Run ./install.sh}
+    ports: ['${PUBLIC_BIND_IP:-0.0.0.0}:${HTTP_PORT:-80}:80', '${PUBLIC_BIND_IP:-0.0.0.0}:${HTTPS_PORT:-443}:443']
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./deploy/caddy-entrypoint.sh:/etc/caddy/entrypoint.sh:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      watch: {condition: service_healthy}
+    read_only: true
+    tmpfs: ['/tmp:size=8m,mode=1777']
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: '2'}
+volumes:
+  media:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,20 @@
+name: Bug report / 问题反馈
+description: A reproducible playback, deployment or compatibility problem
+title: '[Bug] '
+body:
+  - type: textarea
+    attributes:
+      label: What happened / 实际现象
+      description: Include expected behavior and exact reproduction steps. Do not upload films, .env, credentials, or signed URLs.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment / 环境
+      description: Version/commit, Docker architecture, phone model, OS, browser version, local/direct/relay mode.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Sanitized evidence / 脱敏证据
+      description: Screenshot or relevant error, with confirmed secrets removed. Note whether the same source works in another browser.

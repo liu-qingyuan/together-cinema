@@ -221,6 +221,14 @@ def create_app(data_dir=None, password=None, secure=None):
             raise web.HTTPNotFound()
         return web.FileResponse(APP_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 
+    async def scene_asset(request):
+        name = request.match_info['name']
+        names = {f'v1-{key}{suffix}.svg' for key in ('anime', 'tech', 'cartoon', 'cute', 'minimal', 'real') for suffix in ('', '-thumb')}
+        if name not in names and name != 'sources.json':
+            raise web.HTTPNotFound()
+        return web.FileResponse(APP_DIR / 'assets' / 'scenes' / name,
+                                headers={'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'public, max-age=3600'})
+
     async def login(request):
         # X-Real-IP is overwritten by our loopback-only reverse proxy.
         ip = request.headers.get('X-Real-IP', request.remote or 'unknown')
@@ -631,6 +639,7 @@ def create_app(data_dir=None, password=None, secure=None):
         return web.json_response({'ok': True})
 
     app.router.add_get('/healthz', health)
+    app.router.add_get('/scenes/{name}', scene_asset)
     app.router.add_post('/api/network/resolve', network_resolve)
     app.router.add_get('/api/network/stats', network_stats)
     app.router.add_get('/api/network/{source_id}/source', network_describe)

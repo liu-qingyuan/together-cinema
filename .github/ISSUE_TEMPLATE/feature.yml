@@ -1,0 +1,10 @@
+name: Feature request / 功能建议
+description: Describe a concrete watch-party need
+title: '[Feature] '
+body:
+  - type: textarea
+    attributes:
+      label: User need / 使用场景
+      description: What are you trying to do, and what is missing? Prefer one small complete improvement.
+    validations:
+      required: true

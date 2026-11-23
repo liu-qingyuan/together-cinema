@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+*.mp4
+*.mkv
+*.avi
+*.ts
+*.webm
+__pycache__
+.venv
+docs
+.github
+test_*.py
+test-fixtures
+.install.lock

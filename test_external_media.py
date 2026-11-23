@@ -130,6 +130,10 @@ class OrphanLifecycle(unittest.IsolatedAsyncioTestCase):
     with self.assertRaises(RuntimeError):await engine.resolve('https://youtu.be/aqz-KE-bpKQ')
     pid=int(pidfile.read_text())
     def running():
+     if sys.platform=='linux':
+      try:state=Path('/proc/'+str(pid)+'/stat').read_text().rsplit(')',1)[1].split()[0]
+      except FileNotFoundError:return False
+      return state!='Z'
      r=subprocess.run(['ps','-o','stat=','-p',str(pid)],capture_output=True,text=True)
      return bool(r.stdout.strip()) and not r.stdout.strip().startswith('Z')
     for _ in range(50):

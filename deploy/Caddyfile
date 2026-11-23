@@ -1,0 +1,9 @@
+{$CADDY_SITE} {
+    basic_auth {
+        cinema {$BASIC_AUTH_HASH}
+    }
+    reverse_proxy watch:8080 {
+        flush_interval -1
+        header_up X-Real-IP {remote_host}
+    }
+}
