@@ -1,0 +1,245 @@
+{
+  "ticket": 17,
+  "baseline": "bf5b13549624667ed6925936dacc37a11be8d303",
+  "environment": "macOS ARM64, Docker Desktop 29.6.1, host Python 3.14, app Python 3.13, local Chrome",
+  "installation": {
+    "fresh_source_and_volume": true,
+    "command": "./install.sh --port 18917",
+    "HTTP_bind": "127.0.0.1:18917",
+    "exit_code": 0,
+    "optional_network_profile": false,
+    "check_exit_code": 0,
+    "check_preserved_env": true
+  },
+  "chinese_gallery": [
+    {
+      "anonymous_gallery": "passed",
+      "private_library_HTTP": 401,
+      "auto_login": false,
+      "room_websockets": 0,
+      "media_downloads": 0
+    },
+    {
+      "validated_invitation": "G37B7D39",
+      "gallery_skipped": true,
+      "decoration_paused": true
+    },
+    {
+      "authorized_gallery_without_join": "passed",
+      "empty_library": true,
+      "mobile_viewport_only": "390x844",
+      "reduced_motion": "passed"
+    },
+    {
+      "invalid_invitation_rejected": true,
+      "manual_entry_after_error": "passed"
+    },
+    {
+      "private_media_hidden_from_guest": true,
+      "independent_browsers": 2,
+      "real_playback_pause_seek": "passed",
+      "playback_drift_seconds": 0.057,
+      "authorized_gallery_media_downloads": 0
+    },
+    {
+      "logout_returns_to_gallery": "passed",
+      "ordinary_gallery_manual_entry": "passed",
+      "browser_runtime_errors": 0
+    }
+  ],
+  "english_first_watch": {
+    "language": "en-US",
+    "installed_current_main_core": true,
+    "public_guides_before_room": [
+      "en",
+      "zh-CN"
+    ],
+    "english_guide_popup": "passed",
+    "gallery_room_entry_copy_actual_invite": "passed",
+    "guest_browser_only_no_installation": true,
+    "upload_via_english_UI": "passed",
+    "selected_title": "readme-first-watch-b578dfd8017746848f157e52ae6d4b85.mp4",
+    "independent_browser_contexts": 2,
+    "decoded_both_screens": true,
+    "playback_drift_seconds": 0.018,
+    "pause_resume_drift_seconds": 0.082,
+    "browser_errors": []
+  },
+  "real_conversion_and_subtitle": {
+    "film": "738e8cbb4ded2a11-runtime-layout-836d2e5ba6ad49abaf8b1b4580bbcf2e.mp4",
+    "existing_volume": false,
+    "conversion": "transcode",
+    "real_browser_playback": true,
+    "original_subtitle_active": true,
+    "browser_errors": []
+  },
+  "gallery_visual": [
+    {
+      "cover": "sky",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "resource": "v1-sky-desktop.webp",
+      "focus_and_library": "passed"
+    },
+    {
+      "cover": "galaxy",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "resource": "v1-galaxy-desktop.webp",
+      "focus_and_library": "passed"
+    },
+    {
+      "cover": "sky",
+      "device": "mobile-emulation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "resource": "v1-sky-mobile.webp",
+      "focus_and_library": "passed"
+    },
+    {
+      "cover": "galaxy",
+      "device": "mobile-emulation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "resource": "v1-galaxy-mobile.webp",
+      "focus_and_library": "passed"
+    },
+    {
+      "cover": "sky",
+      "preference": "prefers-reduced-motion",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "cover": "galaxy",
+      "preference": "prefers-reduced-motion",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "cover": "sky",
+      "preference": "prefers-reduced-transparency",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "cover": "galaxy",
+      "preference": "prefers-reduced-transparency",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "cover": "sky",
+      "preference": "static-base-css",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "cover": "galaxy",
+      "preference": "static-base-css",
+      "entry": "passed",
+      "room_resize_cover_downloads": 0
+    },
+    {
+      "narrow_viewport_only": "320x568",
+      "horizontal_overflow": false
+    },
+    {
+      "invitation_cover_downloads": 0,
+      "browser_runtime_errors": [],
+      "real_phone_verified": false,
+      "unsupported_filter_engine_verified": false
+    }
+  ],
+  "bilingual_network_guide": {
+    "fixture": "owned generated red/440Hz and blue/660Hz H.264/AAC clips, non-YouTube two-video page",
+    "transport": "only media.example mapped to local HTTP fixture; public URL policy retained",
+    "independent_contexts": 2,
+    "public_bilingual_gallery_help": "passed",
+    "room_help_media_reloads_reconnects_controls": 0,
+    "guide_language_changes_room_language": false,
+    "explicit_second_candidate_no_auto_selection": "passed",
+    "direct_browser_media_path": "https://media.example/two.mp4",
+    "relay_browser_media_path": "/api/network/<source>/play",
+    "pause_resume_direct_drift_seconds": 0.038,
+    "pause_resume_relay_drift_seconds": 0.012,
+    "guest_origin_blocked_server_relay_plays": "passed",
+    "dynamic_disabled_and_empty_candidates_keep_current_film": "passed",
+    "quota_expired_http_errors_keep_current_selection": "passed",
+    "browser_errors": [],
+    "not_verified": [
+      "public origin DNS/TLS",
+      "real third-party providers",
+      "production",
+      "real mobile devices",
+      "mid-stream quota exhaustion"
+    ]
+  },
+  "local_language": {
+    "fixture": "temporary generated 90s H.264/AAC film and original VTT",
+    "independent_contexts": 2,
+    "host_language": "en",
+    "guest_language": "zh-CN",
+    "media_reloads": 0,
+    "socket_reconnects": 0,
+    "language_triggered_messages": 0,
+    "playback_drift_seconds": 0.048,
+    "original_title_nickname_chat_danmaku_subtitle": "unchanged",
+    "player_menus_dates_accessible_names": "passed",
+    "refresh_preference": "passed",
+    "browser_matching_fallback": "passed",
+    "blocked_storage": "passed",
+    "stable_network_error": "passed",
+    "browser_errors": [],
+    "not_verified": [
+      "production deployment",
+      "real mobile devices",
+      "external media providers"
+    ]
+  },
+  "regression": {
+    "unittest": 121,
+    "unittest_skips": 0,
+    "node_tests": 2
+  },
+  "cleanup": {
+    "only_created_compose_project_removed": true,
+    "created_volumes_removed": true,
+    "created_image_tag_removed": true,
+    "global_prune": false,
+    "personal_deployment_touched": false
+  },
+  "limits": [
+    "loopback deployment, not public DNS/ACME/TURN or production",
+    "viewport emulation, not physical mobile devices",
+    "network smoke only maps media.example transport to owned local clips",
+    "current main source, not older release archives",
+    "upgrade evidence reused from guide-acceptance.md, not repeated in this documentation-only ticket"
+  ],
+  "repository_entry": [
+    {
+      "file": "README.md",
+      "github_markdown_API_rendered": true,
+      "local_paths_and_anchors_checked": 40,
+      "language_links_before_badges": true,
+      "same_language_architecture_and_guide": "passed"
+    },
+    {
+      "file": "README.en.md",
+      "github_markdown_API_rendered": true,
+      "local_paths_and_anchors_checked": 39,
+      "language_links_before_badges": true,
+      "same_language_architecture_and_guide": "passed"
+    }
+  ]
+}

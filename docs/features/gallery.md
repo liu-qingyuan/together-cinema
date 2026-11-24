@@ -34,15 +34,18 @@
     "web/assets/scenes/LICENSE-CC-BY-4.0.txt",
     "tests/test_distribution.py",
     "scripts/gallery_smoke.py",
-    "scripts/gallery_visual_smoke.py"
+    "scripts/gallery_visual_smoke.py",
+    "scripts/runtime_layout_smoke.py"
   ],
-  "fingerprint": "sha256:e9d0b1bc7a802dd81a9772590934670acea03044fd853714a40dece5d7711fdc"
+  "fingerprint": "sha256:384c1ccf7da7686c834f95c057319fba9074f489559a3fb67a78896b1ec4d708"
 }
 ---
 
 # 展厅与放映室入口
 
 ## 当前行为
+
+仓库的展厅入口／视觉脚本 `scripts/gallery_smoke.py`、`scripts/gallery_visual_smoke.py` 显式设置 `zh-CN` 测试语言，避免宿主 Chrome 默认英文使中文定位器失效；安装布局脚本同样固定中文。双语界面与指南取流仍由已有 `scripts/locale_smoke.py`、`scripts/guide_smoke.py` 验证。README 分别提供简中／英文的部署、邀请、选片同步路径和指南地址，不改变应用协议。
 
 放映室在 1140 CSS 像素及以下使用两行顶部：房号与在线状态在首行，复制邀请与具名「房间操作／Room actions」入口在次行。切换房间和退出共用原按钮与 handler，移入菜单；退出以分隔线和警示色区分，移动主要按钮至少 44 × 44 CSS 像素。菜单支持触摸、Enter／Space、Tab／Shift+Tab、Escape、外部点击及焦点离开收起；取消或关闭房间对话框后焦点返回入口。回到桌面断点时恢复既有平铺操作与主导航，不更改房间权限、邀请格式或同步协议。横屏给首屏标题额外留白。`scripts/mobile_header_smoke.py` 用临时应用、合成房间与真实中英文，检查 320／390 竖屏、844 横屏和 1440 桌面布局、剪贴板邀请、实际切房与退出；前后对照及限制见 `docs/mobile-header-acceptance.md`。
 

@@ -36,7 +36,7 @@ async def main():
         guest_browser = None
         uploaded = None
         try:
-            context = await browser.new_context(base_url=base)
+            context = await browser.new_context(base_url=base, locale='zh-CN')
             page = await context.new_page()
             requests, sockets, page_errors = [], [], []
             page.on('pageerror', lambda error: page_errors.append(str(error)))
@@ -124,7 +124,7 @@ async def main():
 
             # Use a second browser process with completely independent cookies/storage.
             guest_browser = await playwright.chromium.launch(channel=args.channel)
-            guest = await guest_browser.new_page(base_url=base)
+            guest = await guest_browser.new_page(base_url=base, locale='zh-CN')
             guest_sockets, guest_requests = [], []
             guest.on('pageerror', lambda error: page_errors.append(str(error)))
             guest.on('websocket', lambda socket: guest_sockets.append(socket.url))

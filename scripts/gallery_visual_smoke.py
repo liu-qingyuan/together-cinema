@@ -38,7 +38,7 @@ async def main():
         try:
             for label, viewport in [('desktop', {'width': 1440, 'height': 1000}),
                                     ('mobile-emulation', {'width': 390, 'height': 844})]:
-                context = await browser.new_context(base_url=args.url.rstrip('/'), viewport=viewport)
+                context = await browser.new_context(base_url=args.url.rstrip('/'), viewport=viewport, locale='zh-CN')
                 page = await context.new_page()
                 requests, sockets = [], []
                 page.on('pageerror', lambda error: errors.append(str(error)))
@@ -87,7 +87,7 @@ async def main():
             # verifies the static design, NOT an actual unsupported browser engine.
             for preference in ['prefers-reduced-motion', 'prefers-reduced-transparency', 'static-base-css']:
                 for key in ['sky', 'galaxy']:
-                    context = await browser.new_context(base_url=args.url.rstrip('/'), viewport={'width': 390, 'height': 844})
+                    context = await browser.new_context(base_url=args.url.rstrip('/'), viewport={'width': 390, 'height': 844}, locale='zh-CN')
                     page = await context.new_page()
                     page.on('pageerror', lambda error: errors.append(str(error)))
                     room_requests = []
@@ -132,7 +132,7 @@ async def main():
                     await context.close()
 
             # Narrow layout remains scrollable without losing the explicit entry link.
-            context = await browser.new_context(base_url=args.url.rstrip('/'), viewport={'width': 320, 'height': 568})
+            context = await browser.new_context(base_url=args.url.rstrip('/'), viewport={'width': 320, 'height': 568}, locale='zh-CN')
             page = await context.new_page()
             await page.goto('/')
             for key in ['sky', 'galaxy']:
@@ -143,7 +143,7 @@ async def main():
             report.append({'narrow_viewport_only': '320x568', 'horizontal_overflow': False})
 
             # Direct invitations must never fetch gallery cover variants.
-            context = await browser.new_context(base_url=args.url.rstrip('/'))
+            context = await browser.new_context(base_url=args.url.rstrip('/'), locale='zh-CN')
             page = await context.new_page()
             requests = []
             page.on('request', lambda request: requests.append(request))

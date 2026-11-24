@@ -38,7 +38,7 @@ async def main():
     uploaded = None
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(channel=args.channel)
-        page = await browser.new_page(base_url=base)
+        page = await browser.new_page(base_url=base, locale='zh-CN')
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         try:
