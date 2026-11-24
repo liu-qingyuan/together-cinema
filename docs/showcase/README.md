@@ -1,5 +1,5 @@
 # 一间放映室，从入场到散场
-**Together Cinema · A visual tour**　[中文首页](../../README.md) · [English](../../README.en.md) · [20 秒动态演示 / 20-second tour](tour.webp)
+**Together Cinema · A visual tour**　[中文首页](../../README.zh-CN.md) · [English](../../README.md) · [20 秒动态演示 / 20-second tour](tour.webp)
 
 这些是同一版网页的实际截图，不是设计稿。桌面和手机视口使用两个独立的浏览器会话；示例影片、昵称、聊天都只存在于本地演示环境。手机视口由 Chrome 模拟，不代表手机真机兼容性测试。
 

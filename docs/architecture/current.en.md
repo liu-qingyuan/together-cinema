@@ -1,6 +1,6 @@
 # Current architecture: control and media paths
 
-[简体中文](current.md) · [English](current.en.md) · [Back to README](../../README.en.md)
+[简体中文](current.md) · [English](current.en.md) · [Back to README](../../README.md)
 
 This describes the current source, not a migration plan. **Together Cinema shares the selected source and playback state, not a screen recording. Video bytes do not travel over WebSocket.** The [current code map](../code-map.md) (Chinese) locates responsibilities and tests; the [deployment guide](../deployment.md) and [security boundary](../../SECURITY.md) cover operation and access protection.
 

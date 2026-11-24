@@ -1,6 +1,6 @@
 # 现行架构：同步控制与媒体流
 
-[简体中文](current.md) · [English](current.en.md) · [返回首页](../../README.md)
+[简体中文](current.md) · [English](current.en.md) · [返回首页](../../README.zh-CN.md)
 
 这里描述当前源码，不是迁移计划。**一起看同步的是所选片源与播放状态，不是屏幕共享，也不通过 WebSocket 传输影片。** 维护者按职责找源码与测试请看[当前代码地图](../code-map.md)；部署参数与访问保护见[部署指南](../deployment.md)和[安全边界](../../SECURITY.md)。
 
