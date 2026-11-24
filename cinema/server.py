@@ -15,7 +15,7 @@ from pathlib import Path
 
 from aiohttp import ClientError, WSMsgType, web
 from .parallel_upload import ParallelUploads
-from .conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
+from .conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs, mp4_needs_h264
 from .danmaku import DanmakuStore
 from .watch_history import WatchHistory, film_title
 from .covers import SharedCovers
@@ -415,15 +415,21 @@ def create_app(data_dir=None, password=None, secure=None):
                 Path(original).suffix.lower() not in EXTENSIONS | CONVERSION_EXTENSIONS or len(original) > 180):
             raise web.HTTPBadRequest(text='仅支持 MP4 / M4V / WebM / MKV / AVI 文件')
 
-    def check_conversion_capacity(original):
-        if (Path(original).suffix.lower() in CONVERSION_EXTENSIONS and
-                sum(j['status'] in ('queued', 'running') for j in list_jobs(data_dir)) >= 3):
+    def check_conversion_capacity():
+        if sum(j['status'] in ('queued', 'running') for j in list_jobs(data_dir)) >= 3:
             raise web.HTTPConflict(text='已有 3 个待处理任务，请等待处理完成')
 
     async def publish_upload(temporary, original, total):
-        check_conversion_capacity(original)
+        ext = Path(original).suffix.lower()
+        convert = ext in CONVERSION_EXTENSIONS
+        if ext == '.mp4':
+            try:
+                convert = await asyncio.to_thread(mp4_needs_h264, temporary)
+            except ValueError as error:
+                raise web.HTTPUnprocessableEntity(text=str(error), headers={'X-Cinema-Error': 'mp4_video_invalid'}) from error
         name = secrets.token_hex(4) + '-' + original
-        if Path(original).suffix.lower() in CONVERSION_EXTENSIONS:
+        if convert:
+            check_conversion_capacity()
             disk = os.statvfs(media)
             if disk.f_bavail * disk.f_frsize < reserve + total * 1.25:
                 raise web.HTTPInsufficientStorage(text='空间不足：视频处理需同时容纳原文件和输出文件，并保留 2 GiB')
@@ -445,7 +451,8 @@ def create_app(data_dir=None, password=None, secure=None):
                 raise web.HTTPBadRequest(text='请选择视频文件')
             original = part.filename
             validate_upload_name(original)
-            check_conversion_capacity(original)
+            if Path(original).suffix.lower() in CONVERSION_EXTENSIONS:
+                check_conversion_capacity()
             temporary = media / ('.upload-' + secrets.token_hex(8))
             total = 0
             try:
@@ -482,7 +489,8 @@ def create_app(data_dir=None, password=None, secure=None):
             raise web.HTTPRequestTimeout(text='上传信息读取超时')
         original = body.get('filename')
         validate_upload_name(original)
-        check_conversion_capacity(original)
+        if Path(original).suffix.lower() in CONVERSION_EXTENSIONS:
+            check_conversion_capacity()
         async with upload_lock:
             meta = parallel_uploads.start(original, body.get('size'))
             if upload_port:
@@ -504,7 +512,8 @@ def create_app(data_dir=None, password=None, secure=None):
                 parallel_uploads.cancel(session.ident)
 
     async def upload_cancel(request):
-        parallel_uploads.cancel(request.match_info['id'])
+        async with upload_lock:
+            parallel_uploads.cancel(request.match_info['id'])
         return web.json_response({'ok': True})
 
     async def conversions(request):

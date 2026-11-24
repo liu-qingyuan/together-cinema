@@ -60,6 +60,30 @@ def probe(path):
     return json.loads(result.stdout)
 
 
+def mp4_needs_h264(path):
+    """Classify the first non-cover video, not the filename or an audio stream.
+
+    Common modern video remains untouched (HEVC/AV1 support varies by device).
+    Unrecognized legacy codecs and unusual H.264 chroma/bit depths use the worker.
+    Only inspect a local MOV/MP4 container; do not read external track references.
+    """
+    try:
+        result = subprocess.run(
+            ['ffprobe', '-v', 'error', '-max_alloc', '33554432', '-protocol_whitelist', 'file',
+             '-f', 'mov', '-enable_drefs', '0', '-max_streams', '64',
+             '-probesize', '4194304', '-analyzeduration', '3000000',
+             '-select_streams', 'V:0', '-show_entries', 'stream=codec_name,pix_fmt',
+             '-of', 'json', str(path)], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+            timeout=15, check=True)
+        video = json.loads(result.stdout)['streams'][0]
+        codec = video['codec_name']
+    except (subprocess.SubprocessError, ValueError, KeyError, IndexError) as error:
+        raise ValueError('无法识别 MP4 的视频轨道；请检查源文件') from error
+    if codec == 'h264':
+        return video.get('pix_fmt') not in {'yuv420p', 'yuvj420p'}
+    return codec not in {'hevc', 'av1', 'vp8', 'vp9'}
+
+
 def conversion_command(source, output, progress, metadata):
     videos = [s for s in metadata['streams'] if s['codec_type'] == 'video'
               and not s.get('disposition', {}).get('attached_pic')]

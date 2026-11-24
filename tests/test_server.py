@@ -1,3 +1,4 @@
+from tests.media_fixture import mp4
 import asyncio
 import io
 import os
@@ -56,7 +57,7 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_upload_space_limit_removes_partial_file(self):
         await self.login()
-        body=FormData();body.add_field('video',io.BytesIO(b'video-bytes'),filename='hello.mp4')
+        body=FormData();body.add_field('video',io.BytesIO(mp4()),filename='hello.mp4')
         class FullDisk:
             f_bavail=0
             f_frsize=4096
@@ -67,10 +68,10 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_upload_and_disallow_nonvideo(self):
         await self.login()
-        body=FormData();body.add_field('video',io.BytesIO(b'video-bytes'),filename='hello.mp4')
+        body=FormData();body.add_field('video',io.BytesIO(mp4()),filename='hello.mp4')
         r=await self.client.post('/api/upload',data=body)
         self.assertEqual(r.status,201); name=(await r.json())['name']
-        self.assertEqual((self.media/name).read_bytes(),b'video-bytes')
+        self.assertEqual((self.media/name).read_bytes(),mp4())
         body=FormData();body.add_field('video',io.BytesIO(b'x'),filename='attack.html')
         self.assertEqual((await self.client.post('/api/upload',data=body)).status,400)
 

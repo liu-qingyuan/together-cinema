@@ -1,3 +1,4 @@
+from tests.media_fixture import mp4
 import tempfile,unittest
 from pathlib import Path
 from aiohttp import FormData
@@ -16,7 +17,7 @@ class RoomEntry(unittest.IsolatedAsyncioTestCase):
   self.assertEqual((await self.client.get('/api/library')).status,401)
   self.assertEqual((await self.client.post('/api/login',json={'room':'AB'},headers={'Origin':'https://evil.invalid'})).status,403)
  async def test_every_room_entry_can_upload_share_and_delete(self):
-  await self.client.post('/api/login',json={'room':'AB'});form=FormData();form.add_field('video',b'room-entry-fixture',filename='shared.mp4',content_type='video/mp4');r=await self.client.post('/api/upload',data=form);self.assertEqual(r.status,201)
+  await self.client.post('/api/login',json={'room':'AB'});form=FormData();form.add_field('video',mp4(),filename='shared.mp4',content_type='video/mp4');r=await self.client.post('/api/upload',data=form);self.assertEqual(r.status,201)
   await self.client.post('/api/logout');await self.client.post('/api/login',json={'room':'CD'});files=(await (await self.client.get('/api/library')).json())['files'];self.assertEqual(len(files),1);name=files[0]['name'];self.assertEqual((await self.client.get('/media/'+name)).status,200);self.assertEqual((await self.client.delete('/api/library/'+name)).status,200);self.assertFalse((await (await self.client.get('/api/library')).json())['files'])
  async def test_legacy_session_compatibility(self):
   self.assertEqual((await self.client.post('/api/login',json={'password':'internal-signing-123'})).status,200)
