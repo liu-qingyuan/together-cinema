@@ -75,6 +75,7 @@ globalThis.CinemaMessages = {
   "room.label": {"zh-CN":"房间 {room}","en":"Room {room}"},
   "room.invite": {"zh-CN":"复制邀请","en":"Copy invite"},
   "room.switch": {"zh-CN":"切换房间","en":"Switch room"},
+  "room.actions": {"zh-CN":"房间操作","en":"Room actions"},
   "room.private": {"zh-CN":"私人放映室","en":"Private cinema"},
   "room.logout": {"zh-CN":"退出","en":"Leave"},
   "room.copied": {"zh-CN":"邀请链接已复制 · 房间 {room}","en":"Invite copied · Room {room}"},

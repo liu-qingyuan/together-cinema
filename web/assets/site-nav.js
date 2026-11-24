@@ -44,7 +44,52 @@
     nav.toggleAttribute('data-video-clear', hide);
     if (hide || document.fullscreenElement || document.body.classList.contains('player-fullscreen')) setMode('idle');
   }
-  trigger.addEventListener('click', () => setMode(mode === 'menu' ? 'idle' : 'menu'));
+  // The same room actions keep their existing handlers on desktop and mobile.
+  const roomHeader = document.getElementById('roomHeader');
+  const session = document.querySelector('.header-session');
+  const roomActions = document.getElementById('roomActions');
+  const roomToggle = document.getElementById('roomActionsToggle');
+  const roomList = document.getElementById('roomActionList');
+  const switchRoom = document.getElementById('openRoom'), leave = document.getElementById('logout');
+  function closeRoomActions(restore = false) {
+    roomList.hidden = true;
+    roomToggle.setAttribute('aria-expanded', 'false');
+    if (restore) roomToggle.focus({preventScroll:true});
+  }
+  function placeRoomActions() {
+    const focused = document.activeElement;
+    closeRoomActions();
+    if (small.matches) roomList.append(switchRoom, leave);
+    else {roomHeader.insertBefore(switchRoom, roomActions);session.append(leave);}
+    roomActions.hidden = !small.matches;
+    if (focused === roomToggle || focused === switchRoom || focused === leave)
+      (small.matches ? roomToggle : switchRoom).focus({preventScroll:true});
+  }
+  roomToggle.addEventListener('click', () => {
+    const open = roomList.hidden;
+    setMode('idle');
+    roomList.hidden = !open;
+    roomToggle.setAttribute('aria-expanded', String(open));
+  });
+  roomActions.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !roomList.hidden) {e.preventDefault();closeRoomActions(true);}
+  });
+  roomActions.addEventListener('focusout', e => {
+    if (!roomActions.contains(e.relatedTarget)) closeRoomActions();
+  });
+  roomList.addEventListener('click', e => {
+    if (e.target.closest('button')) closeRoomActions();
+  });
+  document.addEventListener('pointerdown', e => {
+    if (!roomActions.contains(e.target)) closeRoomActions();
+  });
+  document.getElementById('roomDialog').addEventListener('close', () => {
+    if (small.matches && !roomHeader.hidden) closeRoomActions(true);
+  });
+  document.addEventListener('viewchange', () => closeRoomActions());
+  small.addEventListener('change', placeRoomActions);
+  placeRoomActions();
+  trigger.addEventListener('click', () => {closeRoomActions();setMode(mode === 'menu' ? 'idle' : 'menu');});
   nav.addEventListener('keydown', e => {if(e.key==='Escape' && mode !== 'idle'){e.preventDefault();setMode('idle',true);}});
   nav.addEventListener('focusout', e => {if (!nav.contains(e.relatedTarget)) setMode('idle');});
   document.addEventListener('pointerdown', e => {if (!nav.contains(e.target) && mode !== 'idle') setMode('idle');});

@@ -1,0 +1,77 @@
+{
+  "fixture": "temporary loopback app, synthetic MOBILE16/NEXT16 rooms and viewers",
+  "matrix": [
+    {
+      "language": "zh-CN",
+      "viewport": [
+        320,
+        740
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "zh-CN",
+      "viewport": [
+        390,
+        844
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "zh-CN",
+      "viewport": [
+        844,
+        390
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "zh-CN",
+      "viewport": [
+        1440,
+        900
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "en-US",
+      "viewport": [
+        320,
+        740
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "en-US",
+      "viewport": [
+        390,
+        844
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "en-US",
+      "viewport": [
+        844,
+        390
+      ],
+      "layout_copy_invite_menu": "passed"
+    },
+    {
+      "language": "en-US",
+      "viewport": [
+        1440,
+        900
+      ],
+      "layout_copy_invite_menu": "passed"
+    }
+  ],
+  "keyboard_touch_dismiss_and_dialog_focus": "passed",
+  "switch_room_and_leave_authorization": "passed",
+  "desktop_navigation": "passed",
+  "browser_errors": [],
+  "not_verified": [
+    "real mobile devices",
+    "production deployment"
+  ]
+}
