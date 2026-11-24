@@ -1,0 +1,24 @@
+{
+  "clean": {
+    "original_install_entry": "./install.sh --port <isolated-port>",
+    "anonymous_bilingual_help_matches_source": true,
+    "gallery_new_tab_link": true,
+    "guide_320px_both_languages_no_overflow": true
+  },
+  "upgrade": {
+    "original_install_entry": "./install.sh --port <isolated-port>",
+    "anonymous_bilingual_help_matches_source": true,
+    "gallery_new_tab_link": true,
+    "guide_320px_both_languages_no_overflow": true,
+    "from_revision": "1754920",
+    "via": "replace source then ./install.sh, same project and volume",
+    "media_bytes_and_original_vtt_preserved": true,
+    "env_preserved": true,
+    "browser_decodes_with_subtitle_and_room_help_no_reload": true
+  },
+  "not_verified": [
+    "production deployment",
+    "external HTTPS gateway",
+    "real mobile devices"
+  ]
+}

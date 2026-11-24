@@ -47,7 +47,7 @@
     for (const el of doc.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
     // Only trusted, bundled static copy may contain markup; user values use text().
     for (const el of doc.querySelectorAll('[data-i18n-html]')) el.innerHTML = t(el.dataset.i18nHtml);
-    for (const attr of ['aria-label', 'title', 'placeholder']) {
+    for (const attr of ['aria-label', 'title', 'placeholder', 'href']) {
       for (const el of doc.querySelectorAll('[data-i18n-' + attr + ']')) el.setAttribute(attr, t(el.getAttribute('data-i18n-' + attr)));
     }
     for (const el of doc.querySelectorAll('[data-locale-bound]')) {

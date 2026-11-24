@@ -36,7 +36,7 @@ class TranslationContract(unittest.TestCase):
             source = path.read_text()
             # Includes ternary branches and lookup tables, not just direct t() calls.
             keys = re.findall(r"['\"]((?:" + prefixes + r")\.[A-Za-z][\w.]*)['\"]", source)
-            keys += re.findall(r'data-i18n(?:-html|-aria-label|-title|-placeholder)?="([\w.]+)"', source)
+            keys += re.findall(r'data-i18n(?:-html|-aria-label|-title|-placeholder|-href)?="([\w.]+)"', source)
             keys += re.findall(r"\b(?:t|m|message|failure|localeHTML)\('([\w]+\.[\w.]+)'\)", source)
             for key in keys:
                 if key.endswith('.'):

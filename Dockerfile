@@ -6,6 +6,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY cinema ./cinema
 COPY web/index.html ./web/
+COPY web/help ./web/help
 COPY web/assets ./web/assets
 RUN chmod -R a+rX /app/cinema /app/web
 USER 10001:10001

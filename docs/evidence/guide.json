@@ -1,0 +1,24 @@
+{
+  "fixture": "owned generated red/440Hz and blue/660Hz H.264/AAC clips, non-YouTube two-video page",
+  "transport": "only media.example mapped to local HTTP fixture; public URL policy retained",
+  "independent_contexts": 2,
+  "public_bilingual_gallery_help": "passed",
+  "room_help_media_reloads_reconnects_controls": 0,
+  "guide_language_changes_room_language": false,
+  "explicit_second_candidate_no_auto_selection": "passed",
+  "direct_browser_media_path": "https://media.example/two.mp4",
+  "relay_browser_media_path": "/api/network/<source>/play",
+  "pause_resume_direct_drift_seconds": 0.048,
+  "pause_resume_relay_drift_seconds": 0.015,
+  "guest_origin_blocked_server_relay_plays": "passed",
+  "dynamic_disabled_and_empty_candidates_keep_current_film": "passed",
+  "quota_expired_http_errors_keep_current_selection": "passed",
+  "browser_errors": [],
+  "not_verified": [
+    "public origin DNS/TLS",
+    "real third-party providers",
+    "production",
+    "real mobile devices",
+    "mid-stream quota exhaustion"
+  ]
+}

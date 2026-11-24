@@ -13,7 +13,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-from aiohttp import WSMsgType, web
+from aiohttp import ClientError, WSMsgType, web
 from .parallel_upload import ParallelUploads
 from .conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
 from .danmaku import DanmakuStore
@@ -248,9 +248,16 @@ def create_app(data_dir=None, password=None, secure=None):
     async def index(request):
         return web.FileResponse(WEB_DIR / 'index.html', headers={'Cache-Control': 'no-store'})
 
+    async def guide(request):
+        name = request.match_info['name']
+        if name not in {'zh-CN.html', 'en.html'}:
+            raise web.HTTPNotFound()
+        return web.FileResponse(WEB_DIR / 'help' / name,
+                                headers={'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'})
+
     async def player_asset(request):
         name = request.match_info['name']
-        if name not in {'locale.js', 'locale-messages.js', 'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
+        if name not in {'guide.css', 'locale.js', 'locale-messages.js', 'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
             raise web.HTTPNotFound()
         return web.FileResponse(WEB_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 
@@ -670,7 +677,7 @@ def create_app(data_dir=None, password=None, secure=None):
             return web.json_response({'choices': await job, 'resources': network.stats()})
         except (ValueError, TypeError, AttributeError) as e:
             raise web.HTTPBadRequest(text=str(e), headers={'X-Cinema-Error': 'network_invalid'})
-        except (RuntimeError, asyncio.TimeoutError, ConnectionError) as e:
+        except (RuntimeError, asyncio.TimeoutError, ConnectionError, ClientError) as e:
             raise web.HTTPBadGateway(text=str(e)[:1600], headers={'X-Cinema-Error': 'network_resolve_failed'})
         finally:
             if job and not job.done():
@@ -731,6 +738,7 @@ def create_app(data_dir=None, password=None, secure=None):
     app.cleanup_ctx.append(network_lifecycle)
     app.cleanup_ctx.append(boost_watchdog)
     app.router.add_get('/', index)
+    app.router.add_get('/help/{name}', guide)
     async def health(request):
         return web.json_response({'ok': True})
 
