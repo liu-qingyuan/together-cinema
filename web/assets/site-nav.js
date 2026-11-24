@@ -2,7 +2,7 @@
 (() => {
   const nav = document.getElementById('siteNav'), trigger = nav.querySelector('.nav-toggle');
   const links = [...nav.querySelectorAll('.nav-links a')];
-  const small = matchMedia('(max-width:1280px)'), media = document.getElementById('video');
+  const small = matchMedia('(max-width:1360px)'), media = document.getElementById('video');
   const stage = document.getElementById('videoStage');
   let stageVisible = false, mode = 'idle', closeTimer;
   const inRoom = () => document.body.dataset.view === 'room';

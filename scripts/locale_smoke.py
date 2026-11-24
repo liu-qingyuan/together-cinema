@@ -93,7 +93,7 @@ async def run(args):
                 await expect(guest.locator('html')).to_have_attribute('lang', 'zh-CN')
                 await expect(host.locator('#comfortSheetTitle')).to_have_text('Viewing settings')
                 await expect(host.get_by_role('button', name='Copy invite', exact=True)).to_be_visible()
-                await expect(host.get_by_role('textbox', name='Timed comment text', exact=True)).to_have_attribute('placeholder', 'Add a timed comment…')
+                await expect(host.get_by_role('textbox', name='Timed comment text', exact=True)).to_have_attribute('placeholder', 'Comment…')
                 await expect(host.locator('#hostHint')).to_contain_text('You are the host')
                 assert await host.locator('#memoryList time').inner_text() != before_dates[0]
                 assert await guest.locator('#memoryList time').inner_text() == before_dates[1]

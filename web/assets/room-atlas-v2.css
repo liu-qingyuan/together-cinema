@@ -54,7 +54,8 @@ body[data-view=room] .scene-world::after{opacity:.64}
  #atmosphere .scene-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px}
  #atmosphere .scene-choice{grid-template-columns:38px minmax(0,1fr) 17px;gap:7px;padding:8px 2px;min-height:52px}
  #atmosphere .scene-choice img{width:38px;height:34px}
- #atmosphere .scene-choice .atlas-index{display:none}#atmosphere .atlas-label{font-size:13px;white-space:nowrap}
+ #atmosphere .scene-choice .atlas-index{display:none}#atmosphere .atlas-label{font-size:13px;min-width:0;white-space:normal;overflow-wrap:anywhere}
+ :lang(en) #atmosphere .scene-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr))}
  .atlas-dot{width:17px;height:17px;font-size:10px}
  #atmosphere .scene-tools{flex-direction:row;align-items:center}#atmosphere .scene-tools a{margin-left:0}
 }

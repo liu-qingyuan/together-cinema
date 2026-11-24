@@ -139,7 +139,7 @@ async def run(args):
                     menu = page.get_by_role('button', name='Room actions' if english else '房间操作', exact=True)
                     for width, height in [(320, 740), (390, 844), (844, 390), (1440, 900)]:
                         await page.set_viewport_size({'width': width, 'height': height})
-                        mobile = width <= 1280
+                        mobile = width <= 1360
                         if mobile:
                             await expect(menu).to_be_visible()
                         else:
