@@ -2,6 +2,8 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+**[Project website](https://liu-qingyuan.github.io/together-cinema/)** · [Viewer guide](https://liu-qingyuan.github.io/together-cinema/help/en.html)
+
 [![MIT license](https://img.shields.io/github/license/liu-qingyuan/together-cinema)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/liu-qingyuan/together-cinema)](https://github.com/liu-qingyuan/together-cinema/releases/latest)
 [![Main branch tests and container smoke](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml?query=branch%3Amain)
@@ -14,7 +16,7 @@
 
 **Different places. The same moment.** A self-hosted watch-party space: synchronized playback, a shared library, text chat, optional WebRTC voice, subtitles and personal scenery.
 
-[20-second walkthrough](docs/showcase/tour.webp) · [Host your own cinema](#start) · [Join a friend's invitation (no Docker)](#join-an-invitation) · [English viewer guide (HTML source)](web/help/en.html)
+[20-second walkthrough](docs/showcase/tour.webp) · [Host your own cinema](#start) · [Join a friend's invitation (no Docker)](#join-an-invitation)
 
 [![Two independent sessions in one demo room: a light desktop and a dark mobile viewport, paused at the same moment](docs/showcase/hero.webp)](docs/showcase/README.md)
 
@@ -98,7 +100,7 @@ After joining, hosts and invited viewers use the same workflow:
 
 **Direct** sends media from the origin to each viewer (the HLS entry playlist still passes through this cinema); everyone needs origin access and browser codec support. **Relay** lets the server lawfully fetch and send media separately to each viewer. Relay is the default dropdown choice; prefer direct first when everyone can reach the origin. The default relay allowance is shared site-wide: **5 GiB per 24 hours**, up to **6 concurrent media requests**, not a guarantee for 6 viewers. Shared caching does not remove per-viewer egress. Sources are temporary, not permanent library imports. No login, paywall, CAPTCHA or DRM bypass, and no guarantee for every website or codec.
 
-The complete [English viewer guide](web/help/en.html) ships with the site. GitHub displays that link as **HTML source**; to read the rendered guide, open `/help/en.html` on your friend's actual domain, e.g. `https://cinema.example.com/help/en.html` after replacing the example domain. No room session is required, but the site's access password still applies. “Viewer guide” in the gallery's entry card or the room's Library opens it in a new tab without interrupting playback. It explains direct/relay examples, empty results, expired sources and quota errors; no webpage translation is needed.
+Read the [English viewer guide](https://liu-qingyuan.github.io/together-cinema/help/en.html) online without a room or a password. A copy also ships with every cinema at `/help/en.html`; any access password on that deployment still applies. Open “Viewer guide” from the gallery or Library without interrupting playback. The guide covers direct and relay playback, empty results, expired sources and quota errors.
 
 ## After installation
 

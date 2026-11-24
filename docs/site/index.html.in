@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="$lang">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>$title · Together Cinema</title>
+<meta name="description" content="$lead">
+<link rel="stylesheet" href="${base}assets/site.css">
+<header><a class="brand" href="./"><span aria-hidden="true">◉</span> Together Cinema</a><a href="$other" hreflang="$other_lang" lang="$other_lang">$language</a></header>
+<main>
+<section class="intro"><p class="kicker">TOGETHER CINEMA &nbsp; / &nbsp; 01</p><h1>$title</h1><p class="lead">$lead</p><nav><a class="button" href="$install">$host ↗</a><a href="$guide">$watch →</a></nav></section>
+<figure><img src="${base}assets/hero.webp" alt="$alt"><figcaption>$caption</figcaption></figure>
+<section class="notes"><h2>$how</h2><div><article><h3>$first</h3><p>$join</p></article><article><h3>$second</h3><p>$choose</p></article><article><h3>$third</h3><p>$sync</p></article></div></section>
+<nav class="resources"><a href="$guide#modes">$mode →</a><a href="$arch">$architecture ↗</a><a href="$repo">GitHub ↗</a></nav>
+</main><footer>$footer</footer>
+</html>

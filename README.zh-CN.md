@@ -2,6 +2,8 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+**[项目介绍网站](https://liu-qingyuan.github.io/together-cinema/zh-CN/)** · [观众指南](https://liu-qingyuan.github.io/together-cinema/help/zh-CN.html)
+
 [![MIT 许可证](https://img.shields.io/github/license/liu-qingyuan/together-cinema)](LICENSE)
 [![最新版本](https://img.shields.io/github/v/release/liu-qingyuan/together-cinema)](https://github.com/liu-qingyuan/together-cinema/releases/latest)
 [![主分支测试与容器冒烟测试](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/liu-qingyuan/together-cinema/actions/workflows/ci.yml?query=branch%3Amain)
@@ -14,7 +16,7 @@
 
 **不同的地方，同一场电影。** 和朋友同步播放、边看边聊，把一起看过的片留成一本放映手记。
 
-[看 20 秒演示](docs/showcase/tour.webp)　·　[自己部署](#快速开始)　·　[加入朋友的邀请（无需 Docker）](#加入邀请)　·　[中文观众指南（HTML 源文件）](web/help/zh-CN.html)
+[看 20 秒演示](docs/showcase/tour.webp)　·　[自己部署](#快速开始)　·　[加入朋友的邀请（无需 Docker）](#加入邀请)
 
 [![桌面是日间、手机是夜间：两位示例成员在同一房间，影片同步停在第 13 秒](docs/showcase/hero.webp)](docs/showcase/README.md)
 
@@ -98,7 +100,7 @@ cd together-cinema
 
 **直连**让每位观众向原站取媒体（HLS 入口清单仍经本站），要求每个人可达且浏览器支持；**中转**由服务器合法取流并分别发送。默认选项为中转；大家都可达原站时建议先改直连。默认中转额度全站共享 **5 GiB / 24 小时**、最多 **6 个并发媒体请求**，不是 6 位观众保证；共享缓存不免除每人的出口流量。片源临时存在，不永久入库。不绕过登录、付费、验证码或 DRM，不保证所有网站／编码可用。
 
-更完整的[中文观众指南](web/help/zh-CN.html)已随站点提供：GitHub 此链接展示 **HTML 源文件**；浏览器阅读请在朋友站点域名后打开 `/help/zh-CN.html`，如 `https://cinema.example.com/help/zh-CN.html`（将示例域名换成实际站点）。不需入房，站点访问密码仍适用；也可点展厅入房卡或片库里的「使用指南」在新标签页阅读，不打断播放。指南含直连／中转的完整例子和无候选、过期、额度不足的处理，不必借助网页翻译。
+[中文观众指南](https://liu-qingyuan.github.io/together-cinema/help/zh-CN.html)可直接在线阅读，无需入房或输入口令。每个自建站也附带 `/help/zh-CN.html`，访问自建站时仍遵循该站的密码设置。展厅和片库里的「使用指南」会在新标签页打开，不打断播放。指南说明直连与中转的选择，以及无候选、片源过期和额度不足时的处理。
 
 ## 安装之后
 
