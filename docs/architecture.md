@@ -1,6 +1,6 @@
 # Historical deployment design: private snapshot → distributable project
 
-Recorded on **2026-11-23**, before the first Alpha source release. “Current” below means the private snapshot at design time; “Target” means the planned distributable deployment, not a comparison of today's code. Preserved as a migration record; use the [current code map](code-map.md) for navigation and [deployment guide](deployment.md) for operation.
+Recorded on **2026-11-23**, before the first Alpha source release. “Current” below means the private snapshot at design time; “Target” means the planned distributable deployment, not a comparison of today's code. Preserved as a migration record; start with the [current architecture](architecture/current.en.md) ([简体中文](architecture/current.md)), use the [current code map](code-map.md) for source navigation and [deployment guide](deployment.md) for operation.
 
 Scope at the time: a new deployment Interface, original playback Module preserved. No production changes.
 

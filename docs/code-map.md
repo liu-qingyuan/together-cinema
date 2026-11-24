@@ -1,6 +1,6 @@
 # 当前代码地图
 
-这是一份源码导航，不是部署迁移方案。产品运行代码仍在仓库根目录；测试和素材集中在 `tests/`，不再按测试层级细分。目录整理的历史基线见下方记录；当前播放规则由下列运行入口拥有。
+这是一份源码导航，不是部署迁移方案。首次了解系统请看[现行架构：同步控制与媒体流](architecture/current.md)（[English](architecture/current.en.md)）。产品运行代码仍在仓库根目录；测试和素材集中在 `tests/`，不再按测试层级细分。目录整理的历史基线见下方记录；当前播放规则由下列运行入口拥有。
 
 ## 怎么运行与验证
 
@@ -39,6 +39,7 @@
 
 ## 文档分工
 
+- 当前运行全景：[现行架构](architecture/current.md)（[English](architecture/current.en.md)），区分同步控制、媒体流、后台转换与本机偏好；本地图继续负责源码和测试导航。
 - 当前使用方式：[部署指南](deployment.md)、[安全边界](../SECURITY.md)、[兼容性限制](compatibility.md)、[发布流程](releasing.md)。源码版本和变更统一以 [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) 为准；安装器从源码本地构建，不提供预构建应用镜像。
 - 当前已实现能力：[feature 记录](features/gallery.md) 与[弹幕记录](features/danmaku.md)，不是每轮补丁日志。
 - 历史设计：[首个可分发版本规格](SPEC.md)、[私人部署到可分发项目的迁移设计](architecture.md)。其中 “Current”／“Target” 是设计当时的前后状态。

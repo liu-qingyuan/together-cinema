@@ -8,6 +8,8 @@
 [![Release feed](https://img.shields.io/badge/RSS-releases-e78024)](https://github.com/liu-qingyuan/together-cinema/releases.atom)
 [![Main branch commit feed](https://img.shields.io/badge/RSS-commits-e78024)](https://github.com/liu-qingyuan/together-cinema/commits/main.atom)
 
+[Latest stable release](https://github.com/liu-qingyuan/together-cinema/releases/latest) · [Current architecture: control and media paths](docs/architecture/current.en.md)
+
 **Different places. The same moment.** A self-hosted watch-party space: synchronized playback, a shared library, text chat, optional WebRTC voice, subtitles and lightweight scenes.
 
 [中文 README](README.md) · [Deployment](docs/deployment.md) · [Security](SECURITY.md)
@@ -66,7 +68,7 @@ No automatic backups or global Docker prune. Updating source and rerunning the i
 - Text and supported PGS subtitles; stage fullscreen keeps subtitle/danmaku overlays.
 - Sync play/pause/seek/rate, hold-to-speed-up, keyboard control, shared danmaku and room chat.
 - Eight personal room wallpapers from credited illustrators and photographers, with source links; no external image CDN or analytics.
-- This is an early open-source project with published source releases. [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) is the source of truth for versions and changes; the badge above follows the latest source release. An Android Quark half-covered video report is unresolved; device emulation is not real-device certification.
+- This is an early open-source project with published source releases. [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) is the source of truth for versions and changes; the text link and badge above point to the latest stable release, even if badge images do not load. An Android Quark half-covered video report is unresolved; device emulation is not real-device certification.
 - No prebuilt application images on Docker Hub/GHCR or public demo are provided. The installer uses Compose to build application images locally from the downloaded source; a source release is not a prebuilt application image.
 
 ## Contributing

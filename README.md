@@ -8,6 +8,8 @@
 [![订阅版本更新](https://img.shields.io/badge/RSS-releases-e78024)](https://github.com/liu-qingyuan/together-cinema/releases.atom)
 [![订阅主分支提交](https://img.shields.io/badge/RSS-commits-e78024)](https://github.com/liu-qingyuan/together-cinema/commits/main.atom)
 
+[最新正式发行](https://github.com/liu-qingyuan/together-cinema/releases/latest) · [现行架构：同步控制与媒体流](docs/architecture/current.md)
+
 **不同的地方，同一场电影。** 和朋友同步播放、边看边聊，把一起看过的片留成一本放映手记。
 
 [看 20 秒演示](docs/showcase/tour.webp)　·　[用 Docker 部署](#快速开始)　·　[看全部截图](docs/showcase/README.md)　·　[English](README.en.md)
@@ -96,7 +98,7 @@
 
 ## 项目状态
 
-这是从私人使用版本整理出的早期开源项目，**源码已发布**，版本和变更以 [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) 为准，顶部版本徽章跟随最新源码发布。它不是已验证所有网站、所有手机、任意公网网络的成品 SaaS。安卓夸克收到过半屏黑色遮挡反馈，尚未完成实机复现，见 [兼容性说明](docs/compatibility.md)。不把浏览器模拟通过当作实机认证。
+这是从私人使用版本整理出的早期开源项目，**源码已发布**，版本和变更以 [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) 为准，顶部文字入口与版本徽章指向最新正式发行，图片不可见时仍可通过文字查看发行信息。它不是已验证所有网站、所有手机、任意公网网络的成品 SaaS。安卓夸克收到过半屏黑色遮挡反馈，尚未完成实机复现，见 [兼容性说明](docs/compatibility.md)。不把浏览器模拟通过当作实机认证。
 
 本项目目前不提供应用的预构建 Docker Hub/GHCR 镜像或在线公开演示。安装器通过 Compose 从下载的源码本地构建应用镜像；源码发布不等于提供预构建应用镜像。
 
