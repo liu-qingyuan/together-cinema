@@ -33,7 +33,7 @@ services:
   converter:
     <<: *app
     pull_policy: never
-    command: [python, conversion.py]
+    command: [python, -m, cinema.conversion]
     network_mode: none
     environment:
       RESERVE_BYTES: ${RESERVE_BYTES:-2147483648}

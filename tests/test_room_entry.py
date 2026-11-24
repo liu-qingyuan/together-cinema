@@ -2,7 +2,7 @@ import tempfile,unittest
 from pathlib import Path
 from aiohttp import FormData
 from aiohttp.test_utils import TestClient,TestServer
-from server import create_app
+from cinema.server import create_app
 class RoomEntry(unittest.IsolatedAsyncioTestCase):
  async def asyncSetUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.app=TestServer(create_app(self.data,'internal-signing-123',secure=False));await self.app.start_server();self.client=TestClient(self.app);await self.client.start_server()

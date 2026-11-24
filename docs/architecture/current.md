@@ -49,10 +49,10 @@ flowchart TB
 
 | 路径 | 当前行为 | 源码入口 |
 | --- | --- | --- |
-| **同步控制** | 浏览器向 `/ws` 发送操作；服务端校验房主后广播片源、进度、暂停与倍速快照，各端自行播放并校准。聊天、弹幕也走房间消息，但影片字节不走这里。 | [`control()` / `apply()`](../../index.html)、[`Room` / `websocket()`](../../server.py) |
-| **媒体流** | 本地影片由 `watch` 的 `/media/{name}` 提供；网络片源先解析并选择候选，再按直连／中转模式取流（见下）。 | [`setPlaybackSource()`](../../index.html)、[`ExternalMedia`](../../external_media.py) |
-| **后台转换** | MKV / AVI 上传进入持久队列，独立 `converter` 调用 FFmpeg；成功后发布到片库，浏览器查询任务状态。转换不占用房间同步流程，也不代表所有格式都要重编码。 | [`publish_upload()`](../../server.py)、[`enqueue()` / `work_once()` / `process_job()`](../../conversion.py) |
-| **个人偏好** | 日夜外观、私人风景与字幕／弹幕显示等只影响本机；部分保存在浏览器存储，亮度、对比度与文字字幕字号仅在当前页面生效。它们不会改变朋友的画面。 | [`appearance.js`](../../assets/appearance.js)、[`room-atlas-v2.js`](../../assets/room-atlas-v2.js)、[页面设置](../../index.html) |
+| **同步控制** | 浏览器向 `/ws` 发送操作；服务端校验房主后广播片源、进度、暂停与倍速快照，各端自行播放并校准。聊天、弹幕也走房间消息，但影片字节不走这里。 | [`control()` / `apply()`](../../web/index.html)、[`Room` / `websocket()`](../../cinema/server.py) |
+| **媒体流** | 本地影片由 `watch` 的 `/media/{name}` 提供；网络片源先解析并选择候选，再按直连／中转模式取流（见下）。 | [`setPlaybackSource()`](../../web/index.html)、[`ExternalMedia`](../../cinema/external_media.py) |
+| **后台转换** | MKV / AVI 上传进入持久队列，独立 `converter` 调用 FFmpeg；成功后发布到片库，浏览器查询任务状态。转换不占用房间同步流程，也不代表所有格式都要重编码。 | [`publish_upload()`](../../cinema/server.py)、[`enqueue()` / `work_once()` / `process_job()`](../../cinema/conversion.py) |
+| **个人偏好** | 日夜外观、私人风景与字幕／弹幕显示等只影响本机；部分保存在浏览器存储，亮度、对比度与文字字幕字号仅在当前页面生效。它们不会改变朋友的画面。 | [`appearance.js`](../../web/assets/appearance.js)、[`room-atlas-v2.js`](../../web/assets/room-atlas-v2.js)、[页面设置](../../web/index.html) |
 
 ## 直连还是中转
 

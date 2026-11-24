@@ -14,15 +14,15 @@ import time
 from pathlib import Path
 
 from aiohttp import WSMsgType, web
-from parallel_upload import ParallelUploads
-from conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
-from danmaku import DanmakuStore
-from watch_history import WatchHistory, film_title
-from covers import SharedCovers
-from external_media import ExternalMedia
-from subtitles import list_subtitles, subtitle_path, remove_subtitles
+from .parallel_upload import ParallelUploads
+from .conversion import CONVERSION_EXTENSIONS, enqueue, list_jobs
+from .danmaku import DanmakuStore
+from .watch_history import WatchHistory, film_title
+from .covers import SharedCovers
+from .external_media import ExternalMedia
+from .subtitles import list_subtitles, subtitle_path, remove_subtitles
 
-APP_DIR = Path(__file__).parent
+WEB_DIR = Path(__file__).resolve().parent.parent / 'web'
 EXTENSIONS = {'.mp4', '.m4v', '.webm'}
 
 
@@ -236,13 +236,13 @@ def create_app(data_dir=None, password=None, secure=None):
         return await handler(request)
 
     async def index(request):
-        return web.FileResponse(APP_DIR / 'index.html', headers={'Cache-Control': 'no-store'})
+        return web.FileResponse(WEB_DIR / 'index.html', headers={'Cache-Control': 'no-store'})
 
     async def player_asset(request):
         name = request.match_info['name']
         if name not in {'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
             raise web.HTTPNotFound()
-        return web.FileResponse(APP_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
+        return web.FileResponse(WEB_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 
     async def scene_asset(request):
         name = request.match_info['name']
@@ -252,14 +252,14 @@ def create_app(data_dir=None, password=None, secure=None):
         names = {f'v1-{key}-{size}.webp' for key in ('sky', 'galaxy') for size in ('desktop', 'mobile')}
         if name not in names and name not in {'sources.json', 'LICENSE-CC-BY-4.0.txt'}:
             raise web.HTTPNotFound()
-        return web.FileResponse(APP_DIR / 'assets' / 'scenes' / name,
+        return web.FileResponse(WEB_DIR / 'assets' / 'scenes' / name,
                                 headers={'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'public, max-age=3600'})
 
     async def room_art(request):
         name = request.match_info['name']
         if name != 'anime-opening-v1.mp4' and not re.fullmatch(r'(anime|minimal|cute|portrait|real|cartoon|future|tech)-(wide|compact|thumb)\.webp', name):
             raise web.HTTPNotFound()
-        return web.FileResponse(APP_DIR / 'assets' / 'room-art' / name,
+        return web.FileResponse(WEB_DIR / 'assets' / 'room-art' / name,
                                 headers={'X-Content-Type-Options':'nosniff','Cache-Control':'public, max-age=3600'})
 
     def require_cover_member(request):

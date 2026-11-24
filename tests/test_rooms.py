@@ -2,7 +2,7 @@ import sys,tempfile,unittest
 from pathlib import Path
 from aiohttp import web
 from aiohttp.test_utils import TestClient,TestServer
-from server import create_app
+from cinema.server import create_app
 class Rooms(unittest.IsolatedAsyncioTestCase):
  async def asyncSetUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.client=TestClient(TestServer(create_app(self.data,'fixture-pass-123',secure=False)));await self.client.start_server();r=await self.client.post('/api/login',json={'password':'fixture-pass-123'});self.assertEqual(r.status,200)
@@ -40,7 +40,7 @@ class RoomCommunication(Rooms):
    r=await self.client.get('/api/voice-config');self.assertEqual(r.status,200);self.assertIn('no-store',r.headers['Cache-Control']);config=await r.json();ice=config['iceServers'][0];expected=base64.b64encode(hmac.new(b'test-secret',ice['username'].encode(),hashlib.sha1).digest()).decode();self.assertEqual(ice['credential'],expected)
   await self.client.post('/api/logout');self.assertEqual((await self.client.get('/api/voice-config')).status,401)
  async def test_room_danmaku_legacy_and_delete(self):
-  from danmaku import DanmakuStore
+  from cinema.danmaku import DanmakuStore
   store=DanmakuStore(self.data);store.add('fixture.mp4','legacy',1);store.add('fixture.mp4','AB only',2,'AB');self.assertEqual(store.list('fixture.mp4')[0]['text'],'legacy');self.assertEqual(store.list('fixture.mp4','AB')[0]['text'],'AB only');self.assertEqual(store.list('fixture.mp4','CD'),[]);store.remove('fixture.mp4');self.assertFalse(store.list('fixture.mp4'));self.assertFalse(store.list('fixture.mp4','AB'))
  async def test_room_file_delete_clears_all_rooms(self):
   (self.data/'media/fixture.mp4').write_bytes(b'fixture');a,_,_=await self.connect('AB');b,_,_=await self.connect('CD')
@@ -50,9 +50,9 @@ class RoomCommunication(Rooms):
 
 class RoomRate(unittest.TestCase):
  def test_rate_and_boost_resume_selected_base_rate(self):
-  from server import Room
+  from cinema.server import Room
   from unittest.mock import patch
-  with patch('server.time.monotonic',return_value=100) as clock:
+  with patch('cinema.server.time.monotonic',return_value=100) as clock:
    r=Room();r.host='h';r.update('h',{'file':'f','position':0,'paused':False},{'f'});self.assertFalse(r.set_rate('other',1.5,'f'));self.assertFalse(r.set_rate('h',True,'f'));self.assertTrue(r.set_rate('h',1.5,'f'));clock.return_value=102;self.assertEqual(r.snapshot()['position'],3);r.set_boost('h',True,'f');clock.return_value=103;r.set_boost('h',False,'f');self.assertEqual(r.snapshot()['playback_rate'],1.5);self.assertEqual(r.snapshot()['position'],5);r.update('h',{'file':'f','position':5,'paused':True},{'f'});self.assertEqual(r.snapshot()['playback_rate'],1.5)
 
 class Checkpoint(Rooms):

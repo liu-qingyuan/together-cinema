@@ -1,7 +1,7 @@
 import tempfile
 import unittest
 from types import SimpleNamespace
-from watch_history import WatchHistory, film_title
+from cinema.watch_history import WatchHistory, film_title
 
 
 class ScreeningLedger(unittest.TestCase):
@@ -28,7 +28,7 @@ class ScreeningLedger(unittest.TestCase):
 class ScreeningEvents(unittest.IsolatedAsyncioTestCase):
     async def test_select_pause_seek_resume_then_rewatch(self):
         from aiohttp.test_utils import TestClient, TestServer
-        from server import create_app
+        from cinema.server import create_app
         from pathlib import Path
         with tempfile.TemporaryDirectory() as d:
             async with TestClient(TestServer(create_app(d, 'fixture-pass-123', False))) as client:

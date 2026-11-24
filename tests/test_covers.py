@@ -9,7 +9,7 @@ from aiohttp import FormData
 from aiohttp.test_utils import TestClient, TestServer
 from PIL import Image
 
-from server import create_app
+from cinema.server import create_app
 
 
 def image_bytes(color='teal'):
@@ -77,7 +77,7 @@ class CoverTests(unittest.IsolatedAsyncioTestCase):
         class FullDisk:
             f_bavail = 0
             f_frsize = 4096
-        with patch('covers.os.statvfs', return_value=FullDisk()):
+        with patch('cinema.covers.os.statvfs', return_value=FullDisk()):
             self.assertEqual((await self.upload(headers)).status, 507)
         # A failure after derivative generation/publication must roll back too.
         replace = Path.replace

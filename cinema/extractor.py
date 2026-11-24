@@ -4,7 +4,7 @@ from pathlib import Path
 import ctypes
 from urllib.parse import urlsplit,parse_qs
 from aiohttp import web
-from external_media import public_url
+from .external_media import public_url
 MAX_OUTPUT=4*1024*1024
 class Extractor:
  def __init__(self,command=None,timeout=35,temp_root='/tmp'):
@@ -23,7 +23,7 @@ class Extractor:
   return self.candidates(data)
  async def resolve_page(self,url):
   public_url(url)
-  command=[sys.executable,'/app/browser_resolver.py']
+  command=[sys.executable,'-m','cinema.browser_resolver']
   return (await self.execute(command,url))['choices']
  async def execute(self,command,url):
   if not self.healthy:raise RuntimeError('解析子进程回收异常，已禁止新任务，请重启解析容器')
@@ -32,6 +32,8 @@ class Extractor:
   try:
    with tempfile.TemporaryDirectory(prefix='watch-extract-',dir=self.temp_root) as temporary:
     env={'PATH':os.environ.get('PATH','/usr/local/bin:/usr/bin:/bin'),'LANG':'C.UTF-8','HOME':temporary,'TMPDIR':temporary,'NODE_OPTIONS':'--max-old-space-size=96','PLAYWRIGHT_BROWSERS_PATH':os.environ.get('PLAYWRIGHT_BROWSERS_PATH','/ms-playwright')}
+    # Keep the private job cwd while allowing only our trusted package root, not an inherited search path.
+    env['PYTHONPATH']=str(Path(__file__).resolve().parent.parent)
     process=await asyncio.create_subprocess_exec(*command,url,cwd=temporary,env=env,start_new_session=True,stdout=asyncio.subprocess.PIPE,stderr=asyncio.subprocess.PIPE)
     self.pid=process.pid
     async def bounded(stream,limit):

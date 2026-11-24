@@ -1,30 +1,30 @@
 ---
 {
   "paths": [
-    "index.html",
-    "assets/room-atlas-v2.*",
-    "assets/room-groups.css",
-    "assets/memory-reel.js",
-    "assets/appearance.*",
+    "web/index.html",
+    "web/assets/room-atlas-v2.*",
+    "web/assets/room-groups.css",
+    "web/assets/memory-reel.js",
+    "web/assets/appearance.*",
     "scripts/appearance_smoke.py",
     "scripts/room_atlas_smoke.py",
-    "assets/room-art/*.webp",
-    "server.py",
+    "web/assets/room-art/*.webp",
+    "cinema/server.py",
     "tests/test_source_unavailable.py",
-    "covers.py",
+    "cinema/covers.py",
     "tests/test_covers.py",
     "requirements.txt",
     "Dockerfile",
     "scripts/covers_smoke.py",
-    "assets/scenes/v1-sky-*.webp",
-    "assets/scenes/v1-galaxy-*.webp",
-    "assets/scenes/sources.json",
-    "assets/scenes/LICENSE-CC-BY-4.0.txt",
+    "web/assets/scenes/v1-sky-*.webp",
+    "web/assets/scenes/v1-galaxy-*.webp",
+    "web/assets/scenes/sources.json",
+    "web/assets/scenes/LICENSE-CC-BY-4.0.txt",
     "tests/test_distribution.py",
     "scripts/gallery_smoke.py",
     "scripts/gallery_visual_smoke.py"
   ],
-  "fingerprint": "sha256:606a7f4adb97ff6c4b6ac373c2e9639015118e1b5e230c33a3963c2b4956d407"
+  "fingerprint": "sha256:f42a4fa9a9ec4d093b7c549ebeba0ea5c64c529ee376e446b9c168de745225a5"
 }
 ---
 
@@ -38,7 +38,7 @@
 
 `/?room=AB` 邀请自动沿用原房间码登录校验，成功后直达对应放映室；无效邀请停在入口并提示，可修改房间码重试，不回退到记住的房间。进入放映室后展厅装饰动画与滚动动画停止，即使影片暂停也不恢复。退出返回普通入口并清除授权会话。
 
-封面图片为 Unicorn Creates 和 oliwok 的 CC BY 4.0 作品，署名、来源及裁切／压缩说明随 `assets/scenes/sources.json` 和许可文件部署，不重标 MIT。只请求当前预设对应的桌面或手机派生图，邀请不下载展厅封面，入房移除封面图片来源。玻璃仅增强入房卡和预览按钮，基础样式不透明；减少透明度或无滤镜增强时保留可用表单，文字、影片、字幕和诗句不叠玻璃。
+封面图片为 Unicorn Creates 和 oliwok 的 CC BY 4.0 作品，署名、来源及裁切／压缩说明随 `web/assets/scenes/sources.json` 和许可文件部署，不重标 MIT。只请求当前预设对应的桌面或手机派生图，邀请不下载展厅封面，入房移除封面图片来源。玻璃仅增强入房卡和预览按钮，基础样式不透明；减少透明度或无滤镜增强时保留可用表单，文字、影片、字幕和诗句不叠玻璃。
 
 放映室仅提供个人选景，不再展示全站封面管理面板。兼容原有共享封面数据和 API；写入同时验证授权 cookie 与当前活动房间连接私发的成员凭据；仅有历史登录会话仍为只读。访客可公开读取目录和当前派生图，刷新即见共享选择。源图和两种优化 WebP 保存在 `/data/covers`，沿用 `RESERVE_BYTES` 预留，失败保留原封面并清理源图／派生图；内置预设不可删除，删除非当前图不切换，删除当前图回退天空并释放整组文件。
 

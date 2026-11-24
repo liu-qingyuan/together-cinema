@@ -4,7 +4,7 @@ from urllib.parse import urlsplit
 from aiohttp import web
 from aiohttp.test_utils import TestClient,TestServer
 from yarl import URL
-from external_media import ExternalMedia,Source,public_url
+from cinema.external_media import ExternalMedia,Source,public_url
 
 class SharedHTTP(unittest.IsolatedAsyncioTestCase):
  async def asyncSetUp(self):
@@ -65,7 +65,7 @@ class SharedHTTP(unittest.IsolatedAsyncioTestCase):
   self.assertGreater(self.media.stats()['shared_cache']['bytes'],0);self.assertLessEqual(self.media.stats()['shared_cache']['bytes'],16*1024*1024)
   await self.read(self.link('big0.ts'));self.assertEqual(self.calls[('/big0.ts',None)],2)
   from unittest.mock import patch
-  with patch('external_media.time.monotonic',return_value=time.monotonic()+46):self.media.fragments.sweep()
+  with patch('cinema.external_media.time.monotonic',return_value=time.monotonic()+46):self.media.fragments.sweep()
   self.assertEqual(self.media.stats()['shared_cache']['bytes'],0)
   await self.read();await self.media.sweep({'net:one'});await self.media.sweep(set())
   self.assertEqual(self.media.stats()['shared_cache']['bytes'],0);self.assertEqual((await self.read())[0],410)

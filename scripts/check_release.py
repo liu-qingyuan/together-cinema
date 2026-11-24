@@ -4,7 +4,7 @@ from pathlib import Path
 import hashlib,re,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
 paths=subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0');bad=[]
-OPENING_PATH = 'assets/room-art/anime-opening-v1.mp4'
+OPENING_PATH = 'web/assets/room-art/anime-opening-v1.mp4'
 OPENING_SHA256 = '8e9b3fa2ce8b9e22632ec77019a7400c6a4d27aa96d8f563d5c68c45fbd6942e'
 for name in filter(None,paths):
  path=ROOT/name

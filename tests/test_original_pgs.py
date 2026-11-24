@@ -1,9 +1,9 @@
 import unittest,tempfile,json,shutil,subprocess
 from pathlib import Path
 from aiohttp.test_utils import TestClient,TestServer
-from server import create_app
-from subtitles import extract_subtitles,list_subtitles
-from conversion import conversion_command
+from cinema.server import create_app
+from cinema.subtitles import extract_subtitles,list_subtitles
+from cinema.conversion import conversion_command
 FIXTURE=Path(__file__).parent/'fixtures/test.sup'
 class PGSHTTPTests(unittest.IsolatedAsyncioTestCase):
  async def test_private_original_track_selection(self):
@@ -27,8 +27,8 @@ class HEVCTests(unittest.TestCase):
   self.assertEqual(mode,'remux');self.assertEqual(cmd[cmd.index('-c:v')+1],'copy');self.assertEqual(cmd[cmd.index('-tag:v')+1],'hvc1');self.assertIn('-map_chapters',cmd)
 class PGSExtractionTests(unittest.TestCase):
  def test_bitmap_track_survives_background_conversion(self):
-  from conversion import enqueue,work_once,list_jobs
-  from subtitles import subtitle_path
+  from cinema.conversion import enqueue,work_once,list_jobs
+  from cinema.subtitles import subtitle_path
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);source=root/'fixture.mkv';fixture=FIXTURE
    cmd=['ffmpeg','-v','error','-f','lavfi','-i','color=black:s=128x64:r=24:d=5','-i',str(fixture),'-map','0:v','-map','1:0','-c:v','libx264','-pix_fmt','yuv420p','-c:s','copy','-metadata:s:s:0','language=chi','-metadata:s:s:0','title=原简中','-disposition:s:0','default','-t','5',str(source)]

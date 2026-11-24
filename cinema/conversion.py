@@ -5,7 +5,7 @@ import secrets
 import subprocess
 import time
 from pathlib import Path
-from subtitles import extract_subtitles, remove_subtitles
+from .subtitles import extract_subtitles, remove_subtitles
 
 CONVERSION_EXTENSIONS = {'.mkv', '.avi'}
 

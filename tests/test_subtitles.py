@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from aiohttp.test_utils import TestClient, TestServer
-from server import create_app
+from cinema.server import create_app
 
 
 class SubtitleHTTPTests(unittest.IsolatedAsyncioTestCase):
@@ -37,8 +37,8 @@ class SubtitleHTTPTests(unittest.IsolatedAsyncioTestCase):
 class ExtractionTests(unittest.TestCase):
     def test_text_tracks_survive_background_conversion(self):
         import subprocess
-        from conversion import enqueue, work_once, list_jobs
-        from subtitles import list_subtitles, subtitle_path
+        from cinema.conversion import enqueue, work_once, list_jobs
+        from cinema.subtitles import list_subtitles, subtitle_path
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);source=root/'fixture.mkv'
             (root/'zh.srt').write_text('1\n00:00:00,000 --> 00:00:02,000\n字幕测试\n')
@@ -59,7 +59,7 @@ class ExtractionTests(unittest.TestCase):
 
     def test_track_path_cannot_escape_pair_directory(self):
         import json
-        from subtitles import subtitle_path
+        from cinema.subtitles import subtitle_path
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);folder=root/'subtitles/clip.mp4';folder.mkdir(parents=True)
             (folder/'tracks.json').write_text(json.dumps({'tracks':[{'id':'../../outside'}]}))

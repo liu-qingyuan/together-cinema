@@ -4,10 +4,10 @@ The project source and original vector artwork are MIT licensed. That does **not
 
 | Distribution | Version | License / retained notice | Upstream |
 |---|---|---|---|
-| Artplayer | 5.4.0 | MIT, `assets/ARTPLAYER-LICENSE.txt` | https://github.com/zhw2590582/ArtPlayer |
-| HLS.js | 1.7.4 | Apache-2.0, `assets/LICENSE-hls.txt` and `LICENSES/Apache-2.0.txt` | https://github.com/video-dev/hls.js |
-| libpgs | 0.9.0 | MIT, `assets/LICENSE-libpgs.txt` | https://github.com/Arcus92/libpgs-js |
-| danmaku | 2.0.10 | MIT, `assets/LICENSE-danmaku.txt` and embedded header | https://github.com/weizhenye/Danmaku |
+| Artplayer | 5.4.0 | MIT, `web/assets/ARTPLAYER-LICENSE.txt` | https://github.com/zhw2590582/ArtPlayer |
+| HLS.js | 1.7.4 | Apache-2.0, `web/assets/LICENSE-hls.txt` and `LICENSES/Apache-2.0.txt` | https://github.com/video-dev/hls.js |
+| libpgs | 0.9.0 | MIT, `web/assets/LICENSE-libpgs.txt` | https://github.com/Arcus92/libpgs-js |
+| danmaku | 2.0.10 | MIT, `web/assets/LICENSE-danmaku.txt` and embedded header | https://github.com/weizhenye/Danmaku |
 | Browser seccomp profile | modified source snapshot | Apache-2.0, `LICENSES/Apache-2.0.txt` | https://github.com/microsoft/playwright/blob/main/utils/docker/seccomp_profile.json |
 
 Seccomp changes from the imported Playwright profile allow `pidfd_open`, `pidfd_send_signal`, and `chroot` for the non-root Chromium namespace sandbox. The browser sandbox is not disabled.
@@ -21,7 +21,7 @@ The README banner is MIT-licensed; personal room wallpapers are third-party artw
 | Sky Backgrounds | [Unicorn Creates](https://unicorncreates.itch.io/sky-backgrounds), [selected daytime JPEG](https://img.itch.zone/aW1hZ2UvNDMxOTM4MS8yNTgxNDE1NS5qcGc=/original/RcHjox.jpg) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); desktop full 1280×720, mobile center crop 480×720, WebP quality 84 |
 | Milky way in Elbrus | [oliwok / Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Milky_way_in_Elbrus.jpg) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); full portrait resized from 3648×5472 to 960×1440 / 480×720, WebP quality 86, metadata removed; no crop or recoloring |
 
-Full attribution, original file links and modifications ship in `assets/scenes/sources.json`; the retained license text is `assets/scenes/LICENSE-CC-BY-4.0.txt`. Both are available through `/scenes/` in the app image. Only the selected optimized derivatives ship, not the reference gallery packs or the 26 MB original photograph. Screenshots in `docs/evidence/gallery/` reproduce these works under the same CC BY 4.0 attribution; screenshot framing and browser UI are added by Together Cinema contributors.
+Full attribution, original file links and modifications ship in `web/assets/scenes/sources.json`; the retained license text is `web/assets/scenes/LICENSE-CC-BY-4.0.txt`. Both are available through `/scenes/` in the app image. Only the selected optimized derivatives ship, not the reference gallery packs or the 26 MB original photograph. Screenshots in `docs/evidence/gallery/` reproduce these works under the same CC BY 4.0 attribution; screenshot framing and browser UI are added by Together Cinema contributors.
 
 The private deployment's other external photographs, anime images, movie stills and screenshots are intentionally not redistributed.
 
@@ -40,7 +40,7 @@ WebP derivatives are resized from the listed artists’ published works, not gen
 
 ## Motion (room settings only)
 
-The optional locally served bundle uses [Motion](https://motion.dev/) 12.23.24 (MIT). Build inputs: `frontend/comfort-motion/package-lock.json`; run `npm ci && npm run build` there to reproduce it. License texts: `LICENSES/comfort-motion.txt`. Docker installation and playback do not require Node or a CDN.
+The optional locally served bundle uses [Motion](https://motion.dev/) 12.23.24 (MIT). Build inputs: `web/comfort-motion/package-lock.json`; run `npm ci && npm run build` there to reproduce it. License texts: `LICENSES/comfort-motion.txt`. Docker installation and playback do not require Node or a CDN.
 
 ## Documentation screenshots
 

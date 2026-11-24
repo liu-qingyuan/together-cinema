@@ -1,7 +1,7 @@
 import unittest
 class ResourceLifecycle(unittest.TestCase):
  def test_import_resource_bounded_media_module(self):
-  from external_media import MAX_SOURCES,MAX_MANIFEST,CHUNK_SIZE
+  from cinema.external_media import MAX_SOURCES,MAX_MANIFEST,CHUNK_SIZE
   self.assertLessEqual(MAX_SOURCES,32);self.assertLessEqual(MAX_MANIFEST,1048576);self.assertLessEqual(CHUNK_SIZE,65536)
 
 import asyncio,tempfile,json,sys,os,socket,gc,tracemalloc
@@ -9,8 +9,8 @@ from pathlib import Path
 from unittest.mock import patch
 from aiohttp import web
 from aiohttp.test_utils import TestClient,TestServer
-from external_media import ExternalMedia,Source,PublicResolver,public_url
-from extractor import Extractor
+from cinema.external_media import ExternalMedia,Source,PublicResolver,public_url
+from cinema.extractor import Extractor
 class URLSafety(unittest.IsolatedAsyncioTestCase):
  async def test_private_schemes_addresses_redirect_policy(self):
   for url in ['http://example.com/v.mp4','https://127.0.0.1/a','https://169.254.169.254/a','https://[::1]/a','https://u:p@example.com/a','https://example.com:8443/a','https://localhost/a']:
@@ -84,14 +84,14 @@ class RelayHTTP(unittest.IsolatedAsyncioTestCase):
 
 class NetworkRoomHTTP(unittest.IsolatedAsyncioTestCase):
  async def test_room_entry_auth_sync_and_end_cleanup(self):
-  from server import create_app
+  from cinema.server import create_app
   class FixtureMedia(ExternalMedia):
    async def resolve(this,url,mode):
     public_url(url);this.sources['fixture']=Source('fixture',{'url':url,'title':'fixture','kind':'mp4','duration':10},mode,url)
     return [this.describe('fixture')]
   with tempfile.TemporaryDirectory() as root:
    engine=FixtureMedia('http://unused','test')
-   with patch('server.ExternalMedia',return_value=engine):app=create_app(Path(root),'test-network-123',secure=False)
+   with patch('cinema.server.ExternalMedia',return_value=engine):app=create_app(Path(root),'test-network-123',secure=False)
    async with TestClient(TestServer(app)) as client:
     self.assertEqual((await client.get('/api/network/stats')).status,401)
     await client.post('/api/login',json={'room':'AB'})

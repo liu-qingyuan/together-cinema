@@ -3,7 +3,7 @@ from pathlib import Path
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 from yarl import URL
-from external_media import ExternalMedia
+from cinema.external_media import ExternalMedia
 
 class DynamicFallback(unittest.IsolatedAsyncioTestCase):
  async def test_html_without_static_video_uses_generic_fixed_worker(self):
@@ -28,7 +28,7 @@ class DynamicFallback(unittest.IsolatedAsyncioTestCase):
 
 class GatewayPolicy(unittest.IsolatedAsyncioTestCase):
  async def test_private_urls_and_credentials_never_reach_transport(self):
-  from browser_resolver import BrowserResolver
+  from cinema.browser_resolver import BrowserResolver
   from types import SimpleNamespace
   class Request:
    resource_type='xhr';method='GET';post_data_buffer=None
@@ -52,7 +52,7 @@ class GatewayPolicy(unittest.IsolatedAsyncioTestCase):
   args,kwargs=session.calls[0];self.assertEqual(str(args[1]),route.request.url);self.assertNotIn('cookie',kwargs['headers']);self.assertNotIn('authorization',kwargs['headers']);self.assertEqual(resolver.choices[0]['headers']['Referer'],'https://page.example')
 
  async def test_body_and_total_budget_are_bounded(self):
-  from browser_resolver import BrowserResolver,MAX_RESPONSE,MAX_TOTAL
+  from cinema.browser_resolver import BrowserResolver,MAX_RESPONSE,MAX_TOTAL
   from types import SimpleNamespace
   class Content:
    async def read(self,n):return b'x'*n
@@ -62,12 +62,15 @@ class GatewayPolicy(unittest.IsolatedAsyncioTestCase):
 
 class ExtractorPageLifecycle(unittest.IsolatedAsyncioTestCase):
  async def test_worker_page_job_timeout_and_secret_not_inherited(self):
-  from extractor import Extractor
+  from cinema.extractor import Extractor
   from unittest.mock import patch
   with tempfile.TemporaryDirectory() as root:
-   engine=Extractor(timeout=.05,temp_root=root)
-   with patch.dict('os.environ',{'WATCH_PASSWORD':'NEVER-PASS-TO-CHILD'}):
-    result=await engine.execute([sys.executable,'-c','import os,json; print(json.dumps({"secret":os.getenv("WATCH_PASSWORD")}))'],'https://example.com')
+   engine=Extractor(timeout=5,temp_root=root)
+   with patch.dict('os.environ',{'WATCH_PASSWORD':'NEVER-PASS-TO-CHILD','PYTHONPATH':'/untrusted-search-path'}):
+    result=await engine.execute([sys.executable,'-c','from cinema.browser_resolver import BrowserResolver; import os,json; print(json.dumps({"secret":os.getenv("WATCH_PASSWORD"),"cwd":os.getcwd(),"path":os.getenv("PYTHONPATH")}))'],'https://example.com')
    self.assertIsNone(result['secret'])
+   self.assertEqual(Path(result['cwd']).parent,Path(root).resolve())
+   self.assertEqual(Path(result['path']),Path(__file__).resolve().parents[1])
+   engine.timeout=.05
    with self.assertRaises(RuntimeError):await engine.execute([sys.executable,'-c','import time;time.sleep(20)'],'https://example.com')
    self.assertFalse(engine.busy);self.assertIsNone(engine.pid);self.assertEqual(list(Path(root).iterdir()),[])

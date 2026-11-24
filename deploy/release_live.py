@@ -53,7 +53,13 @@ def retry(action):
             time.sleep(1)
 
 
+def static_root(source):
+    # Old staged releases remain valid rollback/check-current targets.
+    return source / 'web' if (source / 'web').is_dir() else source
+
+
 def gate(origin, source, image):
+    source = static_root(source)
     def fetch(path, maximum, span=False):
         req = Request(origin + path, headers={'Range': 'bytes=0-31'} if span else {})
         with urlopen(req, timeout=8) as r:
@@ -158,7 +164,7 @@ def release(args):
     nextcfg = replace_once(nextcfg, ('    build: '+str(prev)+'\n').encode(), ('    build: '+str(dest)+'\n').encode())
     nextng = nginx
     for directive, suffix in [('root',''), ('alias','/assets/scenes/')]:
-        nxt = lambda p: (directive+' '+str(p)+suffix+';').encode()
+        nxt = lambda p: (directive+' '+str(static_root(p))+suffix+';').encode()
         nextng = replace_once(nextng, nxt(prev), nxt(dest))
     port = int(compose('port', 'watch', '8080').decode().strip().removeprefix('127.0.0.1:'))
     def idle():

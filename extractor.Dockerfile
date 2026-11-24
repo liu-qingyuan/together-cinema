@@ -7,7 +7,8 @@ RUN pip install --no-cache-dir playwright==1.65.1
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources && apt-get update && apt-get install -y --no-install-recommends libatomic1 && rm -rf /var/lib/apt/lists/*
 RUN playwright install --with-deps --only-shell chromium && chmod -R a+rX /ms-playwright
-COPY extractor.py browser_resolver.py external_media.py /app/
+COPY cinema /app/cinema
+RUN chmod -R a+rX /app/cinema
 ENV PYTHONDONTWRITEBYTECODE=1
 USER 10001:10001
-ENTRYPOINT ["python","extractor.py"]
+ENTRYPOINT ["python","-m","cinema.extractor"]

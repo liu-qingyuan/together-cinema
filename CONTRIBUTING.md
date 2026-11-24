@@ -2,7 +2,7 @@
 
 Small, testable changes are welcome. Start with an issue describing actual behavior, expected behavior and a minimal input. Do not upload films, personal server credentials, room messages or signed URLs.
 
-- Start with the [current code map](docs/code-map.md) to find each responsibility and its tests.
+- Start with the [current code map](docs/code-map.md) to find each responsibility and its tests. Backend code lives in the `cinema/` Python package, web assets in `web/`, and tests stay in `tests/`; installation and Compose entry points stay at the repository root.
 - Python 3.13, system `ffmpeg`/`ffprobe`, `pip install -r requirements.txt`.
 - From the repository root, run `python -m unittest discover -v`. Tests and their fixtures live in `tests/`; do not split test layers or add import-path workarounds. Docker with the Compose v2 CLI is needed to run the two Compose-shape checks without skips (no daemon needed); installer contract tests use a fake Docker CLI, while separate smoke tests use a real engine.
 - Preserve synchronization, bounded resources and cleanup behavior. Test observable HTTP/WebSocket/process interfaces.

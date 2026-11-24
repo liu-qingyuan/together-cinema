@@ -1,0 +1,65 @@
+{
+  "ticket": 13,
+  "baseline": "a87962aeb0e48266948f72451c54675582903a04",
+  "environment": {
+    "python": "3.13.14",
+    "ffmpeg": "9.0.2",
+    "compose": "5.2.0",
+    "browser": "Google Chrome 157.0.8103.80 on macOS arm64",
+    "containers": "Linux arm64"
+  },
+  "regression": {
+    "command": "python -m unittest discover -v",
+    "cwd": "repository root; no PYTHONPATH or sys.path workaround",
+    "baseline_passed": 114,
+    "backend_step_passed": 114,
+    "web_step_passed": 115,
+    "skipped": 0,
+    "process_checks": "MKV/AVI tests invoke the real cinema.conversion module; isolated extractor child imports the real browser module without inheriting credentials or caller search paths"
+  },
+  "mechanical_identity": {
+    "web_files_byte_identical": 55,
+    "includes": "HTML, all shipped CSS/JS, images, opening MP4, licenses, attribution and build inputs",
+    "only_changed_web_file": "web/comfort-motion/build.mjs: output path",
+    "motion_build": "npm ci && npm run build in web/comfort-motion; output byte-identical",
+    "opening_sha256": "8e9b3fa2ce8b9e22632ec77019a7400c6a4d27aa96d8f563d5c68c45fbd6942e"
+  },
+  "clean_install": {
+    "source": "tracked candidate snapshot in a disposable directory; no personal configuration or media copied",
+    "entry": "./install.sh --network --port 18913",
+    "environment": "only PATH, HOME and a unique COMPOSE_PROJECT_NAME inherited; installer generates private secrets",
+    "images": "actual application and extractor Dockerfile builds; original watch, converter and extractor roles",
+    "restrictive_source_directories": "explicit image permissions verified with source directories mode 0700",
+    "browser_command": "python scripts/runtime_layout_smoke.py http://127.0.0.1:18913",
+    "upload": "generated MPEG-4/AC3 MKV with original English SRT",
+    "conversion": "real background converter, transcode to published MP4",
+    "real_browser_playback": true,
+    "original_subtitle_active": true,
+    "browser_errors": 0
+  },
+  "upgrade": {
+    "seed": "install baseline in another disposable directory and volume, then runtime_layout_smoke.py --keep-upload",
+    "update": "replace tracked source paths (including removal of old tracked paths, like a Git update), preserve .env, rerun ./install.sh on the same Compose project",
+    "same_named_volume": true,
+    "media_and_subtitle_sha256_unchanged": true,
+    "private_env_bytes_unchanged": true,
+    "browser_command": "python scripts/runtime_layout_smoke.py http://127.0.0.1:18914 --existing <generated-output>",
+    "real_browser_playback": true,
+    "original_subtitle_active": true,
+    "browser_errors": 0
+  },
+  "other_checks": {
+    "scripts_smoke": "health/login/upload 200/200/201, exact media bytes, 206 Range, two served frames decoded, WebSocket room, scene asset 200",
+    "gallery_smoke": "two independent browser processes: invite, authorization isolation, play/pause/seek, logout; observed drift 0.053 seconds, no page errors",
+    "release_gate": "real deploy.release_live.gate on local candidate: exact HTML/CSS, opening MP4 bytes and 206, FFmpeg decodes served bytes; unit fixtures also cover flat-to-web and web-to-web success/rollback",
+    "network_profile": "health 200; real isolated child imports cinema.browser_resolver, launches sandboxed Chromium on an internal data page, receives no password and reaps the child",
+    "source_hygiene": "python scripts/check_release.py",
+    "shell_syntax": "sh -n install.sh uninstall.sh deploy/caddy-entrypoint.sh"
+  },
+  "limits": [
+    "No personal or production deployment used.",
+    "Not an AMD64, real-mobile, public TLS/Nginx or third-party provider playback acceptance.",
+    "Temporary archive permissions and inherited port/profile variables initially affected the fixture; isolated environment and explicit image source permissions were verified on the final clean install.",
+    "Docker Hub authorization temporarily timed out during rebuilding; pulling the unchanged Python base digest and rerunning the original installer completed successfully."
+  ]
+}

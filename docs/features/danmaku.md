@@ -1,10 +1,10 @@
 ---
 {
   "paths": [
-    "danmaku.py",
+    "cinema/danmaku.py",
     "tests/test_interactive.py"
   ],
-  "fingerprint": "sha256:11534230227344244c93bb02774b4cc76bb4c9640e9a18a33adea957afa36654"
+  "fingerprint": "sha256:b5a02b42df247820386203e5071474080a17db6af0fb2f466bfa74ac149ba39b"
 }
 ---
 

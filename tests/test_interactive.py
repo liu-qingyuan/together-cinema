@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import patch
-from server import Room
+from cinema.server import Room
 class BoostTimelineTests(unittest.TestCase):
  def test_host_hold_release_and_timeout_keep_continuous_position(self):
-  with patch('server.time.monotonic',return_value=100) as clock:
+  with patch('cinema.server.time.monotonic',return_value=100) as clock:
    r=Room();r.host='host';self.assertTrue(r.update('host',{'file':'clip.mp4','position':10,'paused':False},{'clip.mp4'}))
    self.assertTrue(r.set_boost('host',True,'clip.mp4'));clock.return_value=101.5;s=r.snapshot();self.assertEqual(s['playback_rate'],2);self.assertAlmostEqual(s['position'],13)
    self.assertFalse(r.set_boost('guest',False,'clip.mp4'));self.assertTrue(r.set_boost('host',False,'clip.mp4'));clock.return_value=102.5;self.assertAlmostEqual(r.snapshot()['position'],14)
@@ -14,7 +14,7 @@ class DanmakuPersistenceTests(unittest.TestCase):
  def test_plain_text_comments_persist_per_movie_and_delete(self):
   import tempfile
   from pathlib import Path
-  from danmaku import DanmakuStore
+  from cinema.danmaku import DanmakuStore
   with tempfile.TemporaryDirectory() as tmp:
    store=DanmakuStore(Path(tmp));a=store.add('clip.mp4','<img src=x onerror=alert(1)>  你好',12.5)
    self.assertEqual(a['time'],12.5);self.assertIn('<img',a['text']);self.assertEqual(DanmakuStore(Path(tmp)).list('clip.mp4'),[a]);self.assertEqual(store.list('other.mp4'),[])
@@ -27,7 +27,7 @@ class InteractiveWebSocketTests(unittest.IsolatedAsyncioTestCase):
   import tempfile
   from pathlib import Path
   from aiohttp.test_utils import TestClient,TestServer
-  from server import create_app
+  from cinema.server import create_app
   self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name);self.client=TestClient(TestServer(create_app(self.root,'interactive-test-123456',secure=False)));await self.client.start_server();(self.root/'media/clip.mp4').write_bytes(b'video-fixture')
  async def asyncTearDown(self):
   await self.client.close();self.tmp.cleanup()
@@ -55,5 +55,5 @@ class InteractiveWebSocketTests(unittest.IsolatedAsyncioTestCase):
   await b.send_json({'type':'danmaku','file':'clip.mp4','text':'too fast'});self.assertEqual((await b.receive_json())['type'],'error')
   self.assertEqual((await self.client.get('/api/danmaku/missing.mp4')).status,404)
   self.assertEqual((await self.client.delete('/api/library/clip.mp4')).status,200);self.assertEqual((await self.client.get('/api/danmaku/clip.mp4')).status,404)
-  from danmaku import DanmakuStore
+  from cinema.danmaku import DanmakuStore
   self.assertEqual(DanmakuStore(self.root).list('clip.mp4'),[]);await a.close();await b.close()

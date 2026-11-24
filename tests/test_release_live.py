@@ -59,7 +59,7 @@ class Retirement(unittest.TestCase):
 
 class ReleaseFixture(unittest.TestCase):
     """Exercise real configuration replacements on disk, with simulated Docker/Nginx."""
-    def exercise(self, bad_public):
+    def exercise(self, bad_public, previous_web=False):
         import json
         from contextlib import ExitStack
         from pathlib import Path
@@ -69,11 +69,13 @@ class ReleaseFixture(unittest.TestCase):
         with TemporaryDirectory() as temp, ExitStack() as patches:
             root=Path(temp).resolve(); old,new='a'*12,'b'*12
             prev,dest=[root/'releases'/v for v in (old,new)]
-            prev.mkdir(parents=True); dest.mkdir()
+            prev.mkdir(parents=True); (dest/'web').mkdir(parents=True)
+            previous_static=prev/'web' if previous_web else prev
+            previous_static.mkdir(exist_ok=True)
             config=root/'compose.yml'; site=root/'nginx'
             tag=lambda rev:'fixture:release-'+rev
             initial=f'    build: {prev}\n    image: {tag(old)}\n'
-            original_site=f'root {prev};\nalias {prev}/assets/scenes/;'
+            original_site=f'root {previous_static};\nalias {previous_static}/assets/scenes/;'
             config.write_text(initial); site.write_text(original_site)
             media=root/'data/media'; media.mkdir(parents=True)
             sub=root/'data/subtitles'; sub.mkdir()
@@ -96,7 +98,8 @@ class ReleaseFixture(unittest.TestCase):
                 if args[0]=='buildx' or args[:2] in [('image','ls'),('image','rm')]:return b''
                 self.fail(args)
             def verify(url,source,image):
-                self.assertIn(str(source),site.read_text())
+                static=dest/'web' if source==dest else previous_static
+                self.assertEqual(site.read_text(),f'root {static};\nalias {static}/assets/scenes/;')
                 self.assertEqual(image,'id-'+actual[0])
                 if bad_public and source==dest:raise RuntimeError('stale public bytes')
             for name,fn in [('docker',cli),('run',lambda *a:b''),('canary',lambda image:None),
@@ -118,7 +121,9 @@ class ReleaseFixture(unittest.TestCase):
             for path in (media/'film',sub/'text'):self.assertEqual(path.read_bytes(),b'preserve')
 
     def test_success_removes_owned_builder_and_scratch_only(self):
-        self.exercise(False)
+        for previous_web in (False,True):
+            with self.subTest(previous_web=previous_web):self.exercise(False,previous_web)
 
     def test_bad_live_bytes_restore_original_config_and_keep_rollback(self):
-        self.exercise(True)
+        for previous_web in (False,True):
+            with self.subTest(previous_web=previous_web):self.exercise(True,previous_web)

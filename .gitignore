@@ -3,7 +3,7 @@
 !.env.example
 data/
 *.mp4
-!assets/room-art/anime-opening-v1.mp4
+!web/assets/room-art/anime-opening-v1.mp4
 *.mkv
 *.avi
 *.ts

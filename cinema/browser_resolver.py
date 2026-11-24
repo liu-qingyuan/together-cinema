@@ -4,7 +4,7 @@ from urllib.parse import urlsplit
 from pathlib import Path
 import aiohttp
 from yarl import URL
-from external_media import public_url,PublicResolver
+from .external_media import public_url,PublicResolver
 MAX_REQUESTS=120
 MAX_TOTAL=16*1024**2
 MAX_RESPONSE=2*1024**2

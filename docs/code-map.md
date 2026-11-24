@@ -1,10 +1,10 @@
 # 当前代码地图
 
-这是一份源码导航，不是部署迁移方案。首次了解系统请看[现行架构：同步控制与媒体流](architecture/current.md)（[English](architecture/current.en.md)）。产品运行代码仍在仓库根目录；测试和素材集中在 `tests/`，不再按测试层级细分。目录整理的历史基线见下方记录；当前播放规则由下列运行入口拥有。
+这是一份源码导航，不是部署迁移方案。首次了解系统请看[现行架构：同步控制与媒体流](architecture/current.md)（[English](architecture/current.en.md)）。第一方后端集中在 `cinema/` Python 包；网页和静态资源集中在 `web/`（`index.html`、`assets/`、可选动效的 `comfort-motion/` 构建输入）。根目录保留安装、Compose 和镜像构建入口；没有新增部署进程。测试和测试素材集中在 `tests/`，不再按测试层级细分。目录整理的历史基线见下方记录；当前播放规则由下列运行入口拥有。
 
 ## 怎么运行与验证
 
-- 使用／部署：从仓库根运行 `./install.sh`，细节见[部署指南](deployment.md)。[Compose](../compose.yml) 的 `watch` 从源码构建应用镜像，入口为 [`server.py`](../server.py) 的 `create_app()`；`converter` 复用该镜像，独立运行 [`conversion.py`](../conversion.py)。可选 `network` profile 启动解析器，`https` profile 启动访问网关。
+- 使用／部署：从仓库根运行 `./install.sh`，细节见[部署指南](deployment.md)。[Compose](../compose.yml) 的 `watch` 从源码构建应用镜像，入口为 `python -m cinema.server`（[`server.py`](../cinema/server.py) 的 `create_app()`）；`converter` 复用该镜像，独立运行 `python -m cinema.conversion`（[`conversion.py`](../cinema/conversion.py)）。可选 `network` profile 以 `python -m cinema.extractor` 启动解析器，`https` profile 启动访问网关。网页由后端的 `WEB_DIR` 定位，不依赖进程 cwd；`/`、`/assets/`、`/scenes/`、`/room-art/` 与 `/data` 挂载不变。
 - 贡献／回归：Python 3.13（与 CI 一致）、系统 `ffmpeg`／`ffprobe`，安装 `requirements.txt`。从仓库根运行：
 
   ```sh
@@ -21,13 +21,13 @@
 
 | 职责 | 入口与规则归属 | 对应测试 |
 | --- | --- | --- |
-| 播放与房间同步 | [`index.html`](../index.html) 的 `control()` 发送操作，`connect()` 接收消息，`apply()` 应用快照；[`server.py`](../server.py) 的 `Room.update()` 校验房主操作，`snapshot()` 计算进度，`set_rate()`／`set_boost()` 管理基础倍速与临时加速。`invalidate_source()` 统一处理当前片源失效：清片、暂停、进度保持为零，退出临时加速并恢复已选基础倍速；其他片源或重复通知不改变播放。本地删除与网络回收只报告失效，仍各自拥有清理和广播。`create_app()` 内 `websocket()` 是 `/ws` 入口，负责成员、房主交接和广播。 | [`test_server.py`](../tests/test_server.py) 的 `RoomTests` 与 WebSocket 同步／交接；[`test_rooms.py`](../tests/test_rooms.py) 的房间隔离、倍速与清理；[`test_interactive.py`](../tests/test_interactive.py) 的加速、弹幕存储和交互协议；[`test_source_unavailable.py`](../tests/test_source_unavailable.py) 经双成员 WebSocket 验证两条失效路径、迟到／重复通知及跨房间隔离。 |
-| 共享片库 | [`server.py`](../server.py) 的 `files()`／`library()` 列出已发布影片，`stream()` 提供媒体，`publish_upload()` 决定直接入库还是排队，`delete_video()` 删除影片及关联字幕／弹幕并刷新片库。[`parallel_upload.py`](../parallel_upload.py) 的 `ParallelUploads` 拥有分片校验、组装、容量与到期清理；前端入口是 `index.html` 的 `library()` 和上传处理。片库全站共享，房间码不是媒体权限隔离。 | [`test_server.py`](../tests/test_server.py) 的上传、Range、删除和安全路径；[`test_parallel_upload.py`](../tests/test_parallel_upload.py) 的分片与清理；[`test_room_entry.py`](../tests/test_room_entry.py) 的入房授权与片库访问。 |
-| 转码与字幕 | [`conversion.py`](../conversion.py) 的 `enqueue()`／`work_once()` 管任务队列，`conversion_command()` 决定保留视频、转音轨或视频转码，`process_job()` 运行 FFmpeg 并发布完成品。[`subtitles.py`](../subtitles.py) 提取和列出字幕、定位原始轨道；`server.py` 的转换路由提供查询／取消。未完成输出不进入片库。 | [`test_mkv.py`](../tests/test_mkv.py)、[`test_avi.py`](../tests/test_avi.py) 实际启动根目录的转换子进程并检查输出；[`test_subtitles.py`](../tests/test_subtitles.py)、[`test_original_pgs.py`](../tests/test_original_pgs.py) 验证文字／图片字幕提取及私有 HTTP 读取。PGS 样本随测试保存在 [`fixtures/test.sup`](../tests/fixtures/test.sup)。 |
-| 网络片源 | `server.py` 的 `network_resolve()` 等 `/api/network/` 路由连接房间与 [`external_media.py`](../external_media.py) 的 `ExternalMedia`；后者拥有 URL 安全校验、来源存活／回收、中转和 `SharedFragments` 缓存。可选 [`extractor.py`](../extractor.py) 调用 [`browser_resolver.py`](../browser_resolver.py) 探测动态网页；前端通过 `setPlaybackSource()` 选择本地／网络播放方式。 | [`test_external_media.py`](../tests/test_external_media.py) 的来源、安全与 HTTP 生命周期；[`test_dynamic_media.py`](../tests/test_dynamic_media.py) 的动态解析／网关／子进程；[`test_shared_fragments.py`](../tests/test_shared_fragments.py) 的共享缓存、并发、预算与清理。 |
-| 放映记录 | `server.py` 的 `websocket()` 在房主开始播放时调用 [`watch_history.py`](../watch_history.py) 的 `WatchHistory.record()`；`film_title()` 取得片名，`list()` 按房间读取有界持久记录。[`assets/memory-reel.js`](../assets/memory-reel.js) 的 `renderMemory` 展示真实片单，无记录时展示明确标注的示例；不从上传时间补历史。 | [`test_watch_history.py`](../tests/test_watch_history.py) 的 `ScreeningLedger` 验证持久化与数量上限，`ScreeningEvents` 经 WebSocket 验证开场、续播、再次观看与房间隔离。 |
+| 播放与房间同步 | [`web/index.html`](../web/index.html) 的 `control()` 发送操作，`connect()` 接收消息，`apply()` 应用快照；[`server.py`](../cinema/server.py) 的 `Room.update()` 校验房主操作，`snapshot()` 计算进度，`set_rate()`／`set_boost()` 管理基础倍速与临时加速。`invalidate_source()` 统一处理当前片源失效：清片、暂停、进度保持为零，退出临时加速并恢复已选基础倍速；其他片源或重复通知不改变播放。本地删除与网络回收只报告失效，仍各自拥有清理和广播。`create_app()` 内 `websocket()` 是 `/ws` 入口，负责成员、房主交接和广播。 | [`test_server.py`](../tests/test_server.py) 的 `RoomTests` 与 WebSocket 同步／交接；[`test_rooms.py`](../tests/test_rooms.py) 的房间隔离、倍速与清理；[`test_interactive.py`](../tests/test_interactive.py) 的加速、弹幕存储和交互协议；[`test_source_unavailable.py`](../tests/test_source_unavailable.py) 经双成员 WebSocket 验证两条失效路径、迟到／重复通知及跨房间隔离。 |
+| 共享片库 | [`server.py`](../cinema/server.py) 的 `files()`／`library()` 列出已发布影片，`stream()` 提供媒体，`publish_upload()` 决定直接入库还是排队，`delete_video()` 删除影片及关联字幕／弹幕并刷新片库。[`parallel_upload.py`](../cinema/parallel_upload.py) 的 `ParallelUploads` 拥有分片校验、组装、容量与到期清理；前端入口是 `index.html` 的 `library()` 和上传处理。片库全站共享，房间码不是媒体权限隔离。 | [`test_server.py`](../tests/test_server.py) 的上传、Range、删除和安全路径；[`test_parallel_upload.py`](../tests/test_parallel_upload.py) 的分片与清理；[`test_room_entry.py`](../tests/test_room_entry.py) 的入房授权与片库访问。 |
+| 转码与字幕 | [`conversion.py`](../cinema/conversion.py) 的 `enqueue()`／`work_once()` 管任务队列，`conversion_command()` 决定保留视频、转音轨或视频转码，`process_job()` 运行 FFmpeg 并发布完成品。[`subtitles.py`](../cinema/subtitles.py) 提取和列出字幕、定位原始轨道；`server.py` 的转换路由提供查询／取消。未完成输出不进入片库。 | [`test_mkv.py`](../tests/test_mkv.py)、[`test_avi.py`](../tests/test_avi.py) 从根目录实际启动 `cinema.conversion` 转换子进程并检查输出；[`test_subtitles.py`](../tests/test_subtitles.py)、[`test_original_pgs.py`](../tests/test_original_pgs.py) 验证文字／图片字幕提取及私有 HTTP 读取。PGS 样本随测试保存在 [`fixtures/test.sup`](../tests/fixtures/test.sup)。 |
+| 网络片源 | `server.py` 的 `network_resolve()` 等 `/api/network/` 路由连接房间与 [`external_media.py`](../cinema/external_media.py) 的 `ExternalMedia`；后者拥有 URL 安全校验、来源存活／回收、中转和 `SharedFragments` 缓存。可选 [`extractor.py`](../cinema/extractor.py) 通过 `python -m cinema.browser_resolver` 调用 [`browser_resolver.py`](../cinema/browser_resolver.py) 探测动态网页；前端通过 `setPlaybackSource()` 选择本地／网络播放方式。 | [`test_external_media.py`](../tests/test_external_media.py) 的来源、安全与 HTTP 生命周期；[`test_dynamic_media.py`](../tests/test_dynamic_media.py) 的动态解析／网关／子进程；[`test_shared_fragments.py`](../tests/test_shared_fragments.py) 的共享缓存、并发、预算与清理。 |
+| 放映记录 | `server.py` 的 `websocket()` 在房主开始播放时调用 [`watch_history.py`](../cinema/watch_history.py) 的 `WatchHistory.record()`；`film_title()` 取得片名，`list()` 按房间读取有界持久记录。[`web/assets/memory-reel.js`](../web/assets/memory-reel.js) 的 `renderMemory` 展示真实片单，无记录时展示明确标注的示例；不从上传时间补历史。 | [`test_watch_history.py`](../tests/test_watch_history.py) 的 `ScreeningLedger` 验证持久化与数量上限，`ScreeningEvents` 经 WebSocket 验证开场、续播、再次观看与房间隔离。 |
 
-其余测试：[`test_covers.py`](../tests/test_covers.py) 验证展厅封面读写、失败清理与播放隔离；[`test_distribution.py`](../tests/test_distribution.py) 验证静态资源与安全头；[`test_install.py`](../tests/test_install.py) 验证真实安装器／卸载入口及 Compose 配置；[`test_release_live.py`](../tests/test_release_live.py) 验证生产发布的验收顺序与定向回收。浏览器验收脚本独立放在 [`scripts/`](../scripts/)，所需额外依赖与运行方式见[贡献入口](../README.md#开发与贡献)，不混入默认 unittest。
+其余测试：[`test_covers.py`](../tests/test_covers.py) 验证展厅封面读写、失败清理与播放隔离；[`test_distribution.py`](../tests/test_distribution.py) 验证静态资源与安全头；[`test_install.py`](../tests/test_install.py) 验证真实安装器／卸载入口及 Compose 配置；[`test_release_live.py`](../tests/test_release_live.py) 验证生产发布的验收顺序与定向回收。浏览器验收脚本独立放在 [`scripts/`](../scripts/)，所需额外依赖与运行方式见[贡献入口](../README.md#开发与贡献)，不混入默认 unittest。[`runtime_layout_smoke.py`](../scripts/runtime_layout_smoke.py) 在隔离安装上生成待转换 MKV、等待真实转换，再播放 MP4 并检查原字幕；`--keep-upload` 可种入临时旧卷，更新后 `--existing` 验证同片。只用于本机临时部署，运行证据及未覆盖范围见[目录迁移验证](evidence/runtime-layout.json)。
 
 ## 整理后的对照基线
 
@@ -35,7 +35,7 @@
 
 [CI](../.github/workflows/ci.yml) 保持同一根目录命令；[Docker 构建排除](../.dockerignore) 现在排除整个 `tests/`。弹幕和展厅的[当前功能记录](features/)引用新测试位置；迁移后需复核指纹并执行 `./.feature-docs/run check --staged`（提交后 `check --ref HEAD`）。
 
-本票未做浏览器、真机或线上播放验收。应用镜像完整重建尝试因 Docker Hub token 请求 `EOF` 受阻；已通过无需外部基础镜像的构建上下文检查来验证 `tests/` 排除，不把它当作完整重建成功。
+上述 #8 历史基线未做浏览器、真机或线上播放验收；当时应用镜像重建因 Docker Hub token 请求 `EOF` 受阻，只完成构建上下文检查。这不是当前构建状态。后端／网页目录迁移的隔离安装与旧卷升级证据见 [#13](https://github.com/liu-qingyuan/together-cinema/issues/13)；不代表线上或真机验收。
 
 ## 文档分工
 

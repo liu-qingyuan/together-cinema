@@ -7,7 +7,7 @@ from unittest.mock import patch
 from pathlib import Path
 from aiohttp import FormData
 from aiohttp.test_utils import TestClient, TestServer
-from server import Room, create_app
+from cinema.server import Room, create_app
 
 
 class RoomTests(unittest.TestCase):
@@ -60,7 +60,7 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         class FullDisk:
             f_bavail=0
             f_frsize=4096
-        with patch('server.os.statvfs',return_value=FullDisk()):
+        with patch('cinema.server.os.statvfs',return_value=FullDisk()):
             r=await self.client.post('/api/upload',data=body)
         self.assertEqual(r.status,507)
         self.assertEqual([p.name for p in self.media.iterdir()],['clip.mp4'])

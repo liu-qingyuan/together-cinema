@@ -7,8 +7,8 @@ from urllib.parse import urlsplit
 
 from aiohttp.test_utils import TestClient, TestServer
 
-from external_media import ExternalMedia, Source, public_url
-from server import create_app
+from cinema.external_media import ExternalMedia, Source, public_url
+from cinema.server import create_app
 
 
 class FixtureMedia(ExternalMedia):
@@ -28,7 +28,7 @@ class SourceUnavailableHTTP(unittest.IsolatedAsyncioTestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.data = Path(self.tmp.name)
         self.engine = FixtureMedia('http://unused', 'fixture')
-        with patch('server.ExternalMedia', return_value=self.engine):
+        with patch('cinema.server.ExternalMedia', return_value=self.engine):
             app = create_app(self.data, 'fixture-pass-123', secure=False)
         self.client = TestClient(TestServer(app))
         await self.client.start_server()

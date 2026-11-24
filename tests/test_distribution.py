@@ -1,8 +1,29 @@
 import tempfile,unittest
 from pathlib import Path
 from aiohttp.test_utils import TestClient,TestServer
-from server import create_app
+from cinema.server import create_app
 class SceneDistributionTests(unittest.IsolatedAsyncioTestCase):
+ async def test_page_bundles_and_opening_keep_their_public_urls(self):
+  from html.parser import HTMLParser
+  class Bundles(HTMLParser):
+   def __init__(self):super().__init__();self.urls=set()
+   def handle_starttag(self,tag,attrs):
+    attrs=dict(attrs)
+    url=attrs.get('src') if tag=='script' else attrs.get('href') if tag=='link' and attrs.get('rel')=='stylesheet' else None
+    if url and url.startswith('/assets/'):self.urls.add(url)
+  with tempfile.TemporaryDirectory() as d:
+   async with TestClient(TestServer(create_app(Path(d),'distribution-fixture-secret',secure=False))) as c:
+    r=await c.get('/');self.assertEqual(r.status,200);self.assertEqual(r.headers['Cache-Control'],'no-store')
+    bundles=Bundles();bundles.feed(await r.text());self.assertGreater(len(bundles.urls),5)
+    bundles.urls.update('/assets/'+name for name in ['hls-1.7.4.js','danmaku-2.0.10.dom.js','libpgs-0.9.0.js','libpgs-0.9.0.worker.js','comfort-motion-1.js'])
+    for url in bundles.urls:
+     with self.subTest(url=url):
+      r=await c.get(url);self.assertEqual(r.status,200);self.assertTrue(await r.read())
+      self.assertIn('immutable',r.headers['Cache-Control'])
+    r=await c.get('/room-art/anime-opening-v1.mp4',headers={'Range':'bytes=0-31'})
+    self.assertEqual(r.status,206);self.assertEqual(r.content_type,'video/mp4');self.assertEqual(len(await r.read()),32)
+    for url in ['/assets/server.py','/cinema/server.py','/web/index.html']:
+     self.assertEqual((await c.get(url)).status,404)
  async def test_shipped_scene_and_credits_work_without_external_nginx(self):
   with tempfile.TemporaryDirectory() as d:
    async with TestClient(TestServer(create_app(Path(d),'distribution-fixture-secret',secure=False))) as c:

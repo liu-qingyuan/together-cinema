@@ -10,7 +10,7 @@
 - 顶部两按钮只在本页预览内置封面，不保存个人主题、不修改全站状态。全站共享封面属于 #5；原六套放映室个人主题仍独立。
 - 玻璃只增强入房卡和预览按钮。默认是有边框的不透明表面，仅支持滤镜且未请求减少透明度时开启模糊。标题、陪伴文字、影片、字幕和诗句不加玻璃。
 - 图片随 Docker 部署，不访问外部图库。`picture` 在 ≤800 CSS px 选手机派生图，其余选桌面图；只加载当前选中的预设。入房移除图片来源，避免播放中因旋转屏幕再请求展厅图。邀请不下载展厅图。
-- 作品归属与改动：[素材清单](../assets/scenes/sources.json)、[第三方说明](../THIRD_PARTY_NOTICES.md)、[CC BY 4.0](../assets/scenes/LICENSE-CC-BY-4.0.txt)。天空来自 Unicorn Creates；银河照片来自 oliwok。不得把它们标成 MIT。
+- 作品归属与改动：[素材清单](../web/assets/scenes/sources.json)、[第三方说明](../THIRD_PARTY_NOTICES.md)、[CC BY 4.0](../web/assets/scenes/LICENSE-CC-BY-4.0.txt)。天空来自 Unicorn Creates；银河照片来自 oliwok。不得把它们标成 MIT。
 
 ## 实际浏览器画面
 

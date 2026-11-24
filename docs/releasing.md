@@ -20,6 +20,9 @@ For installations with a versioned `watch` image, a loopback port, and Nginx ser
 the release's static homepage and scenes, use **deploy/release_live.py** as the update
 entry point. It replaces the manual “switch, then clean the server” procedure.
 The ordinary installer remains data-preserving; it is not the updater for this layout.
+Current staged releases keep the Python package in `cinema/` and the static root in
+`web/`. The release tool selects each release's static root independently, so it can
+still check or roll back to older releases whose homepage was at the release root.
 
 1. On a trusted workstation, select a reviewed commit with green CI. Stage its
    Docker build inputs in a **new** `releases/<first 12 hex of commit>` under the
@@ -28,7 +31,7 @@ The ordinary installer remains data-preserving; it is not the updater for this l
    ```sh
    rev=$(git rev-parse HEAD)
    short=$(git rev-parse --short=12 "$rev")
-   git archive "$rev" -- Dockerfile .dockerignore requirements.txt server.py watch_history.py conversion.py subtitles.py danmaku.py covers.py external_media.py parallel_upload.py index.html assets |
+   git archive "$rev" -- Dockerfile .dockerignore requirements.txt cinema web |
      ssh "$DEPLOY_HOST" "cd '$DEPLOY_ROOT' && mkdir 'releases/$short' && tar xf - -C 'releases/$short'"
    ```
 2. Install the trusted release tool and its matching `scripts/smoke.py` together
