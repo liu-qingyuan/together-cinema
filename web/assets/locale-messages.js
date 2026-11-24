@@ -60,6 +60,8 @@ globalThis.CinemaMessages = {
   "atlas.genre.future": {"zh-CN":"未来建筑","en":"Future architecture"},
   "atlas.genre.tech": {"zh-CN":"都市霓虹","en":"City neon"},
   "guide.url": {"zh-CN":"/help/zh-CN.html","en":"/help/en.html"},
+  "library.tools": {"zh-CN":"片库工具","en":"Library tools"},
+  "guide.short": {"zh-CN":"使用指南 ↗","en":"Guide ↗"},
   "guide.open": {"zh-CN":"使用指南（新标签页） ↗","en":"Viewer guide (new tab) ↗"},
   "app.title": {"zh-CN":"Together Cinema · 一起看","en":"Together Cinema"},
   "nav.label": {"zh-CN":"网站导航","en":"Site navigation"},

@@ -65,7 +65,7 @@ class PublicGuide(unittest.IsolatedAsyncioTestCase):
                 for link in links:
                     self.assertEqual(link['target'], '_blank')
                     self.assertIn('noopener', link['rel'].split())
-                    self.assertEqual(link['data-i18n'], 'guide.open')
+                    self.assertEqual(link.get('data-i18n-aria-label', link['data-i18n']), 'guide.open')
                     self.assertEqual((await client.get(link['href'])).status, 200)
                 for language in ['zh-CN', 'en']:
                     url = messages['guide.url'][language]
