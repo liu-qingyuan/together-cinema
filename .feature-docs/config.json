@@ -2,7 +2,7 @@
   "version": 1,
   "managed": [
     "danmaku.py",
-    "test_interactive.py"
+    "tests/test_interactive.py"
   ],
   "tool": ".feature-docs/tool.py",
   "assets": {

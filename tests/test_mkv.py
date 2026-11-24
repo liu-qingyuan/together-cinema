@@ -51,7 +51,7 @@ class MkvUploadTests(unittest.IsolatedAsyncioTestCase):
         response = await self.client.post('/api/conversions/' + job['id'] + '/cancel')
         self.assertEqual(response.status, 202)
         process = await asyncio.create_subprocess_exec(
-            sys.executable, str(Path(__file__).with_name('conversion.py')),
+            sys.executable, str(Path(__file__).resolve().parents[1] / 'conversion.py'),
             '--once', '--data-dir', self.tmp.name)
         self.assertEqual(await process.wait(), 0)
         jobs = await (await self.client.get('/api/conversions')).json()
@@ -71,7 +71,7 @@ class MkvUploadTests(unittest.IsolatedAsyncioTestCase):
         body.add_field('video', fixture.read_bytes(), filename='测试.mkv')
         job = await (await self.client.post('/api/upload', data=body)).json()
         process = await asyncio.create_subprocess_exec(
-            sys.executable, str(Path(__file__).with_name('conversion.py')),
+            sys.executable, str(Path(__file__).resolve().parents[1] / 'conversion.py'),
             '--once', '--data-dir', self.tmp.name,
             stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
         stdout, stderr = await process.communicate()
@@ -101,7 +101,7 @@ class MkvUploadTests(unittest.IsolatedAsyncioTestCase):
                 body.add_field('video', fixture.read_bytes(), filename=codec + '.mkv')
                 submitted = await (await self.client.post('/api/upload', data=body)).json()
                 process = await asyncio.create_subprocess_exec(
-                    sys.executable, str(Path(__file__).with_name('conversion.py')),
+                    sys.executable, str(Path(__file__).resolve().parents[1] / 'conversion.py'),
                     '--once', '--data-dir', self.tmp.name)
                 self.assertEqual(await process.wait(), 0)
                 jobs = await (await self.client.get('/api/conversions')).json()
@@ -118,7 +118,7 @@ class MkvUploadTests(unittest.IsolatedAsyncioTestCase):
         body.add_field('video', b'not a real video', filename='broken.mkv')
         submitted = await (await self.client.post('/api/upload', data=body)).json()
         process = await asyncio.create_subprocess_exec(
-            sys.executable, str(Path(__file__).with_name('conversion.py')),
+            sys.executable, str(Path(__file__).resolve().parents[1] / 'conversion.py'),
             '--once', '--data-dir', self.tmp.name)
         self.assertEqual(await process.wait(), 0)
         jobs = await (await self.client.get('/api/conversions')).json()
@@ -137,7 +137,7 @@ class MkvUploadTests(unittest.IsolatedAsyncioTestCase):
         body.add_field('video', fixture.read_bytes(), filename='portrait.mkv')
         submitted = await (await self.client.post('/api/upload', data=body)).json()
         process = await asyncio.create_subprocess_exec(
-            sys.executable, str(Path(__file__).with_name('conversion.py')),
+            sys.executable, str(Path(__file__).resolve().parents[1] / 'conversion.py'),
             '--once', '--data-dir', self.tmp.name)
         self.assertEqual(await process.wait(), 0)
         jobs = await (await self.client.get('/api/conversions')).json()

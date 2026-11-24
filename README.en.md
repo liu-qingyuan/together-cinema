@@ -66,11 +66,11 @@ No automatic backups or global Docker prune. Updating source and rerunning the i
 - Text and supported PGS subtitles; stage fullscreen keeps subtitle/danmaku overlays.
 - Sync play/pause/seek/rate, hold-to-speed-up, keyboard control, shared danmaku and room chat.
 - Eight personal room wallpapers from credited illustrators and photographers, with source links; no external image CDN or analytics.
-- This is an early source-release candidate. An Android Quark half-covered video report is unresolved; device emulation is not real-device certification.
-- No published image registry, public demo, star count or release badge is claimed yet.
+- This is an early open-source project with published source releases. [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) is the source of truth for versions and changes; the badge above follows the latest source release. An Android Quark half-covered video report is unresolved; device emulation is not real-device certification.
+- No prebuilt application images on Docker Hub/GHCR or public demo are provided. The installer uses Compose to build application images locally from the downloaded source; a source release is not a prebuilt application image.
 
 ## Contributing
 
-Python3.13, `pip install -r requirements.txt`, system `ffmpeg`/`ffprobe`, then `python -m unittest discover -v`. Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [compatibility](docs/compatibility.md) and [release checklist](docs/releasing.md).
+Start with the [current code map](docs/code-map.md) for playback, library, conversion, network sources and screening history, with their tests. Tests and subtitle fixtures live together in `tests/`, without test-layer subdirectories. Use Python 3.13, `pip install -r requirements.txt`, system `ffmpeg`/`ffprobe`, then run the unchanged `python -m unittest discover -v` from the repository root. Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [compatibility](docs/compatibility.md) and [release checklist](docs/releasing.md).
 
 Only use media you are authorized to access and share. MIT for original code/artwork; dependencies and runtimes retain their [own licenses](THIRD_PARTY_NOTICES.md).

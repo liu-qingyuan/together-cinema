@@ -4,7 +4,7 @@ from aiohttp.test_utils import TestClient,TestServer
 from server import create_app
 from subtitles import extract_subtitles,list_subtitles
 from conversion import conversion_command
-FIXTURE=Path(__file__).parent/'test-fixtures/test.sup'
+FIXTURE=Path(__file__).parent/'fixtures/test.sup'
 class PGSHTTPTests(unittest.IsolatedAsyncioTestCase):
  async def test_private_original_track_selection(self):
   with tempfile.TemporaryDirectory() as tmp:

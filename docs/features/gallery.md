@@ -11,7 +11,7 @@
     "assets/room-art/*.webp",
     "server.py",
     "covers.py",
-    "test_covers.py",
+    "tests/test_covers.py",
     "requirements.txt",
     "Dockerfile",
     "scripts/covers_smoke.py",
@@ -19,11 +19,11 @@
     "assets/scenes/v1-galaxy-*.webp",
     "assets/scenes/sources.json",
     "assets/scenes/LICENSE-CC-BY-4.0.txt",
-    "test_distribution.py",
+    "tests/test_distribution.py",
     "scripts/gallery_smoke.py",
     "scripts/gallery_visual_smoke.py"
   ],
-  "fingerprint": "sha256:fdab786c44b6e735db550de9c629f37832550014a18f489a182209cbd92cd11a"
+  "fingerprint": "sha256:ee7ebf41efe34ed60cdf4e6eb7e7e5d63cf9c705115a687aa598b9b349c8003a"
 }
 ---
 

@@ -11,7 +11,6 @@ __pycache__
 .venv
 docs
 .github
-test_*.py
-test-fixtures
+tests
 .install.lock
 /frontend/comfort-motion/node_modules/

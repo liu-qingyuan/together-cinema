@@ -1,6 +1,6 @@
-# Release validation — Alpha candidate
+# Historical release validation — Alpha candidate
 
-Validated on **2026-11-23**. The tested source is ready for a limited **Alpha** source release, not a claim of universal/stable compatibility. No GitHub remote or public release has been created yet.
+Validated on **2026-11-23**, before the first Alpha source publication. At that time, the tested source was ready for a limited **Alpha** source release, not a claim of universal/stable compatibility, and no GitHub remote or public release had been created. Results and test counts below are preserved as observed then, not current totals or publication status. See the [current code map](code-map.md), [test-layout baseline](evidence/test-layout.json) and [published source releases](https://github.com/liu-qingyuan/together-cinema/releases).
 
 ## Actual environment
 
@@ -51,7 +51,7 @@ Container suite needs its temporary test data on a filesystem with room for the 
 
 ## Still not certified
 
-- Fresh Linux AMD64/Windows installations; an AMD64 GitHub Actions workflow is provided but has not run on a remote repository yet.
+- Fresh Linux AMD64/Windows installations; the provided AMD64 GitHub Actions workflow had not run on a remote repository at the time of this validation.
 - Public DNS/ACME certificate issuance. The local TLS/auth/WSS path was actually tested; that does not establish a real domain's DNS/firewall/certificate readiness.
 - Cross-network real-device voice with external TURN, every mobile browser, and every website/codec.
 - The reported Android Quark half-covered video remains unresolved. Mobile-sized desktop contexts are not physical-device certification.

@@ -12,4 +12,4 @@ No credentials, cookies, login sessions or DRM bypass are imported from viewers.
 
 ## Report a vulnerability
 
-Before a public repository exists, do not post vulnerabilities in public issues. After publication, the maintainer should enable GitHub private vulnerability reporting; if it is not enabled, ask for a private contact channel without disclosing exploit details. There is deliberately no invented email address in this candidate.
+Do not post vulnerabilities in public issues. Use GitHub private vulnerability reporting if enabled for this repository; otherwise ask the maintainer for a private contact channel without disclosing exploit details. No unconfirmed contact address is provided.

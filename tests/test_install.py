@@ -1,6 +1,6 @@
 import os,shutil,subprocess,tempfile,unittest
 from pathlib import Path
-ROOT=Path(__file__).parent
+ROOT=Path(__file__).resolve().parents[1]
 class InstallerTests(unittest.TestCase):
  def test_help_is_usable_without_docker_or_secret_creation(self):
   p=subprocess.run(['sh',str(ROOT/'install.sh'),'--help'],capture_output=True,text=True)

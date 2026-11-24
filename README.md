@@ -96,11 +96,13 @@
 
 ## 项目状态
 
-这是从私人使用版本整理出的**首个开源候选版本**。它不是已验证所有网站、所有手机、任意公网网络的成品 SaaS。安卓夸克收到过半屏黑色遮挡反馈，尚未完成实机复现，见 [兼容性说明](docs/compatibility.md)。不把浏览器模拟通过当作实机认证。
+这是从私人使用版本整理出的早期开源项目，**源码已发布**，版本和变更以 [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) 为准，顶部版本徽章跟随最新源码发布。它不是已验证所有网站、所有手机、任意公网网络的成品 SaaS。安卓夸克收到过半屏黑色遮挡反馈，尚未完成实机复现，见 [兼容性说明](docs/compatibility.md)。不把浏览器模拟通过当作实机认证。
 
-本仓库目前不提供已发布 Docker Hub/GHCR 镜像或在线公开演示；从源码构建即可使用。远程仓库地址和发布版本由维护者确认后添加，不伪造 star、下载量或 CI 通过徽章。
+本项目目前不提供应用的预构建 Docker Hub/GHCR 镜像或在线公开演示。安装器通过 Compose 从下载的源码本地构建应用镜像；源码发布不等于提供预构建应用镜像。
 
 ## 开发与贡献
+
+先看[当前代码地图](docs/code-map.md)：按播放、片库、转码、网络片源和放映记录定位职责与测试。测试和图片字幕素材集中在 `tests/`，不分层级；从仓库根运行原命令：
 
 ```sh
 python3 -m venv .venv
@@ -127,9 +129,9 @@ python scripts/gallery_smoke.py http://127.0.0.1:8080
 python scripts/gallery_visual_smoke.py http://127.0.0.1:8080 --artifacts /tmp/gallery-visual
 ```
 
-请在专用本地 Compose 实例运行；连续重复入房测试可能触发原有登录限流，等待窗口或仅重启专用测试实例后再跑。手机尺寸模拟不代表手机实机验收；[当前画面与真机验收缺口](docs/gallery-visual-acceptance.md)。
+请在专用本地 Compose 实例运行；连续重复入房测试可能触发原有登录限流，等待窗口或仅重启专用测试实例后再跑。手机尺寸模拟不代表手机实机验收；[历史画面与真机验收缺口](docs/gallery-visual-acceptance.md)。
 
-[贡献指南](CONTRIBUTING.md) · [架构](docs/architecture.md) · [发布检查](docs/releasing.md) · [第三方授权](THIRD_PARTY_NOTICES.md)
+[贡献指南](CONTRIBUTING.md) · [当前代码地图](docs/code-map.md) · [历史部署迁移设计](docs/architecture.md) · [发布检查](docs/releasing.md) · [第三方授权](THIRD_PARTY_NOTICES.md)
 
 欢迎小而完整的修复、可重复的兼容性报告和文档改进。请只分享你有权观看和分发的内容；本项目不附带影片、会员资源或第三方站点账号。
 

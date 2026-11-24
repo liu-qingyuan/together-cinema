@@ -12,7 +12,7 @@ class AviUploadTests(unittest.IsolatedAsyncioTestCase):
  async def upload(self,name,data):
   body=FormData();body.add_field('video',data,filename=name);return await self.client.post('/api/upload',data=body)
  async def worker(self):
-  p=await asyncio.create_subprocess_exec(sys.executable,str(Path(__file__).with_name('conversion.py')),'--once','--data-dir',self.tmp.name);self.assertEqual(await p.wait(),0)
+  p=await asyncio.create_subprocess_exec(sys.executable,str(Path(__file__).resolve().parents[1]/'conversion.py'),'--once','--data-dir',self.tmp.name);self.assertEqual(await p.wait(),0)
  async def test_avi_mpeg4_mp3_to_mp4(self):
   clip=self.root/'fixture.avi';p=subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','testsrc2=size=160x120:rate=10','-f','lavfi','-i','sine=frequency=440:sample_rate=48000','-t','1','-c:v','mpeg4','-pix_fmt','yuv420p','-c:a','libmp3lame','-ac','2','-y',str(clip)],capture_output=True);self.assertEqual(p.returncode,0,p.stderr)
   response=await self.upload('网页AVI自动处理测试.AVI',clip.read_bytes());self.assertEqual(response.status,202,await response.text());job=await response.json();self.assertEqual((await (await self.client.get('/api/library')).json())['files'],[])

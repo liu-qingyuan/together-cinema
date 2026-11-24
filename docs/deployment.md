@@ -36,7 +36,7 @@ WATCH_TURN_URLS=turn:turn.example.com:3478?transport=udp
 WATCH_TURN_SECRET=YOUR_TURN_SHARED_SECRET
 ```
 
-该secret必须与外部TURN服务的 `static-auth-secret` 一致。然后运行 `./install.sh` 更新应用环境。默认未配置TURN，前端会提示语音未启用；不宣称默认能穿透任意运营商网络。此候选版本不自动安装TURN或开放大量UDP端口，避免不清楚公网IP/NAT时做错误设置。文本聊天不依赖TURN。
+该secret必须与外部TURN服务的 `static-auth-secret` 一致。然后运行 `./install.sh` 更新应用环境。默认未配置TURN，前端会提示语音未启用；不宣称默认能穿透任意运营商网络。本项目不自动安装TURN或开放大量UDP端口，避免不清楚公网IP/NAT时做错误设置。文本聊天不依赖TURN。
 
 ## 数据／转换／空间
 

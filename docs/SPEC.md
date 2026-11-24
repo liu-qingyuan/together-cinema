@@ -1,4 +1,6 @@
-# First distributable release
+# Historical spec: first distributable release
+
+Recorded on **2026-11-23**, before the first Alpha source release. The requirements below preserve that migration's scope, including its publication precondition; they are not the current release status. See [GitHub Releases](https://github.com/liu-qingyuan/together-cinema/releases) for published source versions and the [current code map](code-map.md) for navigation.
 
 - Export original application into a separate Git project; never alter personal production.
 - No private credentials/domains/IPs/reports/videos in tracked files. Allowlisted source and vendor licenses only.

@@ -1,10 +1,12 @@
-# 共享展厅封面：当前验收证据
+# 共享展厅封面：历史验收证据
+
+记录于 **2026-11-23**，对应提交 `af79508`；以下测试数与浏览器结果保留当时数据，不代表当前完整回归。当前测试入口见[代码地图](code-map.md)。
 
 对应 [#5](https://github.com/liu-qingyuan/together-cinema/issues/5)。全站封面与房间播放、字幕、语音和个人主题独立。
 
 ## 自动化验证
 
-- `python -m unittest discover -v`：96 项通过。其中 `test_covers.py` 经公开 HTTP／WebSocket 验证访客读取、活动成员写入、登录 cookie 单独写入被拒、连接关闭凭据撤销、同源限制、跨应用重启读取、失败清理、选用、删除回退和房间播放隔离。
+- `python -m unittest discover -v`：96 项通过。其中封面测试（现位于 [`tests/test_covers.py`](../tests/test_covers.py)） 经公开 HTTP／WebSocket 验证访客读取、活动成员写入、登录 cookie 单独写入被拒、连接关闭凭据撤销、同源限制、跨应用重启读取、失败清理、选用、删除回退和房间播放隔离。
 - 上传可接受静态 JPEG／PNG／WebP，至多 8 MiB、800 万像素。校验失败、上传过大、磁盘不足、发布目录状态失败均保留原图，并清理本次源图、派生图及临时目录。内置预设不可删除。
 - 专用本地 Compose `cinema-ticket5`（watch + converter，非真实用户部署）成功构建并启动非 root 容器；`scripts/covers_smoke.py` 使用两独立 Chrome 进程和额外无会话访客，上传生成的带真实文字字幕的 MKV，经正常转换后播放。
 - 双成员先建立 WebRTC 通话，再执行上传并选用、切到预设、切回已有图、第二次上传、失败上传、删除非当前图和删除当前图。每步断言两个播放器 `currentSrc` 不变、`loadstart/emptied` 为零、仍在播放且进度增长、字幕选择及实际字幕 cue 保留、个人主题不变；每个既有 RTCPeerConnection 保持同一对象及 connected 状态，音轨保持 live，操作前后实际接收音频字节增长。最后一次运行双端进度差为 0.018～0.023 秒，零页面运行错误。
