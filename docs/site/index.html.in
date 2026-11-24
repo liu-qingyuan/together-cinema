@@ -5,41 +5,38 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>$title · Together Cinema</title>
 <meta name="description" content="$lead">
-<link rel="stylesheet" href="${base}assets/site.css?v=chapters-1">
+<link rel="stylesheet" href="${base}assets/site.css?v=product-light-1">
 </head><body>
 <main>
 <div class="overture">
 <section class="cover" aria-labelledby="title">
   <picture class="sky" aria-hidden="true"><source media="(max-width:640px) and (orientation:portrait)" srcset="${base}assets/v1-sky-mobile.webp"><img src="${base}assets/v1-sky-desktop.webp" alt="" width="1280" height="720" fetchpriority="high"></picture>
-  <header class="mast"><span class="brand"><span class="mark" aria-hidden="true">▷</span> Together Cinema</span><a class="lang" href="$other" hreflang="$other_lang" lang="$other_lang">$language</a></header>
-  <div class="opening"><p class="eyebrow light">$project &nbsp; / &nbsp; VOL. 01</p><h1 id="title"><span>$line1</span><span>$line2</span></h1><p class="lead">$lead</p><nav><a class="pill" href="$install">$host ↗</a><a class="ghost" href="$guide">$watch →</a></nav></div>
-  <a class="scroll" href="#tour"><span>$walk</span><span aria-hidden="true">01 — 03 &nbsp; ↓</span></a>
+  <header class="mast"><span class="brand"><span class="mark" aria-hidden="true">▸</span> Together Cinema</span><a class="lang" href="$other" hreflang="$other_lang" lang="$other_lang">$language</a></header>
+  <div class="opening"><p class="eyebrow light">$project</p><h1 id="title"><span>$line1</span><span>$line2</span></h1><p class="lead">$lead</p><nav><a class="pill" href="$install">$host ↗</a><a class="ghost" href="$guide">$watch →</a></nav></div>
+  <a class="scroll" href="#tour"><span>$walk</span><span aria-hidden="true">↓</span></a>
 </section>
 
-<section id="tour" class="programme-index" aria-labelledby="index-title"><div class="spread index-grid">
-  <div><p class="eyebrow">$indexLabel &nbsp; / &nbsp; VOL. 01</p><h2 id="index-title">$preface</h2></div>
-  <nav class="index-list" aria-label="$walk"><a href="#invitation"><small>01</small>$menuEntry <span>↘</span></a><a href="#programme"><small>02</small>$menuLibrary <span>↘</span></a><a href="#routes"><small>03</small>$menuRoutes <span>↘</span></a></nav>
+<section id="tour" class="overview" aria-labelledby="index-title"><div class="spread">
+  <p class="eyebrow">$indexLabel</p><h2 id="index-title">$preface</h2>
+  <nav class="index-list" aria-label="$walk">
+    <a href="#invitation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>$menuEntry <span>↓</span></a>
+    <a href="#programme"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4"/><path d="m10 9 5 3-5 3z"/></svg>$menuLibrary <span>↓</span></a>
+    <a href="#routes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M8 12h2c3 0 3-7 6-7m-6 7c3 0 3 7 6 7"/></svg>$menuRoutes <span>↓</span></a>
+  </nav>
 </div></section></div>
-
-<section id="invitation" data-chapter aria-labelledby="join"><div class="spread">
-  <header class="folio"><span>01 &nbsp; / &nbsp; $entryLabel</span><span aria-hidden="true">ADMIT ONE</span></header>
-  <div class="ticket"><div class="ticket-copy"><h2 id="join">$entryTitle</h2><p>$entryText</p><p class="note">$entryNext</p><span class="barcode" aria-hidden="true"></span></div>
-  <figure class="ticket-stub"><a href="${base}assets/$lang-entry.webp"><img src="${base}assets/$lang-entry.webp" alt="$entryAlt" loading="lazy" decoding="async"></a><figcaption>FIG. 01 &nbsp; / &nbsp; $entryLabel</figcaption></figure></div>
+<section id="invitation" class="feature" data-chapter aria-labelledby="join"><div class="spread split">
+  <div class="feature-copy"><p class="eyebrow">01 &nbsp; / &nbsp; $entryLabel</p><h2 id="join">$entryTitle</h2><p>$entryText</p><p class="note">$entryNext</p></div>
+  <figure class="stage"><a href="${base}assets/$lang-entry.webp"><img src="${base}assets/$lang-entry.webp" alt="$entryAlt" loading="lazy" decoding="async"></a></figure>
 </div></section>
-
-<section id="programme" data-chapter aria-labelledby="pick"><div class="spread">
-  <header class="folio"><span>02 &nbsp; / &nbsp; $libraryLabel</span><span aria-hidden="true">REEL 02</span></header>
-  <div class="reel"><div class="reel-copy"><span class="cue" aria-hidden="true">● &nbsp; NOW SHOWING</span><h2 id="pick">$libraryTitle</h2><p>$libraryText</p><p class="note">$libraryNext</p></div>
-  <figure class="film-frame"><a href="${base}assets/$lang-library.webp"><img src="${base}assets/$lang-library.webp" alt="$libraryAlt" loading="lazy" decoding="async"></a><figcaption>FIG. 02 &nbsp; / &nbsp; $libraryLabel</figcaption></figure></div>
+<section id="programme" class="feature" data-chapter aria-labelledby="pick"><div class="spread split">
+  <div class="feature-copy"><p class="eyebrow">02 &nbsp; / &nbsp; $libraryLabel</p><h2 id="pick">$libraryTitle</h2><p>$libraryText</p><p class="note">$libraryNext</p></div>
+  <figure class="stage"><a href="${base}assets/$lang-library.webp"><img src="${base}assets/$lang-library.webp" alt="$libraryAlt" loading="lazy" decoding="async"></a></figure>
 </div></section>
-
 <section id="routes" data-chapter aria-labelledby="modes"><div class="spread">
-  <header class="folio"><span>03 &nbsp; / &nbsp; $modeLabel</span><span aria-hidden="true">A — B</span></header>
-  <div class="routes-intro"><h2 id="modes">$modeTitle</h2><p>$modeIntro</p></div>
-  <div class="routes-table">
-    <article><div class="route-info"><span class="route-key" aria-hidden="true">A</span><div><h3>$directTitle</h3><p class="route-line">$routeFrom → $routeTo</p><p><strong>$directWhen</strong> $directText</p></div></div><a href="${base}assets/$lang-direct.webp"><img src="${base}assets/$lang-direct.webp" alt="$directAlt" loading="lazy" decoding="async"></a></article>
-    <article><div class="route-info"><span class="route-key" aria-hidden="true">B</span><div><h3>$relayTitle</h3><p class="route-line">$routeFrom → $routeVia → $routeTo</p><p><strong>$relayWhen</strong> $relayText</p></div></div><a href="${base}assets/$lang-relay.webp"><img src="${base}assets/$lang-relay.webp" alt="$relayAlt" loading="lazy" decoding="async"></a></article>
-  </div><a class="guide" href="$guide#modes">$more →</a>
+  <div class="routes-heading"><p class="eyebrow">03 &nbsp; / &nbsp; $modeLabel</p><h2 id="modes">$modeTitle</h2><p>$modeIntro</p></div>
+  <div class="compare"><article><h3>$directTitle</h3><p class="route-line">$routeFrom → $routeTo</p><p><strong>$directWhen</strong> $directText</p><a href="${base}assets/$lang-direct.webp"><img src="${base}assets/$lang-direct.webp" alt="$directAlt" loading="lazy" decoding="async"></a></article>
+  <article><h3>$relayTitle</h3><p class="route-line">$routeFrom → $routeVia → $routeTo</p><p><strong>$relayWhen</strong> $relayText</p><a href="${base}assets/$lang-relay.webp"><img src="${base}assets/$lang-relay.webp" alt="$relayAlt" loading="lazy" decoding="async"></a></article></div>
+  <a class="guide" href="$guide#modes">$more →</a>
 </div></section></main>
-<footer><div class="spread"><p class="eyebrow">TOGETHER CINEMA &nbsp; / &nbsp; END CREDITS</p><h2>$endTitle</h2><nav><a href="$install">$host ↗</a><a href="$guide">$watch</a><a href="$arch">$archLabel</a><a href="$repo">GitHub ↗</a></nav><p>$footer</p><small><a href="https://unicorncreates.itch.io/sky-backgrounds">$credit</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small></div></footer>
+<footer><div class="spread"><p class="eyebrow">Together Cinema</p><h2>$endTitle</h2><nav><a href="$install">$host ↗</a><a href="$guide">$watch</a><a href="$arch">$archLabel</a><a href="$repo">GitHub ↗</a></nav><p>$footer</p><small><a href="https://unicorncreates.itch.io/sky-backgrounds">$credit</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small></div></footer>
 </body></html>
