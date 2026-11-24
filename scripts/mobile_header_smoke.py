@@ -167,6 +167,23 @@ async def run(args):
                             await expect(menu).to_be_focused()
                             await expect(menu).to_have_attribute('aria-expanded', 'false')
                         checked.append({'language': language, 'viewport': [width, height], 'layout_copy_invite_menu': 'passed'})
+                    # A laptop can have compact room actions and a horizontal mouse nav.
+                    await page.set_viewport_size({'width': 1280, 'height': 800})
+                    nav = page.locator('#siteNav')
+                    await page.mouse.move(0, 0)
+                    capsule = nav.locator('.nav-bar')
+                    await expect(nav).to_have_attribute('data-compact', '')
+                    await expect(capsule).not_to_have_attribute('data-sliding', '')
+                    closed = (await capsule.bounding_box())['width']
+                    await nav.hover()
+                    await expect(nav).not_to_have_attribute('data-compact', '')
+                    await expect(capsule).not_to_have_attribute('data-sliding', '')
+                    assert (await capsule.bounding_box())['width'] > closed + 100
+                    await page.mouse.move(0, 0)
+                    await expect(nav).to_have_attribute('data-compact', '')
+                    await expect(capsule).not_to_have_attribute('data-sliding', '')
+                    assert abs((await capsule.bounding_box())['width'] - closed) < 1
+                    await page.set_viewport_size({'width': 1440, 'height': 900})
                     # Desktop still exposes its existing actions and main navigation.
                     await page.locator('#openRoom').click()
                     await expect(page.get_by_role('dialog')).to_be_visible()

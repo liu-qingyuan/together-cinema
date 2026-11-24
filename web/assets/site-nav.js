@@ -3,6 +3,9 @@
   const nav = document.getElementById('siteNav'), trigger = nav.querySelector('.nav-toggle');
   const links = [...nav.querySelectorAll('.nav-links a')];
   const small = matchMedia('(max-width:1360px)'), media = document.getElementById('video');
+  const horizontal = matchMedia('(min-width:640px)'), reduce = matchMedia('(prefers-reduced-motion:reduce)');
+  const bar = nav.querySelector('.nav-bar');
+  let slide;
   const stage = document.getElementById('videoStage');
   let stageVisible = false, mode = 'idle', closeTimer;
   const inRoom = () => document.body.dataset.view === 'room';
@@ -10,16 +13,35 @@
   function setMode(next, restore = false) {
     clearTimeout(closeTimer);
     mode = next;
-    const wide = next === 'hover' && !small.matches;
+    // Room action layout and pointer navigation need not share a breakpoint.
+    const wide = next === 'hover' && horizontal.matches;
+    const changesWidth = wide === nav.hasAttribute('data-compact');
+    const animate = changesWidth && !reduce.matches && !nav.hasAttribute('data-video-clear')
+      && !document.fullscreenElement && !document.body.classList.contains('player-fullscreen');
+    const from = animate ? bar.getBoundingClientRect().width : 0;
+    if (changesWidth || next === 'menu' || reduce.matches) {
+      slide?.cancel();
+      bar.removeAttribute('data-sliding');
+    }
     nav.toggleAttribute('data-compact', !wide);
     nav.toggleAttribute('data-open', !wide && next !== 'idle');
+    if (animate) {
+      // Measure the translated end state once. Animate the shell, never scale glyphs.
+      const to = bar.getBoundingClientRect().width;
+      if (Math.abs(to - from) > 1) {
+        bar.setAttribute('data-sliding', '');
+        slide = bar.animate([{width:from+'px',minWidth:0},{width:to+'px',minWidth:0}],
+          {duration:wide ? 480 : 420,easing:'cubic-bezier(.32,0,.16,1)'});
+        slide.onfinish = () => bar.removeAttribute('data-sliding');
+      }
+    }
     trigger.setAttribute('aria-expanded', String(next !== 'idle'));
     if (restore) trigger.focus({preventScroll:true});
   }
   nav.addEventListener('pointerenter', e => {
     clearTimeout(closeTimer);
     if (e.pointerType !== 'mouse' || mode !== 'idle') return;
-    if (!small.matches && document.activeElement === trigger) nav.querySelector('.nav-home').focus({preventScroll:true});
+    if (horizontal.matches && document.activeElement === trigger) nav.querySelector('.nav-home').focus({preventScroll:true});
     setMode('hover');
   });
   nav.addEventListener('pointerleave', e => {
@@ -101,7 +123,7 @@
   });
   document.addEventListener('viewchange',()=>{setMode('idle');highlight();keepVideoClear();});
   document.addEventListener('languagechange',highlight);
-  small.addEventListener('change',()=>setMode('idle',links.includes(document.activeElement)));
+  horizontal.addEventListener('change',()=>setMode('idle',links.includes(document.activeElement)));
   for (const event of ['play','pause','ended','emptied']) media.addEventListener(event,keepVideoClear);
   for (const event of ['fullscreenchange','webkitfullscreenchange','viewportchange']) document.addEventListener(event,keepVideoClear);
   if ('IntersectionObserver' in window) {
