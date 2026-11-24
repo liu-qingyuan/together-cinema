@@ -257,7 +257,7 @@ def create_app(data_dir=None, password=None, secure=None):
 
     async def player_asset(request):
         name = request.match_info['name']
-        if name not in {'guide.css', 'locale.js', 'locale-messages.js', 'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
+        if name not in {'upload-meter.js', 'guide.css', 'locale.js', 'locale-messages.js', 'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
             raise web.HTTPNotFound()
         return web.FileResponse(WEB_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 

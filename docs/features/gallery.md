@@ -4,6 +4,8 @@
     "web/index.html",
     "web/assets/locale*.js",
     "web/assets/site-nav.js",
+    "web/assets/upload-meter.js",
+    "tests/upload-meter.test.cjs",
     "web/assets/site-nav.css",
     "scripts/mobile_header_smoke.py",
     "cinema/external_media.py",
@@ -37,13 +39,16 @@
     "scripts/gallery_visual_smoke.py",
     "scripts/runtime_layout_smoke.py"
   ],
-  "fingerprint": "sha256:f6d13437448fe47879862b3b7e61f7873c6088a3ee954048e7454a7070579eeb"
+  "fingerprint": "sha256:e87dcefaee6b20bb1584ed6fa25777743758f1cd7bc7978c37465ca8a228dcb7"
 }
 ---
 
 # 展厅与放映室入口
 
 ## 当前行为
+
+片库上传每半秒更新有效速率与预计剩余时间，时钟只估算传输、不包含校验或转码。分片校验后的缓冲区用于发送及重试；瞬时网络故障按分片退避重试，权限、空间等错误直接报告。刷新页面或重启服务仍不能续传。
+
 
 仓库的展厅入口／视觉脚本 `scripts/gallery_smoke.py`、`scripts/gallery_visual_smoke.py` 显式设置 `zh-CN` 测试语言，避免宿主 Chrome 默认英文使中文定位器失效；安装布局脚本同样固定中文。双语界面与指南取流仍由已有 `scripts/locale_smoke.py`、`scripts/guide_smoke.py` 验证。仓库默认 README 使用英文，首屏可切换简体中文；两版分别提供部署、邀请、视频解析与同步路径，指南中的安装链接返回同语种 README。仓库首页语言不改变放映室的语言偏好或应用协议。
 
