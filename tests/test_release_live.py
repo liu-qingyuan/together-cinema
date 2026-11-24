@@ -59,7 +59,7 @@ class Retirement(unittest.TestCase):
 
 class ReleaseFixture(unittest.TestCase):
     """Exercise real configuration replacements on disk, with simulated Docker/Nginx."""
-    def exercise(self, bad_public, previous_web=False):
+    def exercise(self, bad_public, previous_web=False, allow_connected=False):
         import json
         from contextlib import ExitStack
         from pathlib import Path
@@ -102,12 +102,12 @@ class ReleaseFixture(unittest.TestCase):
                 self.assertEqual(site.read_text(),f'root {static};\nalias {static}/assets/scenes/;')
                 self.assertEqual(image,'id-'+actual[0])
                 if bad_public and source==dest:raise RuntimeError('stale public bytes')
-            for name,fn in [('docker',cli),('run',lambda *a:b''),('canary',lambda image:None),
+            for name,fn in [('docker',cli),('run',lambda *a:b'connected' if allow_connected and a[0]=='ss' else b''),('canary',lambda image:None),
                             ('gate',verify),('retry',lambda f:f())]:
                 patches.enter_context(patch.object(live,name,fn))
             patches.enter_context(patch.object(live.subprocess,'run',return_value=SimpleNamespace(returncode=0)))
             args=SimpleNamespace(root=root,nginx_site=site,public_url='https://cinema.example',
-                                 revision='b'*40,check_current=False)
+                                 revision='b'*40,check_current=False,allow_connected=allow_connected)
             if bad_public:
                 with self.assertRaisesRegex(RuntimeError,'stale public'):live.release(args)
                 self.assertEqual(config.read_text(),initial);self.assertEqual(site.read_text(),original_site)
@@ -119,6 +119,9 @@ class ReleaseFixture(unittest.TestCase):
                 self.assertIn(('buildx','rm',owned),calls);self.assertIn(('image','rm',tag(old)),calls)
                 self.assertFalse(list(root.glob('.watch-publish-*')))
             for path in (media/'film',sub/'text'):self.assertEqual(path.read_bytes(),b'preserve')
+
+    def test_explicit_connected_switch_keeps_verification(self):
+        self.exercise(False, previous_web=True, allow_connected=True)
 
     def test_success_removes_owned_builder_and_scratch_only(self):
         for previous_web in (False,True):

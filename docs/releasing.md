@@ -42,7 +42,7 @@ still check or roll back to older releases whose homepage was at the release roo
    ```
    Use `--check-current` instead of `--revision` to test the running version
    without switching versions or deleting images. Run during an idle window:
-   the release refuses to switch while there are established playback-service connections.
+   the release refuses to switch while there are established playback-service connections by default. Operators who accept a brief interruption may pass `--allow-connected` to switch without waiting for disconnection. Canary, public playback verification and rollback are unchanged.
 3. The canary uses an isolated network and tmpfs, uploads only a generated movie,
    checks its media range, decodes frames, and joins its own WebSocket room.
    After the switch the public gate checks health, exact homepage/CSS bytes,

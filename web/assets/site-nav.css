@@ -34,12 +34,13 @@ body[data-view=room][data-scene=tech] #siteNav,body:not([data-view=room]):has(#g
   :is(body.player-fullscreen,body:fullscreen) #siteNav .nav-bar,#siteNav[data-video-clear] .nav-bar{animation-play-state:paused}
  }
 }
-#siteNav .nav-bar{height:58px;width:408px;box-sizing:border-box;max-width:calc(100vw - 26px);padding:5px;display:flex;align-items:center;gap:10px;border-radius:19px;transition:width .27s cubic-bezier(.22,.72,.28,1),height .27s,padding .27s}
-body:not([data-view=room]) #siteNav:not([data-compact]) .nav-bar{width:317px}
+/* Intrinsic widths keep translated labels inside the glass in both nav modes. */
+#siteNav .nav-bar{height:58px;width:max-content;min-width:min(408px,calc(100vw - 26px));box-sizing:border-box;max-width:calc(100vw - 26px);padding:5px;display:flex;align-items:center;gap:10px;border-radius:19px;transition:min-width .27s,width .27s cubic-bezier(.22,.72,.28,1),height .27s,padding .27s}
+body:not([data-view=room]) #siteNav:not([data-compact]) .nav-bar{min-width:317px}
 #siteNav a,#siteNav button{font:inherit;letter-spacing:inherit;color:inherit;text-decoration:none}
 #siteNav .nav-home{display:inline-flex;align-items:center;justify-content:center;flex:none;gap:0;height:100%;padding:0 14px;border-radius:13px;background:#f0f3f5;background:color-mix(in srgb,var(--rim-a) 17%,white);color:var(--nav-ink);white-space:nowrap;box-sizing:border-box}
 #siteNav .nav-symbol{display:block;width:23px;height:23px}
-#siteNav .nav-name{font-weight:680;font-size:15px;letter-spacing:.04em;max-width:65px;overflow:hidden;margin-left:8px;transition:max-width .24s,margin .24s}
+#siteNav .nav-name{font-weight:680;font-size:15px;letter-spacing:.04em;overflow:hidden;margin-left:8px;transition:max-width .24s,margin .24s}
 #siteNav .nav-links{display:flex;align-items:center;justify-content:space-evenly;flex:1;gap:2px}
 #siteNav .nav-links a{position:relative;display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 8px;border-radius:12px;white-space:nowrap;color:#43515b}
 #siteNav .nav-links a[aria-current=location]{color:var(--nav-ink);background:#ffffff54;text-decoration:none}
@@ -60,8 +61,9 @@ body:not([data-view=room]) #siteNav:not([data-compact]) .nav-bar{width:317px}
 @media(forced-colors:active){#siteNav .nav-links a::before{background:LinkText;forced-color-adjust:none}}
 body[data-view=room] #siteNav [data-area=gallery],body:not([data-view=room]) #siteNav [data-area=room]{display:none}
 #siteNav .nav-toggle{display:none;align-items:center;justify-content:space-between;flex:1;gap:12px;background:transparent;border:0;border-radius:10px;min-width:0;min-height:44px;padding:0 10px;color:var(--nav-ink);cursor:pointer}
+#siteNav .nav-current{white-space:nowrap}
 #siteNav .nav-dots{display:inline-flex;align-items:center;gap:3px}#siteNav .nav-dots i{height:3px;width:3px;background:currentColor;border-radius:50%}
-#siteNav[data-compact] .nav-bar{width:176px;height:52px;gap:4px;padding:3px;border-radius:16px}
+#siteNav[data-compact] .nav-bar{width:max-content;min-width:min(176px,calc(100vw - 26px));height:52px;gap:4px;padding:3px;border-radius:16px}
 #siteNav[data-compact] .nav-home{padding:0 12px;border-radius:12px}
 #siteNav[data-compact] .nav-name{max-width:0;margin:0}
 #siteNav[data-compact] .nav-toggle{display:flex}
@@ -76,7 +78,7 @@ body[data-view=room] #siteNav [data-area=gallery],body:not([data-view=room]) #si
 #siteNav[data-open] .nav-links::before{content:"";position:absolute;top:-6px;left:0;right:0;height:6px}
 body.player-fullscreen #siteNav,body:fullscreen #siteNav,#siteNav[data-video-clear]{visibility:hidden;pointer-events:none}
 #galleryLibrary,#player,#together,#atmosphere,#login{scroll-margin-top:78px}
-@media(max-width:1140px){
+@media(max-width:1280px){
  #siteHeader{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:76px max(16px,4vw) 12px;min-height:90px}
  #siteHeader #roomHeader{gap:6px}#siteHeader .header-session{margin-left:auto}
  #siteNav{top:max(9px,env(safe-area-inset-top))}
@@ -85,7 +87,7 @@ body.player-fullscreen #siteNav,body:fullscreen #siteNav,#siteNav[data-video-cle
  #siteHeader #roomHeader{flex:1;flex-wrap:wrap}#siteHeader .header-session{justify-content:flex-end;flex-wrap:wrap;max-width:42%}
 }
 /* Compact room chrome: identity first, one-tap invite and named secondary actions. */
-@media(max-width:1140px){
+@media(max-width:1280px){
  body[data-view=room] #siteHeader{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 8px}
  #siteHeader #roomHeader:not([hidden]),body[data-view=room] #siteHeader .header-session{display:contents}
  #siteHeader #roomLabel{grid-column:1;grid-row:1;justify-self:start;font-size:12px;padding:8px 10px;margin:0}
@@ -100,7 +102,7 @@ body.player-fullscreen #siteNav,body:fullscreen #siteNav,#siteNav[data-video-cle
  @media(forced-colors:none){html[data-appearance=night] #siteHeader #roomActionList #logout{color:#ffb1bb}}
  @media(forced-colors:active){#siteHeader #roomActionList{background:Canvas;color:CanvasText;border-color:CanvasText}#siteHeader #roomActionList #logout{color:CanvasText}}
 }
-@media(max-width:1140px) and (max-height:520px) and (orientation:landscape){
+@media(max-width:1280px) and (max-height:520px) and (orientation:landscape){
  #roomOpening{padding-top:max(180px,calc(180px + env(safe-area-inset-top)))}
 }
 @media(prefers-reduced-motion:reduce){#siteNav *,#siteNav *::before{transition:none!important}}

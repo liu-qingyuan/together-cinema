@@ -32,6 +32,38 @@ async def check_layout(page, ids, width, height, touch_ids=()):
     return rects
 
 
+async def check_navigation(page, mobile):
+    nav = page.locator('#siteNav')
+    toggle = nav.locator('.nav-toggle')
+    if mobile:
+        await toggle.tap()
+    else:
+        await nav.hover()
+    links = nav.locator('.nav-links a:visible')
+    await expect(links.last).to_be_visible()
+    # A visible label may still paint outside the glass, without overflowing the page.
+    await page.wait_for_function("""() => {
+      const nav=document.querySelector('#siteNav'), compact=nav.hasAttribute('data-compact');
+      const box=nav.querySelector(compact ? '.nav-links' : '.nav-bar').getBoundingClientRect();
+      const brand=nav.querySelector('.nav-name');
+      return (compact || brand.scrollWidth<=brand.clientWidth+1) &&
+        [...nav.querySelectorAll('.nav-links a')].filter(a=>a.offsetWidth).every(a=>{
+          const r=a.getBoundingClientRect();return r.left>=box.left-1 && r.right<=box.right+1;
+        });
+    }""", timeout=2000)
+    if mobile:
+        label = await links.last.inner_text()
+        await links.last.tap()
+        await expect(nav.locator('.nav-current')).to_have_text(label)
+        current = nav.locator('.nav-current')
+        assert await current.evaluate("""e=>{const range=document.createRange();range.selectNodeContents(e);
+          return range.getClientRects().length===1 && range.getBoundingClientRect().right<=
+            e.parentElement.querySelector('.nav-dots').getBoundingClientRect().left+1}""")
+        await page.evaluate("window.scrollTo({top:0,behavior:'instant'})")
+    else:
+        await page.mouse.move(0, 0)
+
+
 async def check_actions(page, english, base_url):
     menu = page.get_by_role('button', name='Room actions' if english else '房间操作', exact=True)
     switch = page.get_by_role('button', name='Switch room' if english else '切换房间', exact=True)
@@ -107,7 +139,7 @@ async def run(args):
                     menu = page.get_by_role('button', name='Room actions' if english else '房间操作', exact=True)
                     for width, height in [(320, 740), (390, 844), (844, 390), (1440, 900)]:
                         await page.set_viewport_size({'width': width, 'height': height})
-                        mobile = width <= 1140
+                        mobile = width <= 1280
                         if mobile:
                             await expect(menu).to_be_visible()
                         else:
@@ -121,6 +153,7 @@ async def run(args):
                         await expect(page.locator('#roomLabel')).to_contain_text('MOBILE16')
                         await page.get_by_role('button', name='Copy invite' if english else '复制邀请', exact=True).click()
                         assert await page.evaluate('navigator.clipboard.readText()') == base_url + '?room=MOBILE16'
+                        await check_navigation(page, mobile)
                         if args.artifacts:
                             args.artifacts.mkdir(parents=True, exist_ok=True)
                             await page.screenshot(path=args.artifacts / f'{language}-{width}x{height}.png')

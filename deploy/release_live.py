@@ -168,6 +168,8 @@ def release(args):
         nextng = replace_once(nextng, nxt(prev), nxt(dest))
     port = int(compose('port', 'watch', '8080').decode().strip().removeprefix('127.0.0.1:'))
     def idle():
+        if args.allow_connected:
+            return
         require(not run('ss','-ntH','state','established',f'( sport = :{port} )').strip(),
                 'Live connections present; refusing switch')
     idle()
@@ -229,6 +231,7 @@ def main():
     p.add_argument('--root',required=True,type=Path)
     p.add_argument('--nginx-site',required=True,type=Path)
     p.add_argument('--public-url',required=True)
+    p.add_argument('--allow-connected',action='store_true',help='Allow a brief reconnect when switching the live watch service')
     g=p.add_mutually_exclusive_group(required=True)
     g.add_argument('--revision');g.add_argument('--check-current',action='store_true')
     args=p.parse_args()
