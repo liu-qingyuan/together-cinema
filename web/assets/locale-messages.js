@@ -237,6 +237,7 @@ globalThis.CinemaMessages = {
   "upload.hint": {"zh-CN":"支持 MP4 / M4V / WebM / MKV / AVI；MKV、AVI 自动处理后加入片库。","en":"MP4 / M4V / WebM / MKV / AVI supported. MKV and AVI are processed before joining the library."},
   "upload.chooseFirst": {"zh-CN":"请先选择视频。","en":"Choose a video first."},
   "upload.progress": {"zh-CN":"并行上传 {percent}% · {speed} MiB/s","en":"Uploading {percent}% · {speed} MiB/s"},
+  "upload.fastProgress": {"zh-CN":"多连接上传 {percent}% · {speed} MiB/s","en":"Multi-connection upload {percent}% · {speed} MiB/s"},
   "upload.timeline": {"zh-CN":"{progress} · {eta}","en":"{progress} · {eta}"},
   "upload.eta": {"zh-CN":"预计剩余 {time}","en":"About {time} left"},
   "upload.estimating": {"zh-CN":"估算剩余时间中…","en":"Estimating time left…"},

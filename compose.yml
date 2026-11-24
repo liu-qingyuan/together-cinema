@@ -18,6 +18,7 @@ services:
     environment:
       WATCH_PASSWORD: ${WATCH_PASSWORD:?Run ./install.sh to create .env}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      UPLOAD_HTTP1_PORT: ${UPLOAD_HTTP1_PORT:-0}
       RESERVE_BYTES: ${RESERVE_BYTES:-2147483648}
       WATCH_TURN_URLS: ${WATCH_TURN_URLS:-}
       WATCH_TURN_SECRET: ${WATCH_TURN_SECRET:-}

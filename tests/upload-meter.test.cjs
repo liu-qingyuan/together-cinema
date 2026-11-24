@@ -20,3 +20,16 @@ test('only retries transient chunks, never resends an invalid or full-disk uploa
  for(const status of [0,408,429,500,502,503,504])assert.ok(retryable(status));
  for(const status of [400,401,403,404,409,413,507,undefined])assert.ok(!retryable(status));
 });
+test('accelerated chunks require trusted same-host port and a successful no-cookie probe',async()=>{
+ const {lane}=globalThis.CinemaUpload, base='https://cinema.example';
+ const meta={upload_port:8443,chunk_count:4}, success=async(url, options)=>{
+  assert.equal(url,base+':8443/upload-healthz');assert.equal(options.credentials,'omit');
+  return {status:204,headers:new Map([['X-Cinema-Upload-Ready','1']])};
+ };
+ assert.equal(await lane(meta,base,success),base+':8443');
+ for(const m of [{...meta,upload_port:'https://elsewhere.example'},{...meta,upload_port:80},{...meta,chunk_count:1},{}]){
+  assert.equal(await lane(m,base,()=>assert.fail('must not probe')),'');
+ }
+ assert.equal(await lane(meta,base,async()=>{throw Error('port blocked')}),'');
+ assert.equal(await lane(meta,base,async()=>({status:404})),'');
+});

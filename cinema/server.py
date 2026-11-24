@@ -198,6 +198,10 @@ def create_app(data_dir=None, password=None, secure=None):
     upload_lock = asyncio.Lock()
     reserve = int(os.environ.get('RESERVE_BYTES', str(2 * 1024**3)))
     max_upload = int(os.environ.get('MAX_UPLOAD_BYTES', str(8 * 1024**3)))
+    # Optional trusted same-host TLS listener. Never derive it from request headers.
+    upload_port = int(os.environ.get('UPLOAD_HTTP1_PORT') or 0)
+    if upload_port and not 1024 <= upload_port <= 65535:
+        raise ValueError('UPLOAD_HTTP1_PORT must be an unprivileged TCP port')
     parallel_uploads = ParallelUploads(media, max_upload, reserve)
     covers = SharedCovers(data_dir, reserve)
 
@@ -480,7 +484,10 @@ def create_app(data_dir=None, password=None, secure=None):
         validate_upload_name(original)
         check_conversion_capacity(original)
         async with upload_lock:
-            return web.json_response(parallel_uploads.start(original, body.get('size')), status=201)
+            meta = parallel_uploads.start(original, body.get('size'))
+            if upload_port:
+                meta['upload_port'] = upload_port
+            return web.json_response(meta, status=201)
 
     async def upload_chunk(request):
         try: index = int(request.match_info['index'])

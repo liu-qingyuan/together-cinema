@@ -1,0 +1,41 @@
+# Replace cinema.example.org and the loopback backend for this installation.
+# The normal 443 site keeps HTTP/2. Do NOT put other applications on port 8443.
+server {
+    listen 8443 ssl;
+    listen [::]:8443 ssl;
+    http2 off;
+    server_name cinema.example.org;
+    ssl_certificate /etc/letsencrypt/live/cinema.example.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/cinema.example.org/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    client_max_body_size 8m;
+    if ($host != cinema.example.org) { return 403; }
+    if ($http_origin != "https://cinema.example.org") { return 403; }
+    add_header Access-Control-Allow-Origin "https://cinema.example.org" always;
+    add_header Access-Control-Allow-Credentials true always;
+    add_header Access-Control-Allow-Methods "PUT, OPTIONS, GET" always;
+    add_header Access-Control-Allow-Headers "Content-Type, X-Chunk-SHA256" always;
+    add_header Access-Control-Expose-Headers "X-Cinema-Upload-Ready, X-Cinema-Error" always;
+    add_header Access-Control-Max-Age 600 always;
+    add_header Timing-Allow-Origin "https://cinema.example.org" always;
+    add_header Vary Origin always;
+    add_header X-Cinema-Upload-Ready 1 always;
+    location = /upload-healthz {
+        if ($request_method != GET) { return 405; }
+        return 204;
+    }
+    location ~ "^/api/uploads/[a-f0-9]{32}/[0-9]+$" {
+        if ($request_method = OPTIONS) { return 204; }
+        if ($request_method != PUT) { return 405; }
+        proxy_pass http://127.0.0.1:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host cinema.example.org;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_request_buffering off;
+        proxy_buffering off;
+        proxy_send_timeout 180s;
+        proxy_read_timeout 180s;
+    }
+    location / { return 404; }
+}

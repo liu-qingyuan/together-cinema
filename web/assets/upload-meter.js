@@ -27,5 +27,18 @@
   function retryable(status) {
     return status === 0 || status === 408 || status === 429 || status >= 500 && status <= 599 && status !== 507;
   }
-  globalThis.CinemaUpload = {meter, clock, retryable};
+  async function lane(meta, origin, probe = fetch) {
+    const url = new URL(origin);
+    if (url.protocol !== 'https:' || !Number.isInteger(meta.upload_port) ||
+        meta.upload_port < 1024 || meta.upload_port > 65535 || meta.chunk_count < 2) return '';
+    url.port = String(meta.upload_port);
+    if (url.origin === origin) return '';
+    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 3000);
+    try {
+      const r = await probe(url.origin + '/upload-healthz', {signal:controller.signal,
+        redirect:'error', credentials:'omit', cache:'no-store'});
+      return r.status === 204 && r.headers.get('X-Cinema-Upload-Ready') === '1' ? url.origin : '';
+    } catch { return ''; } finally { clearTimeout(timeout); }
+  }
+  globalThis.CinemaUpload = {meter, clock, retryable, lane};
 })();

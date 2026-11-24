@@ -11,6 +11,15 @@ class ParallelUploadTests(unittest.IsolatedAsyncioTestCase):
  async def start(self,name,size):
   r=await self.client.post('/api/uploads',json={'filename':name,'size':size});self.assertEqual(r.status,201,await r.text());return await r.json()
  async def put(self,s,index,data,digest=None):return await self.client.put('/api/uploads/'+s['id']+'/'+str(index),data=io.BytesIO(data),headers={'X-Chunk-SHA256':digest or hashlib.sha256(data).hexdigest()})
+ async def test_only_configured_listener_is_advertised(self):
+  from unittest.mock import patch
+  r=await self.client.post('/api/uploads',json={'filename':'normal.mp4','size':12},headers={'X-Cinema-Upload-Port':'8443'})
+  self.assertNotIn('upload_port',await r.json())
+  with tempfile.TemporaryDirectory() as t, patch.dict('os.environ',{'UPLOAD_HTTP1_PORT':'8443'}):
+   async with TestClient(TestServer(create_app(t,'test-password-123456',secure=False))) as c:
+    await c.post('/api/login',json={'room':'01'})
+    r=await c.post('/api/uploads',json={'filename':'large.mp4','size':100})
+    self.assertEqual((await r.json())['upload_port'],8443)
  async def test_out_of_order_and_matching_retry(self):
   from cinema.parallel_upload import CHUNK_SIZE
   a=b'a'*CHUNK_SIZE;b=b'tail';s=await self.start('ordered.mp4',len(a)+len(b));self.assertEqual((await self.put(s,1,b)).status,200);self.assertEqual((await self.client.post('/api/uploads/'+s['id']+'/complete')).status,409);self.assertEqual((await self.put(s,1,b)).status,200);self.assertEqual((await self.put(s,1,b'fail')).status,409);self.assertEqual((await self.put(s,0,a)).status,200);r=await self.client.post('/api/uploads/'+s['id']+'/complete');self.assertEqual(r.status,201);j=await r.json();self.assertEqual((self.root/'media'/j['name']).read_bytes(),a+b)

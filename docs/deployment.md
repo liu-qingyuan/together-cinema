@@ -51,3 +51,20 @@ H.264和常见SDR H.265可能仅换封装/转音轨，兼容视频不会无损�
 3. `docker compose ps` / `docker compose logs --tail=100 watch`检查。
 
 `./uninstall.sh`只停本项目容器，保留数据和`.env`；`./uninstall.sh --purge-data --yes`会永久删除本项目全部命名卷，包括影片和HTTPS证书。无自动备份、镜像导出、全局prune，也不会触碰其他Docker项目。宿主想回收构建镜像时应按项目/ID自行确认，不提供一键清空整台Docker主机的脚本。
+
+### Optional automatic multi-connection uploads
+
+On a long-latency route, several HTTP/1.1 connections can outperform multiple
+chunks multiplexed on one HTTP/2 connection. This does not increase the ISP's
+bandwidth limit. To enable this **for uploads only**, install
+[the Nginx example](../deploy/upload-http1.nginx.example) for your own domain,
+certificate and loopback backend. Expose its dedicated TLS port (8443), validate
+and reload Nginx, then set `UPLOAD_HTTP1_PORT=8443` and recreate the watch
+service **when no upload is active**. This requires direct HTTPS connectivity
+to the same hostname on both ports, a secure session cookie and strict origin
+matching. Never point it at another service. Without a configured port the
+normal single-origin uploader remains unchanged.
+
+普通浏览器选中大文件后会探测高速入口，成功才显示「多连接上传」。选片、登录和
+播放仍走原站；高速端口不可用时，同一上传会话退回普通入口，不重传已确认分片。
+刷新网页仍不能断点续传。取消配置并重建 watch 即可停用，之后可移除独立监听。
