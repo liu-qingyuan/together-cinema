@@ -18,7 +18,7 @@ class Links(HTMLParser):
         values = dict(attrs)
         if 'id' in values:
             self.ids.add(values['id'])
-        for attr in ('src', 'href'):
+        for attr in ('src', 'href', 'srcset'):
             if attr in values:
                 self.urls.append(values[attr])
 
@@ -30,7 +30,15 @@ class ProjectSiteTest(unittest.TestCase):
             build(root)
             self.assertEqual({p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()},
                              {'index.html', 'zh-CN/index.html', 'help/en.html', 'help/zh-CN.html',
-                              'assets/site.css', 'assets/guide.css', 'assets/hero.webp'})
+                              'assets/site.css', 'assets/guide.css', 'assets/v1-sky-desktop.webp',
+                              'assets/v1-sky-mobile.webp',
+                              *(f'assets/{lang}-{shot}.webp' for lang in ('en','zh-CN')
+                                for shot in ('entry','library','direct','relay'))})
+            for lang, page in [('en', root / 'index.html'), ('zh-CN', root / 'zh-CN/index.html')]:
+                urls = Links(page).urls
+                pictures = {Path(url).name for url in urls if url.endswith('.webp')}
+                self.assertEqual(pictures, {'v1-sky-desktop.webp', 'v1-sky-mobile.webp',
+                                            *(f'{lang}-{s}.webp' for s in ('entry', 'library', 'direct', 'relay'))})
             for doc in root.rglob('*.html'):
                 for raw in Links(doc).urls:
                     with self.subTest(doc=doc.relative_to(root), link=raw):

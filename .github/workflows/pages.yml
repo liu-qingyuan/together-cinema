@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths:
       - 'docs/site/**'
-      - 'docs/showcase/hero.webp'
+      - 'web/assets/scenes/v1-sky-*.webp'
+      - 'tests/test_project_site.py'
       - 'web/help/**'
       - 'web/assets/guide.css'
       - '.github/workflows/pages.yml'
@@ -20,6 +21,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python3 -m unittest tests.test_project_site
       - run: python3 docs/site/build.py "$RUNNER_TEMP/site"
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
