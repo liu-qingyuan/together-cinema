@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>$title · Together Cinema</title>
 <meta name="description" content="$lead">
-<link rel="stylesheet" href="${base}assets/site.css?v=product-light-1">
+<link rel="stylesheet" href="${base}assets/site.css?v=manual-1">
 </head><body>
 <main>
 <div class="overture">
 <section class="cover" aria-labelledby="title">
   <picture class="sky" aria-hidden="true"><source media="(max-width:640px) and (orientation:portrait)" srcset="${base}assets/v1-sky-mobile.webp"><img src="${base}assets/v1-sky-desktop.webp" alt="" width="1280" height="720" fetchpriority="high"></picture>
-  <header class="mast"><span class="brand"><span class="mark" aria-hidden="true">▸</span> Together Cinema</span><a class="lang" href="$other" hreflang="$other_lang" lang="$other_lang">$language</a></header>
-  <div class="opening"><p class="eyebrow light">$project</p><h1 id="title"><span>$line1</span><span>$line2</span></h1><p class="lead">$lead</p><nav><a class="pill" href="$install">$host ↗</a><a class="ghost" href="$guide">$watch →</a></nav></div>
+  $mast
+  <div class="opening"><p class="eyebrow light">$project</p><h1 id="title"><span>$line1</span><span>$line2</span></h1><p class="lead">$lead</p><nav><a class="pill" href="$install">$host →</a><a class="ghost" href="$guide">$watch →</a></nav></div>
   <a class="scroll" href="#tour"><span>$walk</span><span aria-hidden="true">↓</span></a>
 </section>
 
@@ -38,5 +38,5 @@
   <article><h3>$relayTitle</h3><p class="route-line">$routeFrom → $routeVia → $routeTo</p><p><strong>$relayWhen</strong> $relayText</p><a href="${base}assets/$lang-relay.webp"><img src="${base}assets/$lang-relay.webp" alt="$relayAlt" loading="lazy" decoding="async"></a></article></div>
   <a class="guide" href="$guide#modes">$more →</a>
 </div></section></main>
-<footer><div class="spread"><p class="eyebrow">Together Cinema</p><h2>$endTitle</h2><nav><a href="$install">$host ↗</a><a href="$guide">$watch</a><a href="$arch">$archLabel</a><a href="$repo">GitHub ↗</a></nav><p>$footer</p><small><a href="https://unicorncreates.itch.io/sky-backgrounds">$credit</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small></div></footer>
+<footer><div class="spread"><p class="eyebrow">Together Cinema</p><h2>$endTitle</h2><nav><a href="$install">$host →</a><a href="$guide">$watch</a><a href="$arch">$archLabel</a><a href="$repo">GitHub ↗</a></nav><p>$footer</p><small><a href="https://unicorncreates.itch.io/sky-backgrounds">$credit</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small></div></footer>
 </body></html>

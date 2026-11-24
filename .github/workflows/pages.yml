@@ -8,7 +8,6 @@ on:
       - 'web/assets/scenes/v1-sky-*.webp'
       - 'tests/test_project_site.py'
       - 'web/help/**'
-      - 'web/assets/guide.css'
       - '.github/workflows/pages.yml'
 permissions: {}
 concurrency:

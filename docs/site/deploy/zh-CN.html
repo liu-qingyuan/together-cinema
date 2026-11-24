@@ -1,0 +1,31 @@
+<section id="prepare"><h2>准备运行环境</h2>
+<p>这份教程按当前 main 分支编写，从源码本地构建镜像。准备 Git、Docker Engine 或 Docker Desktop，以及支持 <code>up --wait</code> 的 Compose v2。启动 Docker，确认命令指向你要使用的引擎：</p>
+<pre><code>docker context show
+docker compose version
+docker info</code></pre>
+<p>只看本地影片，可从 1 核、1 GiB 内存起步，推荐 2 GiB。磁盘除了镜像和影片，还要能同时放下转换前后的两个文件。默认预留的 2 GiB 是写入保护，不是已经占用的空间。安装器不会替你安装 Docker 或修改防火墙。</p></section>
+<section id="local"><h2>先在自己的电脑上跑起来</h2>
+<pre><code>git clone https://github.com/liu-qingyuan/together-cinema.git
+cd together-cinema
+./install.sh</code></pre>
+<p>不想用 Git？下载<a href="https://github.com/liu-qingyuan/together-cinema/archive/refs/heads/main.zip">当前 main 分支的 ZIP 源码</a>，解压并进入目录，只执行最后一行。首次构建会下载依赖；较旧的发行版可能与本指南不同。</p>
+<p class="tip"><strong>怎样算成功？</strong>在运行 Docker 的电脑打开 <code>http://127.0.0.1:8080</code>，应该能看到展厅。输入 2～8 位字母或数字建房，确认页面显示房间号。这是本机地址，不要把它发给朋友。</p>
+<p>打不开时，先看 <code>docker compose ps</code> 和 <code>docker compose logs --tail=100 watch</code>。如果端口已被占用，运行 <code>./install.sh --port 8088</code>，改用该端口访问。</p></section>
+<section id="https"><h2>用 HTTPS 邀请异地朋友</h2>
+<p>在能被公网访问的服务器上部署，把自己的域名解析到这台服务器，并允许入站 TCP 80、443。在服务器的项目目录运行下面的命令，把示例域名换成自己的：</p>
+<pre><code>./install.sh --domain cinema.example.com</code></pre>
+<p>使用 HTTPS 打开你的域名。站点登录用户名是 <code>cinema</code>，密码是私有 <code>.env</code> 里的 <code>SITE_PASSWORD</code>；<code>WATCH_PASSWORD</code> 是内部密钥，不是登录密码。如果证书还没签发，检查 DNS、端口和 <code>docker compose logs --tail=100 https</code>。</p>
+<p class="tip"><strong>只邀请信任的人。</strong>房间码不是访问密码，也不隔离片库。获准进入的人可以观看、上传和删除全站影片。不要把未保护的 8080 暴露到公网，不要分享 .env；邀请和网关口令请私下发送。</p>
+<p>让另一位观众打开邀请，房主在一台设备暂停再播放，两边都应跟随。<a href="../help/zh-CN.html#start">查看双人同步检查 →</a></p></section>
+<section id="options"><h2>按需开启视频解析和语音</h2>
+<h3>网络视频</h3><p>片库、公开 HTTPS 媒体直链和能从静态网页发现的片源都不需要浏览器镜像。要解析动态网页，请留出额外的构建空间，主机推荐至少 2 GiB 内存。在原项目目录运行：</p>
+<pre><code>./install.sh --network</code></pre>
+<p>首次公网安装也可以合用 <code>--network --domain cinema.example.com</code>。并非所有网页都能解析。选片前可看<a href="../help/zh-CN.html#modes">直连与中转的区别</a>：中转会为每位观众消耗服务器出口流量。</p>
+<h3>房间语音</h3><p>公网语音需要 HTTPS 和外部 TURN 服务。在私有 .env 中填写与该服务匹配的 <code>WATCH_TURN_URLS</code>、<code>WATCH_TURN_SECRET</code>，重新运行安装器即可应用配置。只用文字聊天不需要 TURN。</p></section>
+<section id="maintain"><h2>更新时保留片库</h2>
+<p>先备份私有 .env 和项目数据卷，等大家看完再更新：重建会中断连接。如果最初用 Git 安装，在原目录查看变更后运行：</p>
+<pre><code>git pull --ff-only
+./install.sh
+docker compose ps</code></pre>
+<p>如果最初用 ZIP 安装，在原目录更新源码，不要执行 git pull。保留 .env、Compose 项目名和原有命名卷。重跑安装器后，打开一部已有影片，确认字幕也在。</p>
+<p><code>./uninstall.sh</code> 只停止项目并保留数据。追加 <code>--purge-data --yes</code> 会永久删除项目卷，包括影片和证书；日常升级不要使用。</p></section>

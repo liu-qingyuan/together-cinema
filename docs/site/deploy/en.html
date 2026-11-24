@@ -1,0 +1,31 @@
+<section id="prepare"><h2>Prepare the host</h2>
+<p>These steps use the current main branch and build the application locally. Install Git, Docker Engine or Docker Desktop, and Compose v2 with support for <code>up --wait</code>. Start Docker and confirm you are connected to the intended engine:</p>
+<pre><code>docker context show
+docker compose version
+docker info</code></pre>
+<p>For local playback, start with 1 vCPU and 1 GiB RAM (2 GiB recommended). Leave room for the image, films, and both input and output during conversion. The default 2 GiB free-space reserve prevents writes; it is not preallocated storage. The installer does not install Docker or change your firewall.</p></section>
+<section id="local"><h2>Start on your own computer</h2>
+<pre><code>git clone https://github.com/liu-qingyuan/together-cinema.git
+cd together-cinema
+./install.sh</code></pre>
+<p>Prefer not to use Git? Download the <a href="https://github.com/liu-qingyuan/together-cinema/archive/refs/heads/main.zip">main source ZIP</a>, extract it, enter its directory, and run just <code>./install.sh</code>. The first build downloads dependencies. Older releases may differ.</p>
+<p class="tip"><strong>Check it:</strong> open <code>http://127.0.0.1:8080</code> on the Docker host. You should see the gallery. Enter a new room code of 2–8 letters or digits and look for the room number. This address is local only: don’t send it to a friend.</p>
+<p>If it does not open, check <code>docker compose ps</code> and <code>docker compose logs --tail=100 watch</code>. If the port is in use, run <code>./install.sh --port 8088</code> and open that port instead.</p></section>
+<section id="https"><h2>Invite someone over HTTPS</h2>
+<p>On a publicly reachable server, point your domain’s DNS at that server. Allow inbound TCP 80 and 443. From the project directory on that server, replace the example hostname with yours:</p>
+<pre><code>./install.sh --domain cinema.example.com</code></pre>
+<p>Open your domain over HTTPS. The gateway username is <code>cinema</code>; use <code>SITE_PASSWORD</code> from your private <code>.env</code>. <code>WATCH_PASSWORD</code> is an internal secret, not the login password. If certificates are pending, check DNS, ports, and <code>docker compose logs --tail=100 https</code>.</p>
+<p class="tip"><strong>Invite trusted friends only.</strong> Room codes do not protect or isolate the library: admitted viewers can watch, upload and delete films site-wide. Don’t expose unprotected port 8080 or share your .env. Send the invitation and gateway credentials privately.</p>
+<p>Have the second viewer open your invite, then pause and resume a film on the host screen. <a href="../help/en.html#start">Follow the two-screen check →</a></p></section>
+<section id="options"><h2>Add discovery or voice if needed</h2>
+<h3>Online video</h3><p>Library playback, public HTTPS media and discoverable static pages do not require the browser image. For sites that load playable media dynamically, allow more build space and preferably at least 2 GiB RAM on the host. From the same project directory:</p>
+<pre><code>./install.sh --network</code></pre>
+<p>On a first public installation you can combine <code>--network --domain cinema.example.com</code>. Not every page can be resolved. See <a href="../help/en.html#modes">direct versus relay</a> before choosing: relay uses server egress for each viewer.</p>
+<h3>Voice chat</h3><p>For public voice, serve the site over HTTPS and configure an external TURN service. In private .env set <code>WATCH_TURN_URLS</code> and <code>WATCH_TURN_SECRET</code> to match that service, then rerun the installer. Text chat needs no TURN.</p></section>
+<section id="maintain"><h2>Update without losing the library</h2>
+<p>Back up the private .env and project data volumes. Wait until the screening ends: rebuilding can interrupt connections. In the original Git checkout, review the changes, then run:</p>
+<pre><code>git pull --ff-only
+./install.sh
+docker compose ps</code></pre>
+<p>If you installed from a ZIP, update the source in the original directory instead of running git pull. Keep your .env, Compose project name and named volumes. Run the installer and check an existing film and subtitle track.</p>
+<p><code>./uninstall.sh</code> stops the project but keeps data. Adding <code>--purge-data --yes</code> permanently deletes project volumes, including media and certificates. Do not use it for an update.</p></section>

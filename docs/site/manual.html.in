@@ -1,0 +1,5 @@
+<!doctype html><html lang="$lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="$summary"><title>$title · Together Cinema</title><link rel="stylesheet" href="../assets/site.css?v=manual-1"></head>
+<body class="manual" id="top">$mast
+<main><header class="doc-intro"><div><p class="eyebrow">$audience</p><h1>$title</h1><p>$summary</p><a class="pill" href="#$first">$begin ↓</a></div></header>
+<div class="reading"><aside id="contents"><p class="eyebrow">$contents</p><nav aria-label="$contents">$toc</nav></aside><div class="chapters">$body</div></div></main>
+<footer><div class="spread"><p class="eyebrow">Together Cinema</p><nav><a href="#top">$top ↑</a><a href="$home">$home_label</a><a href="$next_url">$next_label →</a></nav></div></footer></body></html>
