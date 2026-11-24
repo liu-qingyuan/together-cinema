@@ -35,8 +35,9 @@
     for (const a of links) {
       if (a === current) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current');
     }
-    nav.querySelector('.nav-current').textContent = current.textContent;
-    trigger.setAttribute('aria-label','导航菜单，当前：'+current.textContent);
+    const locale=CinemaLocale, name=locale.message(current.dataset.i18n);
+    locale.text(nav.querySelector('.nav-current'),name);
+    locale.text(trigger,locale.message('nav.menu',{name}),'aria-label');
   }
   function keepVideoClear() {
     const hide = inRoom() && stageVisible && !media.paused;
@@ -54,6 +55,7 @@
     setMode('idle');
   });
   document.addEventListener('viewchange',()=>{setMode('idle');highlight();keepVideoClear();});
+  document.addEventListener('languagechange',highlight);
   small.addEventListener('change',()=>setMode('idle',links.includes(document.activeElement)));
   for (const event of ['play','pause','ended','emptied']) media.addEventListener(event,keepVideoClear);
   for (const event of ['fullscreenchange','webkitfullscreenchange','viewportchange']) document.addEventListener(event,keepVideoClear);

@@ -155,10 +155,10 @@ def create_app(data_dir=None, password=None, secure=None):
 
     def room_code(value):
         if not isinstance(value, str):
-            raise web.HTTPBadRequest(text='房间码为 2～8 位字母或数字')
+            raise web.HTTPBadRequest(text='房间码为 2～8 位字母或数字', headers={'X-Cinema-Error': 'room_code_invalid'})
         code = value.strip().upper()
         if not re.fullmatch(r'[A-Z0-9]{2,8}', code):
-            raise web.HTTPBadRequest(text='房间码为 2～8 位字母或数字')
+            raise web.HTTPBadRequest(text='房间码为 2～8 位字母或数字', headers={'X-Cinema-Error': 'room_code_invalid'})
         return code
 
     def resolve_room(code):
@@ -222,17 +222,27 @@ def create_app(data_dir=None, password=None, secure=None):
             return False
 
     @web.middleware
+    async def identify_errors(request, handler):
+        # Keep status and legacy text for old clients; new UIs use the identifier.
+        try:
+            return await handler(request)
+        except web.HTTPException as error:
+            if error.status >= 400:
+                error.headers.setdefault('X-Cinema-Error', 'http_' + str(error.status))
+            raise
+
+    @web.middleware
     async def guard(request, handler):
         origin = request.headers.get('Origin')
         if (request.method not in ('GET', 'HEAD') or request.path == '/ws') and origin:
             scheme = 'https' if secure else request.scheme
             if origin != scheme + '://' + request.host:
-                raise web.HTTPForbidden(text='来源不匹配')
+                raise web.HTTPForbidden(text='来源不匹配', headers={'X-Cinema-Error': 'origin_mismatch'})
         public_cover_read = request.path == '/api/covers' and request.method in ('GET', 'HEAD')
         if (request.path.startswith('/api/') and request.path != '/api/login' and not public_cover_read or
                 request.path.startswith('/media/') or request.path == '/ws'):
             if not authenticated(request):
-                raise web.HTTPUnauthorized(text='请先登录')
+                raise web.HTTPUnauthorized(text='请先登录', headers={'X-Cinema-Error': 'login_required'})
         return await handler(request)
 
     async def index(request):
@@ -240,7 +250,7 @@ def create_app(data_dir=None, password=None, secure=None):
 
     async def player_asset(request):
         name = request.match_info['name']
-        if name not in {'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
+        if name not in {'locale.js', 'locale-messages.js', 'appearance.js', 'appearance.css', 'memory-reel.js', 'room-groups.css', 'site-nav.css', 'site-nav.js', 'comfort-motion-1.js', 'room-comfort.css', 'room-atlas-v2.css', 'room-atlas-v2.js', 'libpgs-0.9.0.js', 'libpgs-0.9.0.worker.js', 'danmaku-2.0.10.dom.js', 'artplayer-5.4.0.js', 'hls-1.7.4.js'}:
             raise web.HTTPNotFound()
         return web.FileResponse(WEB_DIR / 'assets' / name, headers={'Cache-Control': 'public, max-age=31536000, immutable'})
 
@@ -484,7 +494,11 @@ def create_app(data_dir=None, password=None, secure=None):
         return web.json_response({'ok': True})
 
     async def conversions(request):
-        return web.json_response({'jobs': list_jobs(data_dir)[:30]}, headers={'Cache-Control': 'no-store'})
+        jobs = list_jobs(data_dir)[:30]
+        for job in jobs:
+            if job.get('error'):
+                job['error_code'] = 'conversion_failed'
+        return web.json_response({'jobs': jobs}, headers={'Cache-Control': 'no-store'})
 
     async def cancel_conversion(request):
         job = next((j for j in list_jobs(data_dir) if j['id'] == request.match_info['id']), None)
@@ -563,12 +577,12 @@ def create_app(data_dir=None, password=None, secure=None):
                                 except (ConnectionError, RuntimeError):
                                     pass
                         except ValueError as error:
-                            await ws.send_json({'type': 'error', 'error': str(error)})
+                            await ws.send_json({'type': 'error', 'code': 'danmaku_invalid', 'error': str(error)})
                     elif data.get('type') == 'chat':
                         text = data.get('text')
                         now = time.monotonic()
                         if not isinstance(text,str) or not 1<=len(text.strip())<=300 or now-last_chat<.5:
-                            await ws.send_json({'type':'error','error':'消息为1～300字，请勿连续刷屏'})
+                            await ws.send_json({'type':'error','code':'chat_invalid','error':'消息为1～300字，请勿连续刷屏'})
                             continue
                         last_chat = now
                         row = dict(id=secrets.token_hex(8),sender=peer,name=room.members[peer]['name'],text=text.strip(),time=time.time())
@@ -655,9 +669,9 @@ def create_app(data_dir=None, password=None, secure=None):
                     raise ConnectionResetError('解析客户端已断开')
             return web.json_response({'choices': await job, 'resources': network.stats()})
         except (ValueError, TypeError, AttributeError) as e:
-            raise web.HTTPBadRequest(text=str(e))
+            raise web.HTTPBadRequest(text=str(e), headers={'X-Cinema-Error': 'network_invalid'})
         except (RuntimeError, asyncio.TimeoutError, ConnectionError) as e:
-            raise web.HTTPBadGateway(text=str(e)[:1600])
+            raise web.HTTPBadGateway(text=str(e)[:1600], headers={'X-Cinema-Error': 'network_resolve_failed'})
         finally:
             if job and not job.done():
                 job.cancel()
@@ -676,7 +690,7 @@ def create_app(data_dir=None, password=None, secure=None):
     async def network_stats(request):
         return web.json_response(network.stats())
 
-    app = web.Application(middlewares=[guard], client_max_size=max_upload + 1024**2)
+    app = web.Application(middlewares=[identify_errors, guard], client_max_size=max_upload + 1024**2)
     async def boost_watchdog(app):
         async def run():
             while True:

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f8f9f7"><script src="/assets/appearance.js?v=1"></script><title>Together Cinema · 一起看</title>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f8f9f7"><script src="/assets/appearance.js?v=1"></script><script src="/assets/locale-messages.js?v=1"></script><script src="/assets/locale.js?v=1"></script><title data-i18n="app.title">Together Cinema · 一起看</title>
 <style>
 :root{color-scheme:dark;font-family:system-ui,-apple-system,"PingFang SC",sans-serif;background:#111216;color:#f3f3f7;--ink:#f3f3f7;--muted:#a9acbb;--line:#ffffff21;--accent:#a9b8ff}*{box-sizing:border-box}body{margin:0;min-height:100vh;isolation:isolate}body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 76% 4%,#3b45aa70,transparent 46%),radial-gradient(ellipse at 7% 62%,#563a7045,transparent 48%),#111216}body::after{content:"";position:fixed;inset:0 0 0 52%;z-index:-1;pointer-events:none;background:repeating-linear-gradient(90deg,#ffffff03 0,#ffffff03 20px,#ffffff0b 21px,#00000015 23px,#ffffff02 45px);mask-image:linear-gradient(#000,transparent 95%);-webkit-mask-image:linear-gradient(#000,transparent 95%)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:999px;background:#ffffff08;color:var(--ink);padding:11px 17px;transition:background .18s,border-color .18s}button:hover{background:#ffffff18;border-color:#ffffff55}button:disabled{opacity:.45;cursor:default}button.primary{background:#e5e9ff;color:#191c34;border-color:transparent;font-weight:650}button.primary:hover{background:#fff}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #b9c5ff;outline-offset:4px}input[type=password],#danmakuText{background:#101118;color:var(--ink);border:1px solid #ffffff30;border-radius:12px;padding:14px}input[type=password]{width:100%;margin:12px 0 20px}header{max-width:1440px;margin:auto;padding:27px 40px;display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid var(--line)}.brand-lockup{display:flex;align-items:center;gap:13px}.brand-mark{width:37px;height:37px;border:1px solid #d3d8ff80;border-radius:50%;display:grid;place-items:center;position:relative}.brand-mark::before{content:"";width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid #e5e9ff;margin-left:3px}.brand{font-size:21px;font-weight:700;letter-spacing:3px}.sub{font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:2px}.badge{font-size:12px;color:#d5daed;border:1px solid #ffffff30;padding:8px 13px;border-radius:30px;white-space:nowrap}.badge::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#b1c7ff;margin:0 7px 2px 0}main{max-width:1440px;margin:0 auto;padding:0 40px 32px}.eyebrow{font-size:11px;font-weight:500;letter-spacing:2.5px;color:#b5b9d0;text-transform:uppercase;margin:0 0 22px}.login{min-height:calc(100svh - 105px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);align-items:center;gap:7vw;padding:64px 0 80px;max-width:1160px;margin:auto}.login-intro h1{font-size:clamp(48px,5.7vw,82px);line-height:1.18;font-weight:550;letter-spacing:-3px;margin:0 0 26px}.login-intro h1 span{color:#b5c2ff}.login-intro .muted{max-width:360px;font-size:15px}.login-note{display:flex;gap:20px;align-items:center;color:#969bb2;font-size:11px;letter-spacing:1px;margin-top:52px}.login-note::before{content:"";width:48px;height:1px;background:#8f98b7}.login-card{padding:34px;border:1px solid #ffffff26;border-radius:24px;background:linear-gradient(145deg,#ffffff0f,#ffffff04);box-shadow:0 25px 80px #00000024}.login-card h2{font-size:22px;font-weight:550;margin:0 0 9px}.login-card .muted{font-size:13px;margin:0 0 30px}.login-card label{font-size:12px;color:#c4c6d3}.login-card button{width:100%;padding:14px}.login-card .card-foot{font-size:11px;margin:20px 0 0;text-align:center;color:#969bb2}.muted{color:var(--muted);font-size:13px;line-height:1.8}.room-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;padding:29px 0 26px}.room-heading .eyebrow{margin:0 0 8px;font-size:10px}.room-heading .room-title{font-size:30px;letter-spacing:-1px;line-height:1.3;margin:0;font-weight:500}.room-heading .muted{font-size:12px;margin:0;text-align:right}.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}#player{min-width:0}.screen{background:#000;border:1px solid #ffffff26;border-radius:20px;overflow:hidden;aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 60px #00000028}video{width:100%;height:100%;max-height:72vh;object-fit:contain;background:#000}.empty{position:absolute;color:#c3c6d4;text-align:center;pointer-events:none;font-size:16px;line-height:1.9}.empty::before{content:"▷";display:block;font-size:40px;font-weight:200;color:#b5c2ff;line-height:1.6}.empty small{color:#84899b;font-size:12px}.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:18px}.controls button{font-size:12px;padding:10px 14px}.subtitle-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}.subtitle-controls label{font-size:12px;color:#b7bdce}.subtitle-controls select{font:inherit;font-size:12px;max-width:100%;background:var(--surface);color:var(--text);border:1px solid var(--stroke);border-radius:10px;padding:10px}.subtitle-controls .muted{font-size:11px}.status{font-size:12px;color:#c6cdec;margin:14px 0;min-height:22px}.title{font-size:21px;font-weight:550;margin:23px 0 7px;overflow-wrap:anywhere;line-height:1.5}.panel{border:1px solid #ffffff24;background:linear-gradient(145deg,#ffffff0c,#ffffff03);border-radius:20px;padding:23px;min-width:0}.panel .eyebrow{font-size:9px;margin:0 0 10px}.panel h2{font-size:19px;font-weight:550;margin:0 0 8px}#storage{font-size:11px}.library{display:flex;flex-direction:column;gap:9px;max-height:42vh;overflow:auto;margin:20px 0 24px;scrollbar-width:thin}.movie-row{display:flex;gap:7px;align-items:stretch}.movie-row .movie{flex:1;min-width:0}.movie{border-radius:12px;text-align:left;background:#ffffff06;padding:13px;overflow-wrap:anywhere;font-size:12px;line-height:1.6}.movie small{display:block;color:#969db5;font-size:10px;margin-top:8px}.movie.selected{border-color:#b4c0ff99;background:#869bff17}.delete-movie{flex:none;background:transparent;border-color:transparent;color:#d9a9a9;font-size:11px;padding:6px;border-radius:8px}.delete-movie:hover{background:#ff797915;border-color:#e89a9a50}.upload{border-top:1px solid var(--line);padding-top:19px}.upload>label{font-size:12px}.upload>button{font-size:12px;width:100%;margin:5px 0}.upload .muted{font-size:11px}input[type=file]{display:block;width:100%;min-width:0;max-width:100%;font-size:11px;color:#a8afc5;margin:13px 0}input[type=file]::file-selector-button{background:#ffffff0b;border:1px solid #ffffff30;color:#d3d8eb;border-radius:6px;padding:7px 10px;margin-right:9px}progress{width:100%;accent-color:#b5c2ff}.error{color:#ffbcb8}.hidden,[hidden]{display:none!important}footer{display:flex;justify-content:space-between;gap:24px;font-size:11px;color:#8e94aa;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);line-height:1.8}footer p{margin:0;max-width:690px}.footer-wordmark{font-size:10px;letter-spacing:2px;white-space:nowrap}#logout{font-size:12px;background:transparent;padding:7px 12px;white-space:nowrap;flex-shrink:0}#retry{background:#3f2c32}a{color:#c5cfff}#player>.muted{font-size:12px}#danmakuVisible{accent-color:#b5c2ff}#danmakuText{font-size:13px}.interactive-help{color:#9098b1}::selection{background:#b5c2ff;color:#151826}@media(min-width:1800px){.grid{grid-template-columns:minmax(0,1fr) 320px}}@media(max-width:1000px){header{padding:23px 24px}main{padding:0 24px 28px}.grid{grid-template-columns:minmax(0,1fr) 270px;gap:20px}.panel{padding:18px}.login{gap:5vw}.login-card{padding:26px}.login-intro h1{letter-spacing:-2px}}@media(max-width:800px){header{padding:20px}.sub{font-size:9px;letter-spacing:1.4px}.brand{font-size:19px}.brand-mark{width:32px;height:32px}main{padding:0 20px 24px}.grid{grid-template-columns:1fr}.screen{border-radius:14px}.panel{padding:20px}.library{max-height:290px}.room-heading{padding:24px 0 21px}.room-heading .room-title{font-size:26px}.room-heading .muted{max-width:130px;font-size:11px}.login{min-height:auto;grid-template-columns:1fr;gap:30px;padding:48px 0 40px;max-width:500px}.login-intro h1{font-size:52px;letter-spacing:-2px;margin-bottom:16px}.login-intro .muted{font-size:14px;max-width:340px}.login-note{display:none}.login-card{padding:26px}.login-card .muted{margin-bottom:24px}.controls button{padding:11px 13px;font-size:12px}.title{font-size:18px}.badge{font-size:11px;padding:7px 10px}footer{display:block}.footer-wordmark{display:block;margin-bottom:9px}body::after{inset:0 0 0 24%}}@media(max-width:420px){header{padding:18px 16px}main{padding:0 16px 24px}.sub{font-size:7px;letter-spacing:.5px;white-space:nowrap}.brand-lockup{gap:9px}.brand-mark{width:29px;height:29px}.login{padding-top:36px}.login-intro h1{font-size:46px}.login-card{padding:24px}.room-heading .muted{display:none}#logout{padding:6px 9px}.controls{gap:7px}}@media(max-width:360px){.sub{display:none}.brand-lockup{flex-shrink:0}.badge{font-size:10px;padding:7px 8px}}@media(prefers-reduced-motion:reduce){button{transition:none}}
 #danmakuLayer{position:absolute;inset:0 0 auto;height:52%;z-index:2;pointer-events:none;overflow:hidden}#danmakuForm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}#danmakuText{flex:1;min-width:100px;max-width:100%;background:#12141e;color:#f3f3f7;border:1px solid #49516b;border-radius:8px;padding:10px}#danmakuForm button{padding:10px 12px}.danmaku-toggle{display:flex;gap:5px;align-items:center;font-size:14px}.interactive-help{font-size:12px}
@@ -128,98 +128,102 @@ body[data-view=gallery] .scene-photo,body[data-view=gallery] .scene-halo,body[da
 body[data-view=entering] .login-intro,body[data-view=entering] #gallery>.scroll-note,body[data-view=entering] #galleryLibrary,body[data-view=entering] #gallery .login::before,body[data-view=entering] #galleryCover,body[data-view=entering] .cover-nav,body[data-view=entering] .cover-credit{display:none}
 body[data-view=entering] #gallery .login{display:block;max-width:420px;min-height:auto;padding:60px 0}
 body:not([data-view=gallery]) .scene-fx,body:not([data-view=gallery]) .scene-halo{display:none}
-</style><style>#entryRoomCode{display:block;width:100%;margin:12px 0 20px;padding:14px;border:1px solid var(--stroke);border-radius:4px;background:var(--paper);color:var(--text);font-size:22px;letter-spacing:4px;text-transform:uppercase}#videoStage:focus-visible{outline:2px solid var(--scene-accent);outline-offset:3px}</style><style>.network-video{margin:20px 0;border-top:1px solid var(--stroke);padding-top:16px;font-size:12px}.network-video summary{cursor:pointer;color:var(--scene-accent)}#networkForm{margin-top:15px}#networkForm label{display:block;font-size:11px;margin-bottom:8px}#networkUrl{display:block;width:100%;min-width:0;border:1px solid var(--stroke);background:var(--paper);color:var(--text);padding:10px;border-radius:4px;font-size:12px}.network-row{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}.network-row select{min-width:0;max-width:100%;flex:1;background:var(--paper);color:var(--text);border:1px solid var(--stroke);padding:8px;font-size:11px}.network-row button{border-radius:4px;font-size:11px;padding:8px}#networkStatus{font-size:10px;line-height:1.8;color:var(--secondary);overflow-wrap:anywhere}#networkResults{display:grid;gap:8px;max-height:230px;overflow:auto}</style><link rel="stylesheet" href="/assets/room-comfort.css?v=7"><link rel="stylesheet" href="/assets/room-atlas-v2.css?v=6"><script defer src="/assets/room-atlas-v2.js?v=14"></script><link rel="stylesheet" href="/assets/room-groups.css?v=15"><link rel="stylesheet" href="/assets/site-nav.css?v=14"><script defer src="/assets/site-nav.js?v=5"></script><link rel="stylesheet" href="/assets/appearance.css?v=3"></head><body data-scene="anime" data-view="gallery">
+</style><style>#entryRoomCode{display:block;width:100%;margin:12px 0 20px;padding:14px;border:1px solid var(--stroke);border-radius:4px;background:var(--paper);color:var(--text);font-size:22px;letter-spacing:4px;text-transform:uppercase}#videoStage:focus-visible{outline:2px solid var(--scene-accent);outline-offset:3px}</style><style>.network-video{margin:20px 0;border-top:1px solid var(--stroke);padding-top:16px;font-size:12px}.network-video summary{cursor:pointer;color:var(--scene-accent)}#networkForm{margin-top:15px}#networkForm label{display:block;font-size:11px;margin-bottom:8px}#networkUrl{display:block;width:100%;min-width:0;border:1px solid var(--stroke);background:var(--paper);color:var(--text);padding:10px;border-radius:4px;font-size:12px}.network-row{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}.network-row select{min-width:0;max-width:100%;flex:1;background:var(--paper);color:var(--text);border:1px solid var(--stroke);padding:8px;font-size:11px}.network-row button{border-radius:4px;font-size:11px;padding:8px}#networkStatus{font-size:10px;line-height:1.8;color:var(--secondary);overflow-wrap:anywhere}#networkResults{display:grid;gap:8px;max-height:230px;overflow:auto}</style><link rel="stylesheet" href="/assets/room-comfort.css?v=7"><link rel="stylesheet" href="/assets/room-atlas-v2.css?v=6"><script defer src="/assets/room-atlas-v2.js?v=15"></script><link rel="stylesheet" href="/assets/room-groups.css?v=15"><link rel="stylesheet" href="/assets/site-nav.css?v=14"><script defer src="/assets/site-nav.js?v=6"></script><link rel="stylesheet" href="/assets/appearance.css?v=3"></head><body data-scene="anime" data-view="gallery">
 <script>const invitedRoom=new URLSearchParams(location.search).get('room');document.body.dataset.view=invitedRoom===null?'gallery':'entering';</script>
 <div class="cinema-atmosphere" aria-hidden="true"><div class="ambient-depth"><i class="light-orbit orbit-a"></i><i class="light-orbit orbit-b"></i></div><div class="glass-sweep"></div></div>
 <div class="scene-world" aria-hidden="true"><div class="scene-photo"></div><div class="scene-halo"></div><div class="scene-fx"><i style="--x:5%;--y:3%;--duration:12s;animation-delay:-0.0s"></i><i style="--x:42%;--y:26%;--duration:15s;animation-delay:-1.7s"></i><i style="--x:79%;--y:49%;--duration:18s;animation-delay:-3.4s"></i><i style="--x:16%;--y:72%;--duration:21s;animation-delay:-5.1s"></i><i style="--x:53%;--y:5%;--duration:24s;animation-delay:-6.8s"></i><i style="--x:90%;--y:28%;--duration:27s;animation-delay:-8.5s"></i><i style="--x:27%;--y:51%;--duration:30s;animation-delay:-10.2s"></i><i style="--x:64%;--y:74%;--duration:12s;animation-delay:-11.9s"></i><i style="--x:1%;--y:7%;--duration:15s;animation-delay:-13.6s"></i><i style="--x:38%;--y:30%;--duration:18s;animation-delay:-15.299999999999999s"></i><i style="--x:75%;--y:53%;--duration:21s;animation-delay:-17.0s"></i><i style="--x:12%;--y:76%;--duration:24s;animation-delay:-18.7s"></i><i style="--x:49%;--y:9%;--duration:27s;animation-delay:-20.4s"></i><i style="--x:86%;--y:32%;--duration:30s;animation-delay:-22.099999999999998s"></i></div></div><header id="siteHeader">
-<nav id="siteNav" data-compact aria-label="网站导航"><div class="nav-bar">
-<a class="nav-home" href="#siteHeader" aria-label="一起看 · 返回页首"><svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="2" y="4" width="15" height="13" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M7 20h11a4 4 0 0 0 4-4V8M8 8l5 3-5 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nav-name">一起看</span></a>
-<button type="button" class="nav-toggle" aria-controls="siteNavLinks" aria-expanded="false"><span class="nav-current">展厅</span><span class="nav-dots" aria-hidden="true"><i></i><i></i><i></i></span></button>
-<div class="nav-links" id="siteNavLinks"><a data-area="gallery" href="#login">展厅</a><a data-area="gallery" href="#galleryLibrary">展厅片库</a><a data-area="room" href="#player">放映</a><a data-area="room" href="#together">陪伴</a><a data-area="room" href="#atmosphere">风景</a><a data-area="room" href="#advancedControls">观影设置</a></div></div></nav><div id="roomHeader" hidden><span class="room-chip" id="roomLabel">房间 01</span><button id="copyInvite" type="button">复制邀请</button><button id="openRoom" type="button">切换房间</button></div><div class="header-session"><span id="connection" class="badge">私人放映室</span><button id="logout" hidden>退出</button></div></header>
-<main><section id="gallery" data-cover="sky"><nav class="cover-nav" aria-label="内置封面预览"><span>换一幅风景 · 仅本页预览</span><button type="button" data-cover-choice="sky" aria-pressed="true">动漫天空</button><button type="button" data-cover-choice="galaxy" aria-pressed="false">雪山银河</button><a href="#entryRoomCode">入房 ↗</a></nav><form id="login" class="login"><picture id="galleryCover"><source media="(max-width:800px)"><img alt="" width="1280" height="720"></picture><div class="login-intro"><p class="eyebrow">YOUR PEOPLE. YOUR CINEMA.</p><h1>好电影，<br><span>大家一起看。</span></h1><p class="muted">世界很大，今天很长。<br>还好，我们能在同一束光里相遇。</p><div class="login-note">私人片库 · 同步弹幕 · 房间语音</div></div><div class="login-card"><p class="eyebrow">WELCOME BACK</p><h2>输入房间码，一起看。</h2><p class="muted">输入相同房间码就能相聚；新房间会自动创建。</p><label for="entryRoomCode">房间码</label><input id="entryRoomCode" type="text" autocomplete="off" required minlength="2" maxlength="8" pattern="[A-Za-z0-9]{2,8}" autocapitalize="characters" spellcheck="false"><button class="primary" type="submit">进入房间 ↗</button><p id="loginError" class="error" role="alert"></p><p class="card-foot">2～8 位字母或数字 · 进入者共用整个片库</p></div></form>
-<p class="cover-credit"><span id="coverCredit"></span> · <a href="/scenes/sources.json" target="_blank" rel="noopener">来源、CC BY 4.0 与裁切说明 ↗</a></p><p id="coverStatus" class="cover-credit" role="status"></p>
-<a class="scroll-note" href="#galleryLibrary">下滑浏览片库 ↓</a>
-<section class="chapter" id="galleryLibrary" aria-label="展厅片库"><div class="chapter-title"><div><p class="eyebrow">BROWSE BEFORE THE SHOW</p><h2>我们的片库</h2></div><p>浏览不会加入房间，也不会播放影片。<br>入房后由房主选片，一起观看。</p></div><p id="galleryLibraryStatus" class="muted" role="status">正在读取片库权限…</p><ul id="galleryFiles"></ul><a href="#login">输入房间码，去放映室 ↗</a></section>
+<nav id="siteNav" data-compact data-i18n-aria-label="nav.label" aria-label="网站导航"><div class="nav-bar">
+<a class="nav-home" href="#siteHeader" data-i18n-aria-label="nav.home" aria-label="一起看 · 返回页首"><svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="2" y="4" width="15" height="13" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M7 20h11a4 4 0 0 0 4-4V8M8 8l5 3-5 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="nav-name" data-i18n="nav.brand">一起看</span></a>
+<button type="button" class="nav-toggle" aria-controls="siteNavLinks" aria-expanded="false"><span class="nav-current" data-i18n="nav.gallery">展厅</span><span class="nav-dots" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<div class="nav-links" id="siteNavLinks"><a data-area="gallery" href="#login" data-i18n="nav.gallery">展厅</a><a data-area="gallery" href="#galleryLibrary" data-i18n="nav.galleryLibrary">展厅片库</a><a data-area="room" href="#player" data-i18n="nav.screening">放映</a><a data-area="room" href="#together" data-i18n="nav.together">陪伴</a><a data-area="room" href="#atmosphere" data-i18n="nav.scenery">风景</a><a data-area="room" href="#advancedControls" data-i18n="settings.title">观影设置</a></div></div></nav><div id="roomHeader" hidden><span class="room-chip" id="roomLabel">房间 01</span><button id="copyInvite" type="button" data-i18n="room.invite">复制邀请</button><button id="openRoom" type="button" data-i18n="room.switch">切换房间</button></div><div class="header-session"><span id="connection" class="badge" data-i18n="room.private">私人放映室</span><button id="logout" data-i18n="room.logout" hidden>退出</button></div></header>
+<main><section id="gallery" data-cover="sky"><nav class="cover-nav" data-i18n-aria-label="gallery.previewLabel" aria-label="内置封面预览"><span data-i18n="gallery.previewHint">换一幅风景 · 仅本页预览</span><button type="button" data-cover-choice="sky" aria-pressed="true" data-i18n="cover.sky">动漫天空</button><button type="button" data-cover-choice="galaxy" aria-pressed="false" data-i18n="cover.galaxy">雪山银河</button><a href="#entryRoomCode" data-i18n="gallery.join">入房 ↗</a></nav><form id="login" class="login"><picture id="galleryCover"><source media="(max-width:800px)"><img alt="" width="1280" height="720"></picture><div class="login-intro"><p class="eyebrow">YOUR PEOPLE. YOUR CINEMA.</p><h1 data-i18n-html="gallery.heading">好电影，<br><span>大家一起看。</span></h1><p class="muted" data-i18n-html="gallery.poem">世界很大，今天很长。<br>还好，我们能在同一束光里相遇。</p><div class="login-note" data-i18n="gallery.features">私人片库 · 同步弹幕 · 房间语音</div></div><div class="login-card"><p class="eyebrow">WELCOME BACK</p><h2 data-i18n="gallery.welcome">输入房间码，一起看。</h2><p class="muted" data-i18n="gallery.entryHint">输入相同房间码就能相聚；新房间会自动创建。</p><label for="entryRoomCode" data-i18n="room.code">房间码</label><input id="entryRoomCode" type="text" autocomplete="off" required minlength="2" maxlength="8" pattern="[A-Za-z0-9]{2,8}" autocapitalize="characters" spellcheck="false"><button class="primary" type="submit" data-i18n="gallery.enter">进入房间 ↗</button><p id="loginError" class="error" role="alert"></p><p class="card-foot" data-i18n="gallery.foot">2～8 位字母或数字 · 进入者共用整个片库</p></div></form>
+<p class="cover-credit"><span id="coverCredit"></span> · <a href="/scenes/sources.json" target="_blank" rel="noopener" data-i18n="gallery.credits">来源、CC BY 4.0 与裁切说明 ↗</a></p><p id="coverStatus" class="cover-credit" role="status"></p>
+<a class="scroll-note" href="#galleryLibrary" data-i18n="gallery.scroll">下滑浏览片库 ↓</a>
+<section class="chapter" id="galleryLibrary" data-i18n-aria-label="nav.galleryLibrary" aria-label="展厅片库"><div class="chapter-title"><div><p class="eyebrow">BROWSE BEFORE THE SHOW</p><h2 data-i18n="library.title">我们的片库</h2></div><p data-i18n-html="gallery.browseHint">浏览不会加入房间，也不会播放影片。<br>入房后由房主选片，一起观看。</p></div><p id="galleryLibraryStatus" class="muted" role="status" data-i18n="gallery.loading">正在读取片库权限…</p><ul id="galleryFiles"></ul><a href="#login" data-i18n="gallery.goRoom">输入房间码，去放映室 ↗</a></section>
 </section>
 <div id="app" hidden>
  <div class="opening-track"><span class="opening-window" aria-hidden="true"></span><section class="comfort-hero" id="roomOpening" aria-labelledby="openingTitle">
    <div class="comfort-photo" aria-hidden="true"><video id="openingFilm" muted playsinline loop preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video></div>
    <div class="comfort-intro"><div class="comfort-kicker" aria-hidden="true"><i></i> THE VIEWING ROOM</div>
-     <h2 id="openingTitle">把今天，<br>留给我们。</h2><p>一起看同一刻，也保留自己的观看习惯。</p><span id="roomSummary"></span></div>
-   <div class="opening-actions"><a class="opening-scenery" href="#atmosphere">换个风景 ↗</a><div class="comfort-foot"><a href="#player">向下进入放映 <span aria-hidden="true">↓</span></a></div></div>
+     <h2 id="openingTitle" data-i18n-html="opening.heading">把今天，<br>留给我们。</h2><p data-i18n="opening.hint">一起看同一刻，也保留自己的观看习惯。</p><span id="roomSummary"></span></div>
+   <div class="opening-actions"><a class="opening-scenery" href="#atmosphere" data-i18n="opening.scenery">换个风景 ↗</a><div class="comfort-foot"><a href="#player"><span data-i18n="opening.watch">向下进入放映</span> <span aria-hidden="true">↓</span></a></div></div>
  </section></div>
  <div class="room-floor"><div class="room-content">
  <div class="grid room-grid"><section id="player">
-  <div class="screen" id="videoStage"><div id="artMount"></div><video id="video" playsinline preload="metadata" controlslist="noremoteplayback" disablepictureinpicture disableremoteplayback></video><div id="danmakuLayer" aria-hidden="true"></div><div id="boostBadge" hidden>2× 同步快进</div><div id="empty" class="empty"><span>故事开始前，<br>先在这里相遇。</span><button id="chooseTonight" type="button">打开片库 · 选择今晚的故事 ↗</button><b class="hero-seal">不远千里 · 同看一幕</b></div></div>
+  <div class="screen" id="videoStage"><div id="artMount"></div><video id="video" playsinline preload="metadata" controlslist="noremoteplayback" disablepictureinpicture disableremoteplayback></video><div id="danmakuLayer" aria-hidden="true"></div><div id="boostBadge" data-i18n="player.boost" hidden>2× 同步快进</div><div id="empty" class="empty"><span data-i18n-html="player.empty">故事开始前，<br>先在这里相遇。</span><button id="chooseTonight" type="button" data-i18n="player.choose">打开片库 · 选择今晚的故事 ↗</button><b class="hero-seal" data-i18n="player.seal">不远千里 · 同看一幕</b></div></div>
   <section class="playback-info" aria-labelledby="title">
-   <div class="playback-heading"><div class="now-playing"><h1 class="title" id="title">还没有选择影片</h1><span id="hostHint" class="muted">房主控制同步进度</span></div>
-    <div class="room-link"><span id="roomLinkState" role="status">连接中</span><button id="retry" type="button" hidden aria-label="重新连接放映室">重连</button></div></div>
+   <div class="playback-heading"><div class="now-playing"><h1 class="title" id="title" data-i18n="player.noFilm">还没有选择影片</h1><span id="hostHint" class="muted" data-i18n="player.hostControls">房主控制同步进度</span></div>
+    <div class="room-link"><span id="roomLinkState" role="status" data-i18n="connection.connecting">连接中</span><button id="retry" type="button" hidden data-i18n="connection.retry" data-i18n-aria-label="connection.retryLabel" aria-label="重新连接放映室">重连</button></div></div>
    <div id="danmakuHome"><form id="danmakuForm">
-    <label class="danmaku-toggle"><input id="danmakuVisible" type="checkbox" checked aria-label="显示弹幕">弹幕</label>
-    <input id="danmakuText" type="text" maxlength="120" aria-label="弹幕内容" placeholder="发条弹幕…" autocomplete="off">
-    <button id="danmakuSend" type="submit" aria-label="发送弹幕" title="发送弹幕"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5m-6.5 6.5L12 5l6.5 6.5"/></svg></button>
+    <label class="danmaku-toggle"><input id="danmakuVisible" type="checkbox" checked data-i18n-aria-label="danmaku.show" aria-label="显示弹幕"><span data-i18n="danmaku.label">弹幕</span></label>
+    <input id="danmakuText" type="text" maxlength="120" data-i18n-aria-label="danmaku.content" data-i18n-placeholder="danmaku.placeholder" aria-label="弹幕内容" placeholder="发条弹幕…" autocomplete="off">
+    <button id="danmakuSend" type="submit" data-i18n-aria-label="danmaku.send" data-i18n-title="danmaku.send" aria-label="发送弹幕" title="发送弹幕"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5m-6.5 6.5L12 5l6.5 6.5"/></svg></button>
    </form></div>
    <p class="status" id="status" role="status"></p>
   </section>
-  <div id="legacyControls" hidden><button id="start">开始观看 / 开启声音</button><button id="videoFullscreen">全屏</button><div class="subtitle-controls"><label for="subtitleSelect">字幕</label><select id="subtitleSelect" aria-label="选择字幕" disabled><option value="off">关闭字幕</option></select><span id="subtitleInfo" class="muted">选择影片后加载字幕</span></div></div>
+  <div id="legacyControls" hidden><button id="start" data-i18n="player.start">开始观看 / 开启声音</button><button id="videoFullscreen">全屏</button><div class="subtitle-controls"><label for="subtitleSelect" data-i18n="subtitle.title">字幕</label><select id="subtitleSelect" data-i18n-aria-label="subtitle.select" aria-label="选择字幕" disabled><option value="off" data-i18n="subtitle.off">关闭字幕</option></select><span id="subtitleInfo" class="muted" data-i18n="subtitle.chooseFilm">选择影片后加载字幕</span></div></div>
  </section>
  <aside class="panel social-panel">
-  <div class="side-tabs" role="tablist" aria-label="房间侧栏"><button type="button" role="tab" data-tab="chat" aria-controls="tab-chat" aria-selected="true">聊天</button><button type="button" role="tab" data-tab="members" aria-controls="tab-members" aria-selected="false">成员</button><button type="button" role="tab" data-tab="library" aria-controls="tab-library" aria-selected="false">片库</button></div>
-  <section id="tab-chat" role="tabpanel" aria-label="聊天"><div class="panel-caption">随时聊聊，不随影片进度回放</div><div id="chatMessages" role="log" aria-live="polite"><p class="chat-empty">电影之外，也聊聊此刻。</p></div><form id="chatForm"><input id="chatText" aria-label="聊天消息" type="text" maxlength="300" placeholder="说点什么…" autocomplete="off"><button type="submit">发送</button></form></section>
-  <section id="tab-members" role="tabpanel" aria-label="成员" hidden><div class="panel-caption">同一个房间，同一个进度</div><div id="membersList"></div><button id="claim" type="button">接管播放控制</button><p class="panel-caption">房主负责选片和进度；每个人独立选择音量、字幕和弹幕显示。</p></section>
-  <section id="tab-library" role="tabpanel" aria-label="片库" hidden><div class="library-heading"><h2>我们的片库</h2><label><input type="checkbox" id="manageLibrary">管理</label></div><div id="storage" class="muted"></div><div id="library" class="library"></div><details class="network-video"><summary>网络视频 · 直连 / 中转</summary><form id="networkForm"><label for="networkUrl">视频网页或HTTPS媒体地址</label><input id="networkUrl" type="url" required maxlength="4096" placeholder="https://www.youtube.com/watch?v=…" autocomplete="off"><div class="network-row"><select id="networkMode" aria-label="网络播放模式"><option value="relay">服务器中转（手机免VPN）</option><option value="direct">直连（各自访问原站）</option></select><button id="networkResolve" type="submit">解析视频</button></div></form><p id="networkStatus" role="status">YouTube优先H.264最高720p；支持静态媒体及可选动态网页解析；需启用 network 才能解析 YouTube／动态网页，不保证所有网站支持。中转不保存视频，24小时总额度5GiB。</p><div id="networkResults"></div></details><details class="library-upload"><summary>添加视频</summary><div class="upload"><label for="file">选择视频</label><input id="file" type="file" accept=".mp4,.m4v,.webm,.mkv,.avi"><button id="upload" type="button">上传到片库</button><progress id="progress" max="100" value="0" hidden></progress><p id="uploadStatus" class="muted" role="status">支持 MP4 / M4V / WebM / MKV / AVI；MKV、AVI 自动处理后加入片库。</p></div></details><div class="upload" id="conversionPanel" hidden><h2>视频处理</h2><div id="conversions" class="muted"></div></div></section>
-  <div class="voice-dock"><h3>房间语音</h3><div class="voice-actions"><button id="voiceJoin" type="button" class="primary">加入语音</button><button id="voiceMute" type="button" disabled hidden>麦克风</button><button id="voiceLeave" type="button" hidden>离开</button></div><p id="voiceStatus" role="status">麦克风默认关闭，不会自动录音</p><button id="enableVoiceAudio" type="button" hidden>开启通话声音</button><div id="voicePeople" class="voice-people" aria-label="房间实时声波" hidden></div><details class="voice-settings"><summary>声音与声波设置</summary><label for="micGain">我的麦克风增益 <output id="micGainValue">100%</output><input id="micGain" type="range" min="0" max="200" value="100"></label><label for="voiceSensitivity">说话指示灵敏度 <output id="voiceSensitivityValue">75</output><input id="voiceSensitivity" type="range" min="1" max="100" value="75"></label><p>声波来自实际音频，不录音、不上传音量数据。灵敏度只调整说话指示，不会过滤噪声。收听滑块只改变你听到的该成员音量；增益过大可能失真，建议戴耳机。</p></details></div>
+  <div class="side-tabs" role="tablist" data-i18n-aria-label="social.label" aria-label="房间侧栏"><button type="button" role="tab" data-tab="chat" aria-controls="tab-chat" aria-selected="true" data-i18n="social.chat">聊天</button><button type="button" role="tab" data-tab="members" aria-controls="tab-members" aria-selected="false" data-i18n="social.members">成员</button><button type="button" role="tab" data-tab="library" aria-controls="tab-library" aria-selected="false" data-i18n="social.library">片库</button></div>
+  <section id="tab-chat" role="tabpanel" data-i18n-aria-label="social.chat" aria-label="聊天"><div class="panel-caption" data-i18n="chat.hint">随时聊聊，不随影片进度回放</div><div id="chatMessages" role="log" aria-live="polite"><p class="chat-empty" data-i18n="chat.empty">电影之外，也聊聊此刻。</p></div><form id="chatForm"><input id="chatText" data-i18n-aria-label="chat.label" data-i18n-placeholder="chat.placeholder" aria-label="聊天消息" type="text" maxlength="300" placeholder="说点什么…" autocomplete="off"><button type="submit" data-i18n="chat.send">发送</button></form></section>
+  <section id="tab-members" role="tabpanel" data-i18n-aria-label="social.members" aria-label="成员" hidden><div class="panel-caption" data-i18n="members.hint">同一个房间，同一个进度</div><div id="membersList"></div><button id="claim" type="button" data-i18n="members.claim">接管播放控制</button><p class="panel-caption" data-i18n="members.controls">房主负责选片和进度；每个人独立选择音量、字幕和弹幕显示。</p></section>
+  <section id="tab-library" role="tabpanel" data-i18n-aria-label="social.library" aria-label="片库" hidden><div class="library-heading"><h2 data-i18n="library.title">我们的片库</h2><label><input type="checkbox" id="manageLibrary"><span data-i18n="library.manage">管理</span></label></div><div id="storage" class="muted"></div><div id="library" class="library"></div><details class="network-video"><summary data-i18n="network.title">网络视频 · 直连 / 中转</summary><form id="networkForm"><label for="networkUrl" data-i18n="network.url">视频网页或 HTTPS 媒体地址</label><input id="networkUrl" type="url" required maxlength="4096" placeholder="https://example.org/video.mp4" autocomplete="off"><div class="network-row"><select id="networkMode" data-i18n-aria-label="network.mode" aria-label="网络播放模式"><option value="relay" data-i18n="network.relayOption">服务器中转（经服务器取流）</option><option value="direct" data-i18n="network.directOption">直连（各自访问原站）</option></select><button id="networkResolve" type="submit" data-i18n="network.resolve">解析视频</button></div></form><p id="networkStatus" role="status" data-i18n="network.hint">支持静态媒体及可选动态网页解析；需启用 network 才能解析 YouTube／动态网页，不保证所有网站支持。中转不永久保存视频，24 小时总额度 5 GiB。</p><div id="networkResults"></div></details><details class="library-upload"><summary data-i18n="upload.add">添加视频</summary><div class="upload"><label for="file" data-i18n="upload.choose">选择视频</label><input id="file" type="file" accept=".mp4,.m4v,.webm,.mkv,.avi"><button id="upload" type="button" data-i18n="upload.submit">上传到片库</button><progress id="progress" max="100" value="0" hidden></progress><p id="uploadStatus" class="muted" role="status" data-i18n="upload.hint">支持 MP4 / M4V / WebM / MKV / AVI；MKV、AVI 自动处理后加入片库。</p></div></details><div class="upload" id="conversionPanel" hidden><h2 data-i18n="conversion.title">视频处理</h2><div id="conversions" class="muted"></div></div></section>
+  <div class="voice-dock"><h3 data-i18n="voice.title">房间语音</h3><div class="voice-actions"><button id="voiceJoin" type="button" class="primary" data-i18n="voice.join">加入语音</button><button id="voiceMute" type="button" disabled hidden data-i18n="voice.mic">麦克风</button><button id="voiceLeave" type="button" hidden data-i18n="voice.leave">离开</button></div><p id="voiceStatus" role="status" data-i18n="voice.initial">麦克风默认关闭，不会自动录音</p><button id="enableVoiceAudio" type="button" hidden data-i18n="voice.enable">开启通话声音</button><div id="voicePeople" class="voice-people" data-i18n-aria-label="voice.people" aria-label="房间实时声波" hidden></div><details class="voice-settings"><summary data-i18n="voice.settings">声音与声波设置</summary><label for="micGain"><span data-i18n="voice.gain">我的麦克风增益</span> <output id="micGainValue">100%</output><input id="micGain" type="range" min="0" max="200" value="100"></label><label for="voiceSensitivity"><span data-i18n="voice.sensitivity">说话指示灵敏度</span> <output id="voiceSensitivityValue">75</output><input id="voiceSensitivity" type="range" min="1" max="100" value="75"></label><p data-i18n="voice.hint">声波来自实际音频，不录音、不上传音量数据。灵敏度只调整说话指示，不会过滤噪声。收听滑块只改变你听到的该成员音量；增益过大可能失真，建议戴耳机。</p></details></div>
  </aside></div><a class="scroll-note" href="#together">SCROLL FOR A LITTLE WARMTH ↓</a></div><section id="together" aria-labelledby="memoryHeading"><div class="memory-stage">
-  <div class="memory-layout"><div class="memory-intro"><p class="memory-kicker">陪伴 &nbsp; / &nbsp; SCREENING JOURNAL</p><h2 id="memoryHeading">一起看过的电影</h2>
-  <blockquote class="poem">世界很大，今天很长。<br>还好，有人和你<br>停在同一束光里。</blockquote><p id="memoryCaption"></p></div>
+  <div class="memory-layout"><div class="memory-intro"><p class="memory-kicker" data-i18n="memory.kicker">陪伴 / SCREENING JOURNAL</p><h2 id="memoryHeading" data-i18n="memory.title">一起看过的电影</h2>
+  <blockquote class="poem" data-i18n-html="memory.poem">世界很大，今天很长。<br>还好，有人和你<br>停在同一束光里。</blockquote><p id="memoryCaption"></p></div>
   <div class="memory-book">
   <div class="film-edge film-left" aria-hidden="true"><span class="film-track"><i class="film-cue">01</i></span></div><div class="film-edge film-right" aria-hidden="true"><span class="film-track"><i class="film-cue">01</i></span></div>
   <div class="memory-meta"><span id="memoryMode"></span><span id="memoryCount"></span></div>
-  <div class="memory-window" tabindex="0" role="region" aria-label="片名放映轴，可用上下方向键翻阅"><ol id="memoryList"></ol></div>
-  <div class="memory-foot"><span id="memoryScrollHint"></span><a href="#atmosphere">跳过手记 ↓</a></div></div></div>
- </div></section><div class="room-content"><section class="chapter" id="atmosphere" aria-labelledby="atlasTitle"><div class="atlas-head"><div><p class="atlas-kicker">PRIVATE SCENE ATLAS &nbsp; / &nbsp; VOL. 01</p><h2 id="atlasTitle">私人风景选集</h2></div><p>选一幅风景，留给今晚。<br>只改变你的放映室。</p></div><div class="atlas-layout"><figure class="atlas-plate"><div class="atlas-art" aria-hidden="true"></div><span class="atlas-stamp">本机风景 · <b id="atlasNumber">01 / 08</b></span><figcaption><span class="atlas-english" id="atlasEnglish">SUMMER SKIES</span><h3 id="atlasName">盛夏晴空</h3><a class="atlas-credit" id="atlasCredit" target="_blank" rel="noopener"></a></figcaption></figure><div class="scene-grid" role="group" aria-label="选择个人风景"></div></div><div class="scene-tools"><label class="atlas-glass"><input type="checkbox" id="sceneMotion" checked>风景动效</label><span id="sceneStatus" role="status">正在准备风景…</span><a href="/scenes/sources.json" target="_blank" rel="noopener">作品与授权 ↗</a></div></section><section id="advancedControls" aria-labelledby="comfortSheetTitle">
+  <div class="memory-window" tabindex="0" role="region" data-i18n-aria-label="memory.region" aria-label="片名放映轴，可用上下方向键翻阅"><ol id="memoryList"></ol></div>
+  <div class="memory-foot"><span id="memoryScrollHint"></span><a href="#atmosphere" data-i18n="memory.skip">跳过手记 ↓</a></div></div></div>
+ </div></section><div class="room-content"><section class="chapter" id="atmosphere" aria-labelledby="atlasTitle"><div class="atlas-head"><div><p class="atlas-kicker">PRIVATE SCENE ATLAS &nbsp; / &nbsp; VOL. 01</p><h2 id="atlasTitle" data-i18n="atlas.title">私人风景选集</h2></div><p data-i18n-html="atlas.hint">选一幅风景，留给今晚。<br>只改变你的放映室。</p></div><div class="atlas-layout"><figure class="atlas-plate"><div class="atlas-art" aria-hidden="true"></div><span class="atlas-stamp"><span data-i18n="atlas.local">本机风景 ·</span> <b id="atlasNumber">01 / 08</b></span><figcaption><span class="atlas-english" id="atlasEnglish">SUMMER SKIES</span><h3 id="atlasName">盛夏晴空</h3><a class="atlas-credit" id="atlasCredit" target="_blank" rel="noopener"></a></figcaption></figure><div class="scene-grid" role="group" data-i18n-aria-label="atlas.select" aria-label="选择个人风景"></div></div><div class="scene-tools"><label class="atlas-glass"><input type="checkbox" id="sceneMotion" checked><span data-i18n="atlas.motion">风景动效</span></label><span id="sceneStatus" role="status" data-i18n="atlas.loading">正在准备风景…</span><a href="/scenes/sources.json" target="_blank" rel="noopener" data-i18n="atlas.credits">作品与授权 ↗</a></div></section><section id="advancedControls" aria-labelledby="comfortSheetTitle">
   <div class="comfort-sheet" id="comfortSettings" role="region" aria-labelledby="comfortSheetTitle" tabindex="-1">
     <div class="comfort-sheet-intro"><div class="comfort-kicker" aria-hidden="true"><i></i> 02 &nbsp;/&nbsp; VIEWING CONTROLS</div>
-      <h3 id="comfortSheetTitle">观影设置</h3><p>画面留给自己，<br>喜欢的片段一起重温。</p></div>
+      <h3 id="comfortSheetTitle" data-i18n="settings.title">观影设置</h3><p data-i18n-html="settings.copy">画面留给自己，<br>喜欢的片段一起重温。</p></div>
     <div class="comfort-panel">
       <div class="comfort-appearance">
-        <div class="comfort-choice"><label for="appearanceMode">外观模式</label><select id="appearanceMode" aria-describedby="appearanceHint"><option value="auto">自动</option><option value="day">日间</option><option value="night">夜间</option></select></div>
-        <p class="comfort-help" id="appearanceHint">自动按本地时间切换：07:00 日间，19:00 夜间。仅影响本机。</p>
+        <div class="comfort-choice"><label for="interfaceLanguage" data-i18n="settings.language">界面语言</label><select id="interfaceLanguage" aria-describedby="languageHint"><option value="zh-CN" lang="zh-CN">简体中文</option><option value="en" lang="en">English</option></select></div>
+        <p class="comfort-help" id="languageHint" data-i18n="settings.languageHint">仅影响本机界面，不改变影片、字幕或房间播放。</p>
+        <div class="comfort-choice"><label for="appearanceMode" data-i18n="settings.appearance">外观模式</label><select id="appearanceMode" aria-describedby="appearanceHint"><option value="auto" data-i18n="settings.auto">自动</option><option value="day" data-i18n="settings.day">日间</option><option value="night" data-i18n="settings.night">夜间</option></select></div>
+        <p class="comfort-help" id="appearanceHint" data-i18n="settings.appearanceHint">自动按本地时间切换：07:00 日间，19:00 夜间。仅影响本机。</p>
       </div>
       <details name="comfort-tools">
-        <summary><span class="comfort-num" aria-hidden="true">01</span><span>画面与字幕</span><i aria-hidden="true"></i></summary>
+        <summary><span class="comfort-num" aria-hidden="true">01</span><span data-i18n="settings.picture">画面与字幕</span><i aria-hidden="true"></i></summary>
         <div class="comfort-content">
-          <div class="comfort-range"><label for="pictureBrightness">亮度</label><output for="pictureBrightness" id="brightnessValue">100%</output><input id="pictureBrightness" type="range" min="60" max="140" value="100"></div>
-          <div class="comfort-range"><label for="pictureContrast">对比度</label><output for="pictureContrast" id="contrastValue">100%</output><input id="pictureContrast" type="range" min="70" max="140" value="100"></div>
-          <div class="comfort-choice"><label for="textSubtitleSize">文字字幕字号</label><select id="textSubtitleSize"><option value="80">小</option><option value="100" selected>标准</option><option value="130">大</option><option value="160">特大</option></select></div>
-          <p class="comfort-help">仅影响本机。SRT / VTT 字幕可调字号，图片字幕保持原样。</p>
-          <button type="button" class="comfort-reset" id="resetPicture">恢复默认</button>
+          <div class="comfort-range"><label for="pictureBrightness" data-i18n="settings.brightness">亮度</label><output for="pictureBrightness" id="brightnessValue">100%</output><input id="pictureBrightness" type="range" min="60" max="140" value="100"></div>
+          <div class="comfort-range"><label for="pictureContrast" data-i18n="settings.contrast">对比度</label><output for="pictureContrast" id="contrastValue">100%</output><input id="pictureContrast" type="range" min="70" max="140" value="100"></div>
+          <div class="comfort-choice"><label for="textSubtitleSize" data-i18n="settings.subtitleSize">文字字幕字号</label><select id="textSubtitleSize"><option value="80" data-i18n="settings.small">小</option><option value="100" selected data-i18n="settings.normal">标准</option><option value="130" data-i18n="settings.large">大</option><option value="160" data-i18n="settings.extraLarge">特大</option></select></div>
+          <p class="comfort-help" data-i18n="settings.pictureHint">仅影响本机。SRT / VTT 字幕可调字号，图片字幕保持原样。</p>
+          <button type="button" class="comfort-reset" id="resetPicture" data-i18n="settings.reset">恢复默认</button>
         </div>
       </details>
       <details name="comfort-tools">
-        <summary><span class="comfort-num" aria-hidden="true">02</span><span>再看一遍</span><i aria-hidden="true"></i></summary>
-        <div class="comfort-content"><p class="comfort-guidance">在片段的开头标记 A，结尾标记 B。房主设置后，全房间一起循环。</p>
-          <div class="comfort-actions"><button type="button" id="markA">标记 A</button><button type="button" id="markB">标记 B</button><button type="button" id="clearAB">取消循环</button></div><p id="abStatus" role="status" class="comfort-help">尚未设置片段循环</p></div>
+        <summary><span class="comfort-num" aria-hidden="true">02</span><span data-i18n="settings.replay">再看一遍</span><i aria-hidden="true"></i></summary>
+        <div class="comfort-content"><p class="comfort-guidance" data-i18n="settings.replayHint">在片段的开头标记 A，结尾标记 B。房主设置后，全房间一起循环。</p>
+          <div class="comfort-actions"><button type="button" id="markA" data-i18n="settings.markA">标记 A</button><button type="button" id="markB" data-i18n="settings.markB">标记 B</button><button type="button" id="clearAB" data-i18n="settings.clearAB">取消循环</button></div><p id="abStatus" role="status" class="comfort-help" data-i18n="settings.abEmpty">尚未设置片段循环</p></div>
       </details>
       <details name="comfort-tools">
-        <summary><span class="comfort-num" aria-hidden="true">03</span><span>留住这一帧</span><i aria-hidden="true"></i></summary>
-        <div class="comfort-content"><p class="comfort-guidance">把当前画面存为 PNG。图片字幕会一起保存，弹幕和文字字幕不会入镜。</p>
-          <button id="captureFrame" type="button">保存当前画面 <span aria-hidden="true">↗</span></button><p class="comfort-help">若浏览器询问，请允许下载。</p></div>
+        <summary><span class="comfort-num" aria-hidden="true">03</span><span data-i18n="settings.capture">留住这一帧</span><i aria-hidden="true"></i></summary>
+        <div class="comfort-content"><p class="comfort-guidance" data-i18n="settings.captureHint">把当前画面存为 PNG。图片字幕会一起保存，弹幕和文字字幕不会入镜。</p>
+          <button id="captureFrame" type="button"><span data-i18n="settings.saveFrame">保存当前画面</span> <span aria-hidden="true">↗</span></button><p class="comfort-help" data-i18n="settings.download">若浏览器询问，请允许下载。</p></div>
       </details>
     </div>
   </div>
-</section><section class="closing"><p>下次见，也在这一束光里。</p><a href="#player">回到放映中 ↑</a></section>
-<footer><span class="footer-wordmark">TOGETHER, EVEN FROM AFAR.</span><details><summary>观看提示</summary><p>播放时长按画面可同步快进，松开恢复。方向键短按左右跳转5秒、上下调音量；长按右键2倍速，左键连续后退。使用同一个全屏按钮进入或退出；图片字幕与弹幕保留，输入框留在画面外。语音需要麦克风权限，建议佩戴耳机。</p></details></footer>
+</section><section class="closing"><p data-i18n="closing.copy">下次见，也在这一束光里。</p><a href="#player" data-i18n="closing.back">回到放映中 ↑</a></section>
+<footer><span class="footer-wordmark">TOGETHER, EVEN FROM AFAR.</span><details><summary data-i18n="footer.title">观看提示</summary><p data-i18n="footer.copy">播放时长按画面可同步快进，松开恢复。方向键短按左右跳转5秒、上下调音量；长按右键2倍速，左键连续后退。使用同一个全屏按钮进入或退出；图片字幕与弹幕保留，输入框留在画面外。语音需要麦克风权限，建议佩戴耳机。</p></details></footer>
 </div></div></div></main>
-<dialog id="roomDialog"><form id="roomForm"><div class="dialog-heading"><h2>进入一个房间</h2><button type="button" id="closeRoom" aria-label="关闭房间设置">×</button></div><label for="roomCode">房间码</label><input id="roomCode" required minlength="2" maxlength="8" pattern="[A-Za-z0-9]{2,8}" value="01" autocomplete="off"><p class="muted">2～8 位字母或数字；新房间会自动创建，相同码就能一起看。</p><label for="nickname">你的昵称</label><input id="nickname" required maxlength="20" autocomplete="nickname"><button type="submit" class="primary">进入房间</button><p class="muted">切换房间会退出当前语音。</p></form></dialog>
+<dialog id="roomDialog"><form id="roomForm"><div class="dialog-heading"><h2 data-i18n="room.dialog">进入一个房间</h2><button type="button" id="closeRoom" data-i18n-aria-label="room.close" aria-label="关闭房间设置">×</button></div><label for="roomCode" data-i18n="room.code">房间码</label><input id="roomCode" required minlength="2" maxlength="8" pattern="[A-Za-z0-9]{2,8}" value="01" autocomplete="off"><p class="muted" data-i18n="room.codeHint">2～8 位字母或数字；新房间会自动创建，相同码就能一起看。</p><label for="nickname" data-i18n="room.nickname">你的昵称</label><input id="nickname" required maxlength="20" autocomplete="nickname"><button type="submit" class="primary" data-i18n="room.enter">进入房间</button><p class="muted" data-i18n="room.voiceWarning">切换房间会退出当前语音。</p></form></dialog>
 <div id="remoteAudios" hidden></div>
-<script src="/assets/memory-reel.js?v=6"></script>
+<script src="/assets/memory-reel.js?v=7"></script>
 <script src="/assets/artplayer-5.4.0.js"></script>
 <script>
+const L=CinemaLocale, t=L.t, m=L.message;
+const preferences={getItem(key){try{return window.localStorage.getItem(key)}catch{return null}},setItem(key,value){try{window.localStorage.setItem(key,value)}catch{}}};
 // Real audio analysis only. No voice recording, model downloads or level messages.
 class VoiceMonitor {
  constructor(root){this.root=root;this.context=null;this.local=null;this.nodes=new Map();this.rows=new Map();this.frame=0;this.last=0;this.self=null;this.capture=null;this.preferences=new Map();this.micGain=1;this.threshold=.018;document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(this.frame);this.frame=0}else this.animate()});}
- async resume(){const Context=window.AudioContext||window.webkitAudioContext;if(!Context)throw new Error('浏览器不支持音频分析');if(!this.context||this.context.state==='closed')this.context=new Context();await this.context.resume();}
+ async resume(){const Context=window.AudioContext||window.webkitAudioContext;if(!Context)throw L.failure('voice.unsupported');if(!this.context||this.context.state==='closed')this.context=new Context();await this.context.resume();}
  async startLocal(stream){
   this.capture=stream;await this.resume();const ctx=this.context,source=ctx.createMediaStreamSource(stream),gain=ctx.createGain(),analyser=ctx.createAnalyser(),output=ctx.createMediaStreamDestination();analyser.fftSize=256;analyser.smoothingTimeConstant=.65;gain.gain.value=this.micGain;source.connect(gain);gain.connect(analyser);analyser.connect(output);
   this.local={source,gain,analyser,output,stream:output.stream,data:new Float32Array(256),bins:new Uint8Array(128)};return output.stream;
@@ -231,41 +235,73 @@ class VoiceMonitor {
  remove(id){const node=this.nodes.get(id);if(node){node.source.disconnect();node.analyser.disconnect();node.gain.disconnect();this.nodes.delete(id)}}
  members(members,self){
   this.self=self;const active=members.filter(m=>m.voice);const ids=new Set(active.map(m=>m.id));for(const [id,row] of this.rows)if(!ids.has(id)){row.remove();this.rows.delete(id)}
-  for(const member of active){let row=this.rows.get(member.id);if(!row){row=document.createElement('div');row.className='voice-person';row.dataset.peer=member.id;const name=document.createElement('span');name.className='voice-name';const meter=document.createElement('canvas');meter.width=112;meter.height=32;meter.setAttribute('aria-label','实时音频频谱');const level=document.createElement('span');level.className='voice-level';const label=document.createElement('label');label.className='peer-volume';const caption=document.createElement('span');caption.textContent='收听';const slider=document.createElement('input');slider.type='range';slider.min='0';slider.max='200';slider.value=String((this.preferences.get(member.id)??1)*100);slider.setAttribute('aria-label',member.name+'的收听音量');const output=document.createElement('output');output.textContent=slider.value+'%';slider.oninput=()=>{const value=Number(slider.value)/100;this.preferences.set(member.id,value);const node=this.nodes.get(member.id);if(node)node.gain.gain.setTargetAtTime(value,this.context.currentTime,.025);output.textContent=slider.value+'%'};label.append(caption,slider,output);row.append(name,meter,level,label);this.rows.set(member.id,row);this.root.append(row)}
-   row.querySelector('.voice-name').textContent=member.name+(member.id===self?' · 你':'');row.querySelector('.peer-volume').hidden=member.id===self;row.dataset.muted=String(member.muted);row.dataset.self=String(member.id===self);
+  for(const member of active){let row=this.rows.get(member.id);if(!row){row=document.createElement('div');row.className='voice-person';row.dataset.peer=member.id;const name=document.createElement('span');name.className='voice-name';const meter=document.createElement('canvas');meter.width=112;meter.height=32;L.text(meter,m('voice.spectrum'),'aria-label');const level=document.createElement('span');level.className='voice-level';const label=document.createElement('label');label.className='peer-volume';const caption=document.createElement('span');L.text(caption,m('voice.listen'));const slider=document.createElement('input');slider.type='range';slider.min='0';slider.max='200';slider.value=String((this.preferences.get(member.id)??1)*100);L.text(slider,m('voice.volume',{name:member.name}),'aria-label');const output=document.createElement('output');output.textContent=slider.value+'%';slider.oninput=()=>{const value=Number(slider.value)/100;this.preferences.set(member.id,value);const node=this.nodes.get(member.id);if(node)node.gain.gain.setTargetAtTime(value,this.context.currentTime,.025);output.textContent=slider.value+'%'};label.append(caption,slider,output);row.append(name,meter,level,label);this.rows.set(member.id,row);this.root.append(row)}
+   L.text(row.querySelector('.voice-name'),member.id===self?m('voice.you',{name:member.name}):member.name);row.querySelector('.peer-volume').hidden=member.id===self;row.dataset.muted=String(member.muted);row.dataset.self=String(member.id===self);
   }
   this.root.hidden=!active.length;this.animate();
  }
  setMic(value){this.micGain=value;this.local?.gain.gain.setTargetAtTime(value,this.context.currentTime,.025);}
  setMuted(value){this.capture?.getAudioTracks().forEach(t=>t.enabled=!value);this.local?.stream.getAudioTracks().forEach(t=>t.enabled=!value);}
- animate(){if(this.frame||document.hidden||!this.local)return;const tick=now=>{this.frame=0;if(!this.local||document.hidden)return;if(now-this.last>=66){this.last=now;for(const [id,row] of this.rows){const node=id===this.self?this.local:this.nodes.get(id),muted=row.dataset.muted==='true';let rms=0;if(node&&!muted){node.analyser.getFloatTimeDomainData(node.data);node.analyser.getByteFrequencyData(node.bins);rms=Math.sqrt(node.data.reduce((sum,x)=>sum+x*x,0)/node.data.length)}const speaking=!!node&&!muted&&rms>this.threshold;row.classList.toggle('speaking',speaking);row.dataset.level=rms.toFixed(4);row.querySelector('.voice-level').textContent=muted?'已静音':!node?'连接中':speaking?'正在说话':'安静中';const canvas=row.querySelector('canvas'),g=canvas.getContext('2d');g.clearRect(0,0,112,32);g.fillStyle=speaking?'#83dbc0':'#82978f';for(let i=0;i<16;i++){const h=node&&!muted?Math.max(2,(node.bins[i*4]||0)/255*30):2;g.fillRect(i*7,16-h/2,4,h)}}}this.frame=requestAnimationFrame(tick)};this.frame=requestAnimationFrame(tick);}
+ animate(){if(this.frame||document.hidden||!this.local)return;const tick=now=>{this.frame=0;if(!this.local||document.hidden)return;if(now-this.last>=66){this.last=now;for(const [id,row] of this.rows){const node=id===this.self?this.local:this.nodes.get(id),muted=row.dataset.muted==='true';let rms=0;if(node&&!muted){node.analyser.getFloatTimeDomainData(node.data);node.analyser.getByteFrequencyData(node.bins);rms=Math.sqrt(node.data.reduce((sum,x)=>sum+x*x,0)/node.data.length)}const speaking=!!node&&!muted&&rms>this.threshold;row.classList.toggle('speaking',speaking);row.dataset.level=rms.toFixed(4);L.text(row.querySelector('.voice-level'),m(muted?'voice.muted':!node?'connection.connecting':speaking?'voice.speaking':'voice.quiet'));const canvas=row.querySelector('canvas'),g=canvas.getContext('2d');g.clearRect(0,0,112,32);g.fillStyle=speaking?'#83dbc0':'#82978f';for(let i=0;i<16;i++){const h=node&&!muted?Math.max(2,(node.bins[i*4]||0)/255*30):2;g.fillRect(i*7,16-h/2,4,h)}}}this.frame=requestAnimationFrame(tick)};this.frame=requestAnimationFrame(tick);}
  stop(){cancelAnimationFrame(this.frame);this.frame=0;for(const id of [...this.nodes.keys()])this.remove(id);if(this.local){this.local.source.disconnect();this.local.analyser.disconnect();this.local.gain.disconnect();this.local.stream.getTracks().forEach(t=>t.stop())}this.capture?.getTracks().forEach(t=>t.stop());this.capture=null;this.local=null;this.rows.clear();this.preferences.clear();this.root.replaceChildren();this.root.hidden=true;const ctx=this.context;this.context=null;if(ctx&&ctx.state!=='closed')ctx.close().catch(()=>{});}
 }
 
 </script><script>
 'use strict';
 const $=id=>document.getElementById(id),video=$('video');
+const ui=(id,value)=>L.text($(id),value);
 let ws,memberToken=null,myId=null,state=null,selected=null,suppressUntil=0,pendingSeek=null,reconnectTimer=null,loggingOut=false,conversionTimer=null,completedJobs=new Set(),libraryVersion=null,subtitleRequest=0,subtitleSelection=0,subtitleTracks=[],pgsRenderer=null;
-const requestedRoom=invitedRoom??localStorage.getItem('watchRoom')??'01';
+const requestedRoom=invitedRoom??preferences.getItem('watchRoom')??'01';
 let roomCode=/^[A-Za-z0-9]{2,8}$/.test(requestedRoom)?requestedRoom.toUpperCase():'01';
-let nickname=localStorage.getItem('watchNickname')||'朋友'+Math.floor(100+Math.random()*900);
+let nickname=preferences.getItem('watchNickname')||t('room.friend')+Math.floor(100+Math.random()*900);
 $('roomCode').value=roomCode;$('entryRoomCode').value=invitedRoom===null?roomCode:invitedRoom;$('nickname').value=nickname;
 const escapeHTML=text=>{const span=document.createElement('span');span.textContent=text;return span.innerHTML};
+const localeHTML=key=>'<span data-i18n="'+key+'">'+t(key)+'</span>';
 video.removeAttribute('controls');
-const art=new Artplayer({container:'#artMount',proxy:()=>video,url:'',theme:'#b1bfff',lang:'zh-cn',setting:true,aspectRatio:true,flip:true,fullscreen:false,fullscreenWeb:false,pip:false,lock:true,hotkey:false,mutex:false,playsInline:true,autoSize:false,gesture:false,fastForward:false,miniProgressBar:true,moreVideoAttr:{playsinline:true,disablePictureInPicture:true},settings:[{name:'roomSpeed',html:'同步速度',tooltip:'1×',selector:[.5,.75,1,1.25,1.5,2].map(rate=>({html:rate+'×',rate,default:rate===1})),onSelect:selectArtSpeed},{name:'roomSubtitles',html:'字幕',tooltip:'关闭字幕',width:250,selector:[{html:'关闭字幕',value:'off',default:true}],onSelect:selectArtSubtitle}],controls:[{name:'roomSnapshot',position:'right',index:20,html:'截图',tooltip:'保存画面（含图片字幕）',click:()=>$('captureFrame').click()},{name:'roomFullscreen',position:'right',index:40,html:$('videoFullscreen')}]});
+const art=new Artplayer({container:'#artMount',proxy:()=>video,url:'',theme:'#b1bfff',lang:L.language.toLowerCase(),setting:true,aspectRatio:true,flip:true,fullscreen:false,fullscreenWeb:false,pip:false,lock:true,hotkey:false,mutex:false,playsInline:true,autoSize:false,gesture:false,fastForward:false,miniProgressBar:true,moreVideoAttr:{playsinline:true,disablePictureInPicture:true},settings:[{name:'roomSpeed',html:localeHTML('player.speed'),tooltip:'1×',selector:[.5,.75,1,1.25,1.5,2].map(rate=>({html:rate+'×',rate,default:rate===1})),onSelect:selectArtSpeed},{name:'roomSubtitles',html:localeHTML('subtitle.title'),tooltip:t('subtitle.off'),width:250,selector:[{html:t('subtitle.off'),value:'off',default:true}],onSelect:selectArtSubtitle}],controls:[{name:'roomSnapshot',position:'right',index:20,html:t('player.snapshot'),tooltip:t('player.snapshotHint'),click:()=>$('captureFrame').click()},{name:'roomFullscreen',position:'right',index:40,html:$('videoFullscreen')}]});
 window.watchArt=art;
 const voiceMonitor=new VoiceMonitor($('voicePeople'));
 const abLoop={a:null,b:null,file:null};
 let displayedSpeed='1×';
-function selectArtSpeed(item){if(!isHost()){status('同步速度由房主控制');return (state?.playback_rate||1)+'×'}if(!selected){status('请先选择影片');return '1×'}send({type:'rate',file:selected,rate:item.rate});return item.html}
-function syncArtSpeed(s){const value=(s.playback_rate||1)+'×';if(value===displayedSpeed)return;displayedSpeed=value;art.setting.update({name:'roomSpeed',html:'同步速度',tooltip:value,selector:[.5,.75,1,1.25,1.5,2].map(rate=>({html:rate+'×',rate,default:rate===(s.playback_rate||1)})),onSelect:selectArtSpeed})}
+function selectArtSpeed(item){if(!isHost()){status(m('player.speedHost'));return (state?.playback_rate||1)+'×'}if(!selected){status(m('player.chooseFirst'));return '1×'}send({type:'rate',file:selected,rate:item.rate});return item.html}
+function syncArtSpeed(s,force=false){const value=(s.playback_rate||1)+'×';if(!force&&value===displayedSpeed)return;displayedSpeed=value;art.setting.update({name:'roomSpeed',html:localeHTML('player.speed'),tooltip:value,selector:[.5,.75,1,1.25,1.5,2].map(rate=>({html:rate+'×',rate,default:rate===(s.playback_rate||1)})),onSelect:selectArtSpeed})}
 function selectArtSubtitle(item){$('subtitleSelect').value=item.value;$('subtitleSelect').dispatchEvent(new Event('change'));return item.html}
 function syncArtSubtitles(){
  const selectedValue=$('subtitleSelect').value;
- art.setting.update({name:'roomSubtitles',html:'字幕',tooltip:escapeHTML($('subtitleSelect').selectedOptions[0]?.textContent||'关闭字幕'),width:250,selector:[...$('subtitleSelect').options].map(o=>({html:escapeHTML(o.textContent),value:o.value,default:o.value===selectedValue})),onSelect:selectArtSubtitle});
+ art.setting.update({name:'roomSubtitles',html:localeHTML('subtitle.title'),tooltip:escapeHTML($('subtitleSelect').selectedOptions[0]?.textContent||t('subtitle.off')),width:250,selector:[...$('subtitleSelect').options].map(o=>({html:escapeHTML(o.textContent),value:o.value,default:o.value===selectedValue})),onSelect:selectArtSubtitle});
 }
 new MutationObserver(syncArtSubtitles).observe($('subtitleSelect'),{childList:true});
 $('subtitleSelect').addEventListener('change',syncArtSubtitles);
+// Adapter for the pinned Artplayer version: change labels, never media properties.
+function syncPlayerLanguage(){
+ art.option.lang=L.language.toLowerCase();art.i18n.update({});
+ const label=localeHTML;
+ const flipKey=value=>({normal:'player.flipNormal',horizontal:'player.flipHorizontal',vertical:'player.flipVertical'})[value];
+ for(const [name,key] of [['aspect-ratio','player.aspect'],['flip','player.flip']]){
+  const item=art.setting.find(name);if(!item)continue;item.html=label(key);
+  for(const option of item.selector){if(name==='flip')option.html=label(flipKey(option.value));else if(option.value==='default')option.html=label('player.default')}
+  const value=name==='flip'?art.flip:art.aspectRatio;
+  item.tooltip=name==='flip'?label(flipKey(value)):value==='default'?label('player.default'):value;
+ }
+ // Back headers are cached by Artplayer; their bundled spans participate in apply().
+ syncArtSpeed(state||{},true);syncArtSubtitles();
+ L.text(art.controls.roomSnapshot,m('player.snapshot'));L.text(art.controls.roomSnapshot,m('player.snapshotHint'),'aria-label');
+ for(const [icon,key] of [['play','player.play'],['pause','player.pause'],['volume','player.mute'],['volumeClose','player.unmute']])
+  if(art.icons[icon])L.text(art.icons[icon],m(key),'aria-label');
+ for(const [name,key] of [['aspectRatio','player.aspect'],['flip','player.flip']]){
+  const menu=art.contextmenu[name];if(!menu)continue;
+  if(menu.firstChild?.nodeType===Node.TEXT_NODE)menu.firstChild.textContent=t(key)+': ';
+  for(const option of menu.querySelectorAll('[data-value]')){
+   const value=option.dataset.value;
+   if(name==='flip')L.text(option,m(flipKey(value)));else if(value==='default')L.text(option,m('player.default'));
+  }
+ }
+ for(const [name,key] of [['info','player.info'],['close','player.close']])if(art.contextmenu[name])L.text(art.contextmenu[name],m(key));
+}
+art.on('setting',visible=>L.text(art.controls.setting,m(visible?'player.hideSettings':'player.showSettings'),'aria-label'));
+document.addEventListener('languagechange',syncPlayerLanguage);
+syncPlayerLanguage();
+L.text(art.controls.setting,m('player.showSettings'),'aria-label');
 {
  const strip=document.querySelector('.side-tabs'), tabs=[...strip.querySelectorAll('[role=tab]')];
  function select(i,focus=false){
@@ -300,81 +336,94 @@ $('subtitleSelect').addEventListener('change',syncArtSubtitles);
 $('manageLibrary').onchange=()=>$('library').classList.toggle('manage',$('manageLibrary').checked);
 $('openRoom').onclick=()=>{$('roomCode').value=roomCode;$('entryRoomCode').value=roomCode;$('nickname').value=nickname;$('roomDialog').showModal()};
 $('closeRoom').onclick=()=>$('roomDialog').close();
-$('copyInvite').onclick=async()=>{try{await navigator.clipboard.writeText(location.origin+'/?room='+encodeURIComponent(roomCode));status('邀请链接已复制 · 房间 '+roomCode)}catch(e){status('邀请链接：'+location.origin+'/?room='+roomCode)}};
+$('copyInvite').onclick=async()=>{try{await navigator.clipboard.writeText(location.origin+'/?room='+encodeURIComponent(roomCode));status(m('room.copied',{room:roomCode}))}catch(e){status(m('room.inviteLink',{url:location.origin+'/?room='+roomCode}))}};
 $('roomForm').onsubmit=event=>{event.preventDefault();const code=$('roomCode').value.trim().toUpperCase(),name=$('nickname').value.trim();if(!/^[A-Z0-9]{2,8}$/.test(code)||!name)return;switchRoom(code,name.slice(0,20));$('roomDialog').close()};
 function switchRoom(code,name){
  renderMemory([]);
  stopBoost();leaveVoice();clearNetworkPlayback();clearTimeout(reconnectTimer);if(ws){ws.onclose=null;ws.onmessage=null;ws.close()}
  clearSubtitles();clearDanmaku();video.pause();video.removeAttribute('src');video.load();state=null;myId=null;selected=null;pendingSeek=null;libraryVersion=null;
- roomCode=code;nickname=name;localStorage.setItem('watchRoom',code);localStorage.setItem('watchNickname',name);history.replaceState(null,'','/?room='+code);$('title').textContent='还没有选择影片';$('empty').hidden=false;$('chatMessages').replaceChildren();connect();
+ roomCode=code;nickname=name;preferences.setItem('watchRoom',code);preferences.setItem('watchNickname',name);history.replaceState(null,'','/?room='+code);ui('title',m('player.noFilm'));$('empty').hidden=false;$('chatMessages').replaceChildren();connect();
 }
 function showChat(row){
  const box=$('chatMessages');box.querySelector('.chat-empty')?.remove();const el=document.createElement('div');el.className='chat-row'+(row.sender===myId?' own':'');
- const meta=document.createElement('div');meta.className='chat-meta';meta.textContent=row.name+' · '+new Date(row.time*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+ const meta=document.createElement('div');meta.className='chat-meta';L.text(meta,m('chat.meta',{name:row.name,time:L.date(row.time*1000,{hour:'2-digit',minute:'2-digit'})}));
  const text=document.createElement('div');text.className='chat-bubble';text.textContent=row.text;el.append(meta,text);box.append(el);while(box.children.length>100)box.firstElementChild.remove();box.scrollTop=box.scrollHeight;
 }
 $('chatForm').onsubmit=event=>{event.preventDefault();const text=$('chatText').value.trim();if(!text||!ws||ws.readyState!==WebSocket.OPEN)return;send({type:'chat',text});$('chatText').value=''};
 function renderMembers(s){
- $('roomLabel').textContent='房间 '+(s.room||roomCode);$('hostHint').textContent=isHost()?'你是房主 · 控制同步进度':'同步观看 · 房主控制进度';$('membersList').replaceChildren();
- for(const member of s.members||[]){const row=document.createElement('div');row.className='member';const avatar=document.createElement('span');avatar.className='avatar';avatar.textContent=member.name.slice(0,1);const label=document.createElement('span');label.textContent=member.name+(member.id===myId?'（你）':'');const role=document.createElement('small');role.textContent=member.id===s.host?'房主':'一起看';label.append(role);const voice=document.createElement('span');voice.className='member-voice';voice.textContent=member.voice?(member.muted?'麦克风已静音':'语音中'):'未加入语音';row.append(avatar,label,voice);$('membersList').append(row)}
+ ui('roomLabel',m('room.label',{room:s.room||roomCode}));ui('hostHint',m(isHost()?'room.hostHint':'room.guestHint'));$('membersList').replaceChildren();
+ for(const member of s.members||[]){const row=document.createElement('div');row.className='member';const avatar=document.createElement('span');avatar.className='avatar';avatar.textContent=member.name.slice(0,1);const label=document.createElement('span'),name=document.createElement('span');L.text(name,member.id===myId?m('room.you',{name:member.name}):member.name);const role=document.createElement('small');L.text(role,m(member.id===s.host?'room.host':'room.guest'));label.append(name,role);const voice=document.createElement('span');voice.className='member-voice';L.text(voice,m(member.voice?(member.muted?'voice.micMuted':'voice.active'):'voice.inactive'));row.append(avatar,label,voice);$('membersList').append(row)}
  voiceMonitor.members(s.members||[],myId);
  reconcileVoice(s.members||[]);
 }
 let voiceStream=null,voiceGeneration=0,voiceJoining=false,voiceIce=[];
 const voicePeers=new Map();
-function voiceStatus(text){$('voiceStatus').textContent=text}
+function voiceStatus(text){ui('voiceStatus',text)}
 function leaveVoice(notify=true){
  voiceGeneration++;voiceJoining=false;voiceMonitor.stop();if(notify&&voiceStream)send({type:'voice_leave'});voiceStream?.getTracks().forEach(t=>t.stop());voiceStream=null;
- for(const peer of voicePeers.values()){peer.pc.close();peer.audio.remove()}voicePeers.clear();$('voiceJoin').disabled=false;$('voiceJoin').hidden=false;$('voiceMute').disabled=true;$('voiceMute').hidden=true;$('voiceMute').textContent='麦克风';$('voiceLeave').hidden=true;$('enableVoiceAudio').hidden=true;voiceStatus('麦克风已关闭');
+ for(const peer of voicePeers.values()){peer.pc.close();peer.audio.remove()}voicePeers.clear();$('voiceJoin').disabled=false;$('voiceJoin').hidden=false;$('voiceMute').disabled=true;$('voiceMute').hidden=true;ui('voiceMute',m('voice.mic'));$('voiceLeave').hidden=true;$('enableVoiceAudio').hidden=true;voiceStatus(m('voice.closed'));
 }
 $('voiceJoin').onclick=async()=>{
- if(voiceJoining||voiceStream)return;if(!myId||!ws||ws.readyState!==WebSocket.OPEN)return voiceStatus('请先连接房间');
- const generation=++voiceGeneration;voiceJoining=true;$('voiceJoin').disabled=true;voiceStatus('正在申请麦克风权限…');
+ if(voiceJoining||voiceStream)return;if(!myId||!ws||ws.readyState!==WebSocket.OPEN)return voiceStatus(m('voice.connectFirst'));
+ const generation=++voiceGeneration;voiceJoining=true;$('voiceJoin').disabled=true;voiceStatus(m('voice.permission'));
  try{
   await voiceMonitor.resume();if(generation!==voiceGeneration)return;
-  const config=await api('/api/voice-config');if(!config.enabled)throw new Error('语音中继尚未配置');if(generation!==voiceGeneration)return;
+  const config=await api('/api/voice-config');if(!config.enabled)throw L.failure('voice.unconfigured');if(generation!==voiceGeneration)return;
   const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});
   if(generation!==voiceGeneration){stream.getTracks().forEach(t=>t.stop());return}voiceStream=await voiceMonitor.startLocal(stream);if(generation!==voiceGeneration){voiceMonitor.stop();return}voiceIce=config.iceServers;
   for(const track of stream.getTracks())track.addEventListener('ended',()=>leaveVoice());
-  $('voiceJoin').hidden=true;$('voiceMute').disabled=false;$('voiceMute').hidden=false;$('voiceMute').textContent='麦克风已开启';$('voiceLeave').hidden=false;voiceJoining=false;voiceStatus('已加入语音 · 等待朋友加入');send({type:'voice_join'});
- }catch(e){if(generation===voiceGeneration){leaveVoice(false);voiceStatus('无法加入语音：'+e.message)}}
+  $('voiceJoin').hidden=true;$('voiceMute').disabled=false;$('voiceMute').hidden=false;ui('voiceMute',m('voice.micOn'));$('voiceLeave').hidden=false;voiceJoining=false;voiceStatus(m('voice.waiting'));send({type:'voice_join'});
+ }catch(e){if(generation===voiceGeneration){leaveVoice(false);voiceStatus(m('voice.joinFailed',{error:L.error(e)}))}}
 };
 $('voiceLeave').onclick=()=>leaveVoice();
-$('voiceMute').onclick=()=>{if(!voiceStream)return;const enabled=!voiceStream.getAudioTracks()[0].enabled;voiceMonitor.setMuted(!enabled);$('voiceMute').textContent=enabled?'麦克风已开启':'麦克风已静音';send({type:'voice_state',muted:!enabled})};
-$('enableVoiceAudio').onclick=async()=>{try{await voiceMonitor.resume();await Promise.all([...voicePeers.values()].map(p=>p.audio.play()));$('enableVoiceAudio').hidden=true}catch(e){voiceStatus('请检查浏览器声音权限')}};
+$('voiceMute').onclick=()=>{if(!voiceStream)return;const enabled=!voiceStream.getAudioTracks()[0].enabled;voiceMonitor.setMuted(!enabled);ui('voiceMute',m(enabled?'voice.micOn':'voice.micMuted'));send({type:'voice_state',muted:!enabled})};
+$('enableVoiceAudio').onclick=async()=>{try{await voiceMonitor.resume();await Promise.all([...voicePeers.values()].map(p=>p.audio.play()));$('enableVoiceAudio').hidden=true}catch(e){voiceStatus(m('voice.checkPermission'))}};
 function ensureVoicePeer(id){
- if(voicePeers.has(id))return voicePeers.get(id);if(!voiceStream)throw new Error('当前未加入语音');
+ if(voicePeers.has(id))return voicePeers.get(id);if(!voiceStream)throw L.failure('voice.notJoined');
  const pc=new RTCPeerConnection({iceServers:voiceIce});const audio=document.createElement('audio');audio.autoplay=true;audio.playsInline=true;$('remoteAudios').append(audio);const peer={pc,audio,queued:[],offered:false};voicePeers.set(id,peer);
  voiceStream.getTracks().forEach(t=>pc.addTrack(t,voiceStream));pc.onicecandidate=e=>{if(e.candidate)send({type:'signal',to:id,signal:{candidate:e.candidate.toJSON()}})};
  pc.ontrack=e=>{audio.srcObject=e.streams[0]||new MediaStream([e.track]);voiceMonitor.addRemote(id,audio.srcObject,audio);if(voiceMonitor.context?.state!=='running')$('enableVoiceAudio').hidden=false;audio.play().catch(()=>$('enableVoiceAudio').hidden=false)};
- pc.onconnectionstatechange=()=>{if(!voicePeers.has(id))return;voiceStatus(pc.connectionState==='connected'?'语音已连通 · 建议佩戴耳机':pc.connectionState==='failed'?'语音连接失败，请离开后重试':'正在连接朋友的语音…')};return peer;
+ pc.onconnectionstatechange=()=>{if(!voicePeers.has(id))return;voiceStatus(m(pc.connectionState==='connected'?'voice.connected':pc.connectionState==='failed'?'voice.failed':'voice.connecting'))};return peer;
 }
 function reconcileVoice(members){
  if(!voiceStream)return;const active=new Set(members.filter(m=>m.voice&&m.id!==myId).map(m=>m.id));
  for(const [id,p] of voicePeers)if(!active.has(id)){p.pc.close();p.audio.remove();voiceMonitor.remove(id);voicePeers.delete(id)}
- for(const id of active){const peer=ensureVoicePeer(id);if(myId<id&&!peer.offered){peer.offered=true;(async()=>{await peer.pc.setLocalDescription(await peer.pc.createOffer());send({type:'signal',to:id,signal:{description:peer.pc.localDescription.toJSON()}})})().catch(e=>voiceStatus('语音协商失败：'+e.message))}}
- if(!active.size)voiceStatus('已加入语音 · 等待朋友加入');
+ for(const id of active){const peer=ensureVoicePeer(id);if(myId<id&&!peer.offered){peer.offered=true;(async()=>{await peer.pc.setLocalDescription(await peer.pc.createOffer());send({type:'signal',to:id,signal:{description:peer.pc.localDescription.toJSON()}})})().catch(e=>voiceStatus(m('voice.negotiationFailed',{error:L.error(e)})))}}
+ if(!active.size)voiceStatus(m('voice.waiting'));
 }
 async function receiveVoiceSignal(message){
  if(!voiceStream||!state?.members?.some(m=>m.id===message.sender&&m.voice))return;
  try{const peer=ensureVoicePeer(message.sender),pc=peer.pc,signal=message.signal;
   if(signal.description){await pc.setRemoteDescription(signal.description);for(const candidate of peer.queued)await pc.addIceCandidate(candidate);peer.queued=[];if(signal.description.type==='offer'){await pc.setLocalDescription(await pc.createAnswer());send({type:'signal',to:message.sender,signal:{description:pc.localDescription.toJSON()}})}}
   else if(signal.candidate){if(pc.remoteDescription)await pc.addIceCandidate(signal.candidate);else peer.queued.push(signal.candidate)}
- }catch(e){voiceStatus('语音连接错误：'+e.message)}
+ }catch(e){voiceStatus(m('voice.connectionError',{error:L.error(e)}))}
 }
 addEventListener('pagehide',()=>leaveVoice());
 
 const gb=n=>(n/1024**3).toFixed(1)+' GiB';
 const displayName=n=>n.replace(/^[a-f0-9]{8,16}-/,'');
 const isHost=()=>state&&myId===state.host;
-function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error)}
-async function api(path,options={}){const response=await fetch(path,options);if(!response.ok)throw new Error(await response.text());return response.json()}
-async function library(){const data=await api('/api/library');$('storage').textContent='剩余 '+gb(data.free_bytes)+' · 预留 '+gb(data.reserve_bytes);$('library').replaceChildren();for(const file of data.files){const row=document.createElement('div');row.className='movie-row';row.dataset.file=file.name;const button=document.createElement('button');button.className='movie'+(file.name===selected?' selected':'');button.dataset.file=file.name;button.append(document.createTextNode(displayName(file.name)));const size=document.createElement('small');size.textContent=file.bytes<1024**3?(file.bytes/1024**2).toFixed(1)+' MiB':gb(file.bytes);button.append(size);button.onclick=()=>{if(!isHost())return status('请让房主选片，或先点击“由我控制进度”。');send({type:'control',file:file.name,position:0,paused:true})};row.append(button);const remove=document.createElement('button');remove.className='delete-movie';remove.textContent='删除';remove.setAttribute('aria-label','删除影片 '+displayName(file.name));remove.onclick=async()=>{if(!confirm('删除《'+displayName(file.name)+'》？\n将永久删除服务器上的影片，电脑上的原件不会被删除。'))return;remove.disabled=true;try{await api('/api/library/'+encodeURIComponent(file.name),{method:'DELETE'});await library();status('已删除影片：'+displayName(file.name))}catch(e){status(e.message,true);remove.disabled=false}};row.append(remove);$('library').append(row)}if(!data.files.length)$('library').textContent='还没有视频，先上传一个吧。'}
+function status(text,error=false){ui('status',text);$('status').classList.toggle('error',error)}
+async function api(path,options={}){const response=await fetch(path,options);if(!response.ok)throw await L.responseError(response);return response.json()}
+async function library(){
+ const data=await api('/api/library');ui('storage',m('library.storage',{free:gb(data.free_bytes),reserve:gb(data.reserve_bytes)}));
+ $('library').replaceChildren();
+ for(const file of data.files){
+  const row=document.createElement('div');row.className='movie-row';row.dataset.file=file.name;
+  const button=document.createElement('button');button.className='movie'+(file.name===selected?' selected':'');button.dataset.file=file.name;
+  button.append(document.createTextNode(displayName(file.name)));const size=document.createElement('small');size.textContent=file.bytes<1024**3?(file.bytes/1024**2).toFixed(1)+' MiB':gb(file.bytes);button.append(size);
+  button.onclick=()=>{if(!isHost())return status(m('library.hostOnly'));send({type:'control',file:file.name,position:0,paused:true})};row.append(button);
+  const remove=document.createElement('button');remove.className='delete-movie';L.text(remove,m('library.delete'));L.text(remove,m('library.deleteLabel',{name:displayName(file.name)}),'aria-label');
+  remove.onclick=async()=>{if(!confirm(t('library.deleteConfirm',{name:displayName(file.name)})))return;remove.disabled=true;try{await api('/api/library/'+encodeURIComponent(file.name),{method:'DELETE'});await library();status(m('library.deleted',{name:displayName(file.name)}))}catch(e){status(L.error(e),true);remove.disabled=false}};
+  row.append(remove);$('library').append(row);
+ }
+ if(!data.files.length){const empty=document.createElement('p');L.text(empty,m('library.empty'));$('library').append(empty)}
+}
 let networkHls=null,networkAbort=null,networkGeneration=0,hlsLibrary=null;
 function clearNetworkPlayback(){networkGeneration++;networkAbort?.abort();networkAbort=null;if(networkHls){networkHls.destroy();networkHls=null}}
 async function hlsConstructor(){
  if(window.Hls)return window.Hls;
- if(!hlsLibrary)hlsLibrary=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='/assets/hls-1.7.4.js';script.onload=()=>resolve(window.Hls);script.onerror=()=>{script.remove();hlsLibrary=null;reject(new Error('HLS播放器加载失败'))};document.head.append(script)});
+ if(!hlsLibrary)hlsLibrary=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='/assets/hls-1.7.4.js';script.onload=()=>resolve(window.Hls);script.onerror=()=>{script.remove();hlsLibrary=null;reject(L.failure('network.hlsFailed'))};document.head.append(script)});
  return hlsLibrary;
 }
 async function setPlaybackSource(file){
@@ -382,66 +431,66 @@ async function setPlaybackSource(file){
  if(!file.startsWith('net:')){art.url='/media/'+encodeURIComponent(file);video.load();loadSubtitles(file);loadDanmaku(file);return}
  clearSubtitles();clearDanmaku();video.pause();video.removeAttribute('src');video.load();networkAbort=new AbortController();
  try{
-  const response=await fetch('/api/network/'+encodeURIComponent(file.slice(4))+'/source',{signal:networkAbort.signal});if(!response.ok)throw new Error(await response.text());const source=await response.json();if(generation!==networkGeneration||selected!==file)return;
-  $('title').textContent=source.title+' · '+(source.mode==='relay'?'服务器中转':'直连');loadDanmaku(file);
+  const response=await fetch('/api/network/'+encodeURIComponent(file.slice(4))+'/source',{signal:networkAbort.signal});if(!response.ok)throw await L.responseError(response);const source=await response.json();if(generation!==networkGeneration||selected!==file)return;
+  ui('title',m('network.filmTitle',{title:source.title,mode:m(source.mode==='relay'?'network.relay':'network.direct')}));loadDanmaku(file);
   if(source.kind==='hls'){
    const Hls=await hlsConstructor();if(generation!==networkGeneration||selected!==file)return;
-   if(!Hls?.isSupported()){if(!video.canPlayType('application/vnd.apple.mpegurl'))throw new Error('此浏览器不支持该HLS片源');art.url=source.url;video.load();return}
+   if(!Hls?.isSupported()){if(!video.canPlayType('application/vnd.apple.mpegurl'))throw L.failure('network.hlsUnsupported');art.url=source.url;video.load();return}
    networkHls=new Hls({maxBufferLength:20,maxMaxBufferLength:30,backBufferLength:10,maxBufferSize:12*1024*1024,maxBufferHole:.5,fragLoadingMaxRetry:2,manifestLoadingMaxRetry:1,levelLoadingMaxRetry:1});const current=networkHls;
-   current.on(Hls.Events.ERROR,(_,error)=>{if(error.fatal){status('网络视频加载失败，请重新解析或降低清晰度。',true);if(networkHls===current){current.destroy();networkHls=null}}});current.loadSource(source.url);current.attachMedia(video);
+   current.on(Hls.Events.ERROR,(_,error)=>{if(error.fatal){status(m('network.loadFailed'),true);if(networkHls===current){current.destroy();networkHls=null}}});current.loadSource(source.url);current.attachMedia(video);
   }else{art.url=source.url;video.load()}
- }catch(e){if(e.name!=='AbortError'&&generation===networkGeneration)status('网络片源：'+e.message,true)}
+ }catch(e){if(e.name!=='AbortError'&&generation===networkGeneration)status(m('network.sourceFailed',{error:L.error(e)}),true)}
 }
 $('networkForm').onsubmit=async event=>{
- event.preventDefault();$('networkResolve').disabled=true;$('networkResults').replaceChildren();$('networkStatus').textContent='正在解析…最长约55秒，不下载整部视频';
+ event.preventDefault();$('networkResolve').disabled=true;$('networkResults').replaceChildren();ui('networkStatus',m('network.loading'));
  try{const result=await api('/api/network/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:$('networkUrl').value.trim(),mode:$('networkMode').value})});
-  for(const source of result.choices){const button=document.createElement('button');button.type='button';button.className='movie';button.textContent=source.title+(source.height?' · '+source.height+'p':'')+' · '+(source.mode==='relay'?'中转':'直连');button.onclick=()=>{if(!isHost())return status('请先接管播放控制再选片');send({type:'control',file:source.file,position:0,paused:true})};$('networkResults').append(button)}
-  $('networkStatus').textContent='已找到 '+result.choices.length+' 个候选 · 视频磁盘缓存0 · 中转最多6连接';
- }catch(e){$('networkStatus').textContent='解析失败：'+e.message}finally{$('networkResolve').disabled=false}
+  for(const source of result.choices){const button=document.createElement('button');button.type='button';button.className='movie';L.text(button,m('network.filmTitle',{title:source.title+(source.height?' · '+source.height+'p':''),mode:m(source.mode==='relay'?'network.relay':'network.direct')}));button.onclick=()=>{if(!isHost())return status(m('network.takeControl'));send({type:'control',file:source.file,position:0,paused:true})};$('networkResults').append(button)}
+  ui('networkStatus',m('network.found',{count:result.choices.length}));
+ }catch(e){ui('networkStatus',m('network.resolveFailed',{error:L.error(e)}))}finally{$('networkResolve').disabled=false}
 };
-video.addEventListener('ended',()=>{if(selected?.startsWith('net:')){suppressUntil=Date.now()+700;clearNetworkPlayback();api('/api/network/'+selected.slice(4)+'/complete',{method:'POST'}).catch(()=>{});status('网络视频已结束，连接与缓冲已释放；再次观看请重新解析。')}});
+video.addEventListener('ended',()=>{if(selected?.startsWith('net:')){suppressUntil=Date.now()+700;clearNetworkPlayback();api('/api/network/'+selected.slice(4)+'/complete',{method:'POST'}).catch(()=>{});status(m('network.ended'))}});
 window.addEventListener('pagehide',clearNetworkPlayback);
 
 function clearPGS(){subtitleSelection++;if(pgsRenderer){pgsRenderer.dispose();pgsRenderer=null}video.parentElement.querySelectorAll('.pgs-canvas').forEach(c=>c.remove())}
-function clearSubtitles(){subtitleRequest++;clearPGS();player?.classList.remove('pgs-selected');video.controlsList?.remove('nofullscreen');subtitleTracks=[];video.querySelectorAll('track').forEach(t=>t.remove());$('subtitleSelect').replaceChildren(new Option('关闭字幕','off'));$('subtitleSelect').disabled=true;$('subtitleInfo').textContent='选择影片后加载字幕'}
+function clearSubtitles(){subtitleRequest++;clearPGS();player?.classList.remove('pgs-selected');video.controlsList?.remove('nofullscreen');subtitleTracks=[];video.querySelectorAll('track').forEach(t=>t.remove());const off=new Option('','off');L.text(off,m('subtitle.off'));$('subtitleSelect').replaceChildren(off);$('subtitleSelect').disabled=true;ui('subtitleInfo',m('subtitle.chooseFilm'))}
 async function chooseSubtitle(){
  clearPGS();const id=$('subtitleSelect').value,track=subtitleTracks.find(t=>t.id===id),generation=subtitleSelection,name=selected;
  const pgs=track?.format==='pgs';player.classList.toggle('pgs-selected',pgs);if(pgs)video.controlsList?.add('nofullscreen');else video.controlsList?.remove('nofullscreen');
  video.querySelectorAll('track').forEach(t=>{t.default=t.dataset.id===id;t.track.mode=t.dataset.id===id?'showing':'disabled'});
  if(!track||track.format!=='pgs')return;
- $('subtitleInfo').textContent='正在加载原图片字幕…';
+ ui('subtitleInfo',m('subtitle.loadingImage'));
  try{
   const {PgsRenderer}=await import('/assets/libpgs-0.9.0.js');if(generation!==subtitleSelection||selected!==name)return;
   const renderer=new PgsRenderer({video,workerUrl:'/assets/libpgs-0.9.0.worker.js',mode:'workerWithoutOffscreenCanvas',subUrl:'/api/subtitles/'+encodeURIComponent(name)+'/'+track.id+'.sup'});pgsRenderer=renderer;video.parentElement.querySelector('canvas')?.classList.add('pgs-canvas');
-  await renderer.ready;if(generation!==subtitleSelection||pgsRenderer!==renderer)return;renderer.renderAtTimestamp(video.currentTime);$('subtitleInfo').textContent='原图片字幕已加载 · 使用播放器全屏可保留图片字幕';
- }catch(e){if(generation===subtitleSelection){clearPGS();$('subtitleInfo').textContent='图片字幕加载失败：'+e.message}}
+  await renderer.ready;if(generation!==subtitleSelection||pgsRenderer!==renderer)return;renderer.renderAtTimestamp(video.currentTime);ui('subtitleInfo',m('subtitle.imageReady'));
+ }catch(e){if(generation===subtitleSelection){clearPGS();ui('subtitleInfo',m('subtitle.imageFailed',{error:L.error(e)}))}}
 }
-$('subtitleSelect').onchange=()=>{localStorage.setItem('watchSubtitleEnabled',$('subtitleSelect').value==='off'?'0':'1');chooseSubtitle()};
+$('subtitleSelect').onchange=()=>{preferences.setItem('watchSubtitleEnabled',$('subtitleSelect').value==='off'?'0':'1');chooseSubtitle()};
 async function loadSubtitles(name){
- clearSubtitles();const generation=subtitleRequest;$('subtitleInfo').textContent='正在加载字幕…';
+ clearSubtitles();const generation=subtitleRequest;ui('subtitleInfo',m('subtitle.loading'));
  try{const data=await api('/api/subtitles/'+encodeURIComponent(name));if(generation!==subtitleRequest||selected!==name)return;subtitleTracks=data.tracks;
  for(const item of data.tracks){
-  if(item.format!=='pgs'){const track=document.createElement('track');track.kind='subtitles';track.label=item.label;track.srclang=item.lang;track.dataset.id=item.id;track.src='/api/subtitles/'+encodeURIComponent(name)+'/'+encodeURIComponent(item.id)+'.vtt';track.addEventListener('load',()=>{if(generation===subtitleRequest&&$('subtitleSelect').value===item.id)chooseSubtitle()});track.addEventListener('error',()=>{if(generation===subtitleRequest)$('subtitleInfo').textContent='字幕加载失败，请刷新重试'});video.append(track)}
-  $('subtitleSelect').append(new Option(item.label+(item.format==='pgs'?' · 原图片字幕':''),item.id));
+  if(item.format!=='pgs'){const track=document.createElement('track');track.kind='subtitles';track.label=item.label;track.srclang=item.lang;track.dataset.id=item.id;track.src='/api/subtitles/'+encodeURIComponent(name)+'/'+encodeURIComponent(item.id)+'.vtt';track.addEventListener('load',()=>{if(generation===subtitleRequest&&$('subtitleSelect').value===item.id)chooseSubtitle()});track.addEventListener('error',()=>{if(generation===subtitleRequest)ui('subtitleInfo',m('subtitle.retry'))});video.append(track)}
+  const option=new Option('',item.id);L.text(option,item.format==='pgs'?m('subtitle.imageLabel',{label:item.label}):item.label);$('subtitleSelect').append(option);
  }
  $('subtitleSelect').disabled=!data.tracks.length;
- if(data.tracks.length&&localStorage.getItem('watchSubtitleEnabled')!=='0')$('subtitleSelect').value=(data.tracks.find(t=>t.default)||data.tracks[0]).id;
- $('subtitleInfo').textContent='可选择 '+data.tracks.length+' 条原字幕'+(data.unsupported_count?'；另 '+data.unsupported_count+' 条格式暂不支持':'');chooseSubtitle();
- }catch(e){if(generation===subtitleRequest)$('subtitleInfo').textContent='字幕加载失败：'+e.message}
+ if(data.tracks.length&&preferences.getItem('watchSubtitleEnabled')!=='0')$('subtitleSelect').value=(data.tracks.find(t=>t.default)||data.tracks[0]).id;
+ ui('subtitleInfo',m(data.unsupported_count?'subtitle.unsupported':'subtitle.count',{count:data.tracks.length,unsupported:data.unsupported_count}));chooseSubtitle();
+ }catch(e){if(generation===subtitleRequest)ui('subtitleInfo',m('subtitle.failed',{error:L.error(e)}))}
 }
 const player=$('player'),videoStage=$('videoStage');
 // Owns all fullscreen transitions. The video, subtitles and danmaku stay put.
 class PlayerViewport {
  constructor(stage,button){
   this.stage=stage;this.button=button;this.web=false;this.pending=false;this.wasActive=false;this.scroll=null;
-  button.onclick=()=>this.toggle().catch(error=>status('无法切换全屏：'+error.message,true));
+  button.onclick=()=>this.toggle().catch(error=>status(m('player.fullscreenFailed',{error:L.error(error)}),true));
   for(const event of ['fullscreenchange','webkitfullscreenchange'])document.addEventListener(event,()=>this.sync());
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&this.active()){event.preventDefault();this.toggle().catch(error=>status('无法退出全屏：'+error.message,true))}});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&this.active()){event.preventDefault();this.toggle().catch(error=>status(m('player.exitFailed',{error:L.error(error)}),true))}});
   this.sync();
  }
  active(){return this.web||(document.fullscreenElement||document.webkitFullscreenElement)===this.stage;}
  sync(){
-  const active=this.active();this.button.textContent=active?'退出全屏':'全屏';this.button.setAttribute('aria-label',active?'退出全屏':'进入全屏');this.button.setAttribute('aria-pressed',String(active));this.stage.classList.toggle('is-fullscreen',active);document.body.classList.toggle('player-fullscreen',active);
+  const active=this.active();L.text(this.button,m(active?'player.exitFullscreen':'player.fullscreen'));L.text(this.button,m(active?'player.exitFullscreen':'player.enterFullscreen'),'aria-label');this.button.setAttribute('aria-pressed',String(active));this.stage.classList.toggle('is-fullscreen',active);document.body.classList.toggle('player-fullscreen',active);
   if(active!==this.wasActive){this.wasActive=active;this.stage.dispatchEvent(new Event('viewportchange',{bubbles:true}));if(!active&&this.scroll){window.scrollTo(this.scroll.x,this.scroll.y);this.scroll=null}}
  }
  async toggle(){
@@ -450,12 +499,12 @@ class PlayerViewport {
    if(this.web){this.web=false;this.stage.classList.remove('web-fullscreen');return;}
    const full=document.fullscreenElement||document.webkitFullscreenElement;
    if(full===this.stage){const exit=document.exitFullscreen||document.webkitExitFullscreen;await exit.call(document);return;}
-   if(full)return status('请先退出当前的其他全屏窗口。');
-   const media=this.stage.querySelector('video');if(media.readyState<1||!media.currentSrc)return status('请先选择影片，等待加载后再进入全屏。');
+   if(full)return status(m('player.closeOtherFullscreen'));
+   const media=this.stage.querySelector('video');if(media.readyState<1||!media.currentSrc)return status(m('player.loadBeforeFullscreen'));
    this.scroll={x:scrollX,y:scrollY};
    const request=this.stage.requestFullscreen||this.stage.webkitRequestFullscreen;
    if(request&&(document.fullscreenEnabled||document.webkitFullscreenEnabled)){
-    try{await request.call(this.stage,{navigationUI:'hide'});return;}catch(error){status('浏览器未允许系统全屏，已改用保留字幕的网页全屏。');}
+    try{await request.call(this.stage,{navigationUI:'hide'});return;}catch(error){status(m('player.webFullscreen'));}
    }
    this.web=true;this.stage.classList.add('web-fullscreen');
   }finally{this.pending=false;this.sync();}
@@ -467,52 +516,52 @@ videoStage.addEventListener('viewportchange',()=>stopBoost());
 video.addEventListener('seeked',()=>pgsRenderer?.renderAtTimestamp(video.currentTime));
 function send(data){if(ws&&ws.readyState===WebSocket.OPEN)ws.send(JSON.stringify(data))}
 function control(){if(isHost()&&Date.now()>suppressUntil&&selected)send({type:'control',file:selected,position:video.currentTime||0,paused:video.paused})}
-function apply(s){state=s;renderMembers(s);syncArtSpeed(s);if(holdActive&&(!isHost()||s.paused||s.file!==selected||(s.playback_rate===1&&Date.now()-holdStarted>750)))stopBoost(false);video.playbackRate=holdActive&&Date.now()-holdStarted<750?2:(s.playback_rate||1);updateInteractiveState();if(s.library_version!==undefined&&s.library_version!==libraryVersion){libraryVersion=s.library_version;library().catch(e=>status(e.message,true))}$('connection').textContent=s.online+' 人在线 · '+(isHost()?'房主':'同步中');$('claim').disabled=isHost();if(!s.file){if(selected!==null){suppressUntil=Date.now()+700;selected=null;pendingSeek=null;clearNetworkPlayback();clearSubtitles();clearDanmaku();stopBoost(false);video.pause();video.removeAttribute('src');video.load();$('empty').hidden=false;$('title').textContent='准备开始今晚的放映';status('片源已移除或释放，已停止播放。')}return}const changing=selected!==s.file;if(changing){suppressUntil=Date.now()+700;selected=s.file;$('empty').hidden=true;$('title').textContent=displayName(s.file);pendingSeek=s.position;setPlaybackSource(s.file);library().catch(e=>status(e.message,true))}const target=s.position;
+function apply(s){state=s;renderMembers(s);syncArtSpeed(s);if(holdActive&&(!isHost()||s.paused||s.file!==selected||(s.playback_rate===1&&Date.now()-holdStarted>750)))stopBoost(false);video.playbackRate=holdActive&&Date.now()-holdStarted<750?2:(s.playback_rate||1);updateInteractiveState();if(s.library_version!==undefined&&s.library_version!==libraryVersion){libraryVersion=s.library_version;library().catch(e=>status(L.error(e),true))}ui('connection',m(isHost()?'room.onlineHost':'room.onlineGuest',{count:s.online}));$('claim').disabled=isHost();if(!s.file){if(selected!==null){suppressUntil=Date.now()+700;selected=null;pendingSeek=null;clearNetworkPlayback();clearSubtitles();clearDanmaku();stopBoost(false);video.pause();video.removeAttribute('src');video.load();$('empty').hidden=false;ui('title',m('player.ready'));status(m('player.removed'))}return}const changing=selected!==s.file;if(changing){suppressUntil=Date.now()+700;selected=s.file;$('empty').hidden=true;ui('title',displayName(s.file));pendingSeek=s.position;setPlaybackSource(s.file);library().catch(e=>status(L.error(e),true))}const target=s.position;
 if(video.readyState>=1&&(!isHost()||changing)&&Math.abs(video.currentTime-target)>.7){suppressUntil=Date.now()+500;video.currentTime=target}else if(video.readyState<1)pendingSeek=target;
-if(s.paused&&!video.paused){suppressUntil=Date.now()+500;video.pause()}else if(!s.paused&&video.paused){suppressUntil=Date.now()+500;video.play().then(()=>status('正在同步播放')).catch(()=>status('已连接，请点击播放器播放按钮开启声音。'))}
-if(s.paused)status(isHost()?'已暂停 · 你控制大家的播放进度':'已同步暂停 · 等待房主播放');}
+if(s.paused&&!video.paused){suppressUntil=Date.now()+500;video.pause()}else if(!s.paused&&video.paused){suppressUntil=Date.now()+500;video.play().then(()=>status(m('player.playing'))).catch(()=>status(m('player.enableSound')))}
+if(s.paused)status(m(isHost()?'player.pausedHost':'player.pausedGuest'));}
 function setMemberToken(value){memberToken=value;document.dispatchEvent(new Event('membershipchange'))}
-function connect(){setMemberToken(null);$('roomLinkState').textContent='连接中';clearTimeout(reconnectTimer);$('retry').hidden=true;ws=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host+'/ws?room='+encodeURIComponent(roomCode)+'&name='+encodeURIComponent(nickname));ws.onmessage=event=>{if(ws!==event.currentTarget)return;const message=JSON.parse(event.data);if(message.type==='hello'){renderMemory(message.memories||[]);myId=message.id;setMemberToken(message.member_token);$('chatMessages').replaceChildren();for(const row of message.chat||[])showChat(row)}else if(message.type==='state'){if(message.memory)renderMemory([message.memory],true);apply(message)}else if(message.type==='danmaku')receiveDanmaku(message);else if(message.type==='chat')showChat(message.message);else if(message.type==='signal')receiveVoiceSignal(message);else if(message.type==='error')status(message.error,true)};ws.onopen=()=>{$('roomLinkState').textContent='已连接放映室'};ws.onclose=()=>{setMemberToken(null);stopBoost(false);leaveVoice(false);if(loggingOut)return;$('roomLinkState').textContent='连接中断';$('retry').hidden=false;reconnectTimer=setTimeout(connect,3000)};ws.onerror=()=>{$('roomLinkState').textContent='网络不可用'};}
+function connect(){setMemberToken(null);ui('roomLinkState',m('connection.connecting'));clearTimeout(reconnectTimer);$('retry').hidden=true;ws=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host+'/ws?room='+encodeURIComponent(roomCode)+'&name='+encodeURIComponent(nickname));ws.onmessage=event=>{if(ws!==event.currentTarget)return;const message=JSON.parse(event.data);if(message.type==='hello'){renderMemory(message.memories||[]);myId=message.id;setMemberToken(message.member_token);$('chatMessages').replaceChildren();for(const row of message.chat||[])showChat(row)}else if(message.type==='state'){if(message.memory)renderMemory([message.memory],true);apply(message)}else if(message.type==='danmaku')receiveDanmaku(message);else if(message.type==='chat')showChat(message.message);else if(message.type==='signal')receiveVoiceSignal(message);else if(message.type==='error')status(L.error({code:message.code,message:message.error}),true)};ws.onopen=()=>{ui('roomLinkState',m('connection.connected'))};ws.onclose=()=>{setMemberToken(null);stopBoost(false);leaveVoice(false);if(loggingOut)return;ui('roomLinkState',m('connection.closed'));$('retry').hidden=false;reconnectTimer=setTimeout(connect,3000)};ws.onerror=()=>{ui('roomLinkState',m('connection.failed'))};}
 async function loadGalleryLibrary(){
  const response=await fetch('/api/library');
- if(response.status===401){$('galleryLibraryStatus').textContent='入房授权后可浏览私人片库；浏览展厅不会自动入房。';return}
- if(!response.ok)throw new Error('片库暂时无法读取，请刷新重试。');
+ if(response.status===401){ui('galleryLibraryStatus',m('gallery.private'));return}
+ if(!response.ok)throw L.failure('gallery.failed');
  const data=await response.json();$('galleryFiles').replaceChildren();
  for(const file of data.files){const row=document.createElement('li');row.textContent=displayName(file.name);$('galleryFiles').append(row)}
- $('galleryLibraryStatus').textContent=data.files.length?'已获授权 · 入房后可选择影片，浏览不会下载影片。':'片库还空着，入房后添加第一部影片吧。';
+ ui('galleryLibraryStatus',m(data.files.length?'gallery.available':'gallery.empty'));
 }
 async function enter(){await library();await conversions();clearInterval(conversionTimer);conversionTimer=setInterval(()=>conversions().catch(()=>{}),2000);$('gallery').hidden=true;$('app').hidden=false;$('logout').hidden=false;$('roomHeader').hidden=false;document.body.dataset.view='room';document.dispatchEvent(new Event('viewchange'));connect()}
 async function joinRoom(code){
- const button=$('login').querySelector('button[type=submit]');button.disabled=true;$('loginError').textContent='正在校验房间…';
+ const button=$('login').querySelector('button[type=submit]');button.disabled=true;ui('loginError',m('room.validating'));
  try{
   const result=await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({room:code})});
-  roomCode=result.room;localStorage.setItem('watchRoom',roomCode);$('roomCode').value=roomCode;history.replaceState(null,'','/?room='+encodeURIComponent(roomCode)+(['#advancedControls','#comfortSettings','#atmosphere','#together','#player'].includes(location.hash)?location.hash:''));await enter();
- }catch(e){$('loginError').textContent=e.message}finally{button.disabled=false}
+  roomCode=result.room;preferences.setItem('watchRoom',roomCode);$('roomCode').value=roomCode;history.replaceState(null,'','/?room='+encodeURIComponent(roomCode)+(['#advancedControls','#comfortSettings','#atmosphere','#together','#player'].includes(location.hash)?location.hash:''));await enter();
+ }catch(e){ui('loginError',L.error(e))}finally{button.disabled=false}
 }
 $('login').onsubmit=event=>{event.preventDefault();joinRoom($('entryRoomCode').value.trim().toUpperCase())};
 $('logout').onclick=async()=>{leaveVoice();clearNetworkPlayback();loggingOut=true;clearTimeout(reconnectTimer);clearInterval(conversionTimer);if(ws)ws.close();await api('/api/logout',{method:'POST'});location.assign('/')};
 $('claim').onclick=()=>send({type:'claim'});$('retry').onclick=()=>{if(ws)ws.onclose=null;ws?.close();connect()};
-$('start').onclick=()=>{if(!selected)return status('先由房主选择一个视频。');video.play().then(()=>status('开始观看 · 声音已开启')).catch(e=>status('无法播放：'+e.message+'。请检查文件编码。',true))};
+$('start').onclick=()=>{if(!selected)return status(m('player.hostFirst'));video.play().then(()=>status(m('player.started'))).catch(e=>status(m('player.failed',{error:L.error(e)}),true))};
 video.addEventListener('loadedmetadata',()=>{if(pendingSeek!==null){suppressUntil=Date.now()+500;video.currentTime=pendingSeek;pendingSeek=null}});
-video.addEventListener('play',control);video.addEventListener('pause',control);video.addEventListener('seeked',control);video.addEventListener('ended',control);video.addEventListener('error',()=>status('当前浏览器无法解码该影片。原画 H.265 需要系统支持，请尝试更新 Safari / Chrome 或选择兼容版本。',true));
+video.addEventListener('play',control);video.addEventListener('pause',control);video.addEventListener('seeked',control);video.addEventListener('ended',control);video.addEventListener('error',()=>status(m(selected?.startsWith('net:')?'network.loadFailed':'player.decodeFailed'),true));
 setInterval(()=>{if(isHost()&&selected&&video.readyState>=1&&Date.now()>suppressUntil)control();else send({type:'ping'})},2000);
 $('upload').onclick=async()=>{
- const file=$('file').files[0];if(!file)return $('uploadStatus').textContent='请先选择视频。';
+ const file=$('file').files[0];if(!file)return ui('uploadStatus',m('upload.chooseFirst'));
  let session=null,failed=false,completed=0,next=0;const running=new Map(),requests=new Set(),started=performance.now();
  $('upload').disabled=true;$('file').disabled=true;$('progress').hidden=false;$('progress').value=0;
- const progress=()=>{const bytes=completed+[...running.values()].reduce((a,b)=>a+b,0),seconds=Math.max(.1,(performance.now()-started)/1000);$('progress').value=Math.min(99.9,bytes/file.size*100);$('uploadStatus').textContent='并行上传 '+(bytes/file.size*100).toFixed(1)+'% · '+(bytes/seconds/1024**2).toFixed(1)+' MiB/s';};
+ const progress=()=>{const bytes=completed+[...running.values()].reduce((a,b)=>a+b,0),seconds=Math.max(.1,(performance.now()-started)/1000);$('progress').value=Math.min(99.9,bytes/file.size*100);ui('uploadStatus',m('upload.progress',{percent:(bytes/file.size*100).toFixed(1),speed:(bytes/seconds/1024**2).toFixed(1)}));};
  try{
-  if(!crypto.subtle)throw new Error('请使用 HTTPS 网页上传，以启用文件完整性校验。');
-  $('uploadStatus').textContent='正在准备并行上传…';
+  if(!crypto.subtle)throw L.failure('upload.https');
+  ui('uploadStatus',m('upload.preparing'));
   session=await api('/api/uploads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:file.name,size:file.size})});
   const meta=session;
   const put=(index,blob,digest)=>new Promise((resolve,reject)=>{
-   if(failed)return reject(new Error('上传已中止'));
+   if(failed)return reject(L.failure('upload.aborted'));
    const xhr=new XMLHttpRequest();requests.add(xhr);xhr.open('PUT','/api/uploads/'+meta.id+'/'+index);xhr.setRequestHeader('X-Chunk-SHA256',digest);xhr.timeout=180000;
    const finish=(error)=>{requests.delete(xhr);if(error){running.delete(index);reject(error)}else resolve()};
    xhr.upload.onprogress=e=>{running.set(index,e.loaded);progress()};
-   xhr.onload=()=>finish(xhr.status>=200&&xhr.status<300?null:new Error(xhr.responseText||'分片上传失败'));
-   xhr.onerror=()=>finish(new Error('分片网络中断'));xhr.ontimeout=()=>finish(new Error('分片上传超时'));xhr.onabort=()=>finish(new Error('上传已中止'));xhr.send(blob);
+   xhr.onload=()=>finish(xhr.status>=200&&xhr.status<300?null:Object.assign(new Error(xhr.responseText||t('upload.chunkFailed')),{code:xhr.getResponseHeader('X-Cinema-Error')}));
+   xhr.onerror=()=>finish(L.failure('upload.disconnected'));xhr.ontimeout=()=>finish(L.failure('upload.timeout'));xhr.onabort=()=>finish(L.failure('upload.aborted'));xhr.send(blob);
   });
   const worker=async()=>{
    while(!failed){
@@ -526,11 +575,11 @@ $('upload').onclick=async()=>{
    }
   };
   await Promise.all(Array.from({length:Math.min(4,meta.parallelism,meta.chunk_count)},()=>worker().catch(e=>{failed=true;for(const xhr of requests)xhr.abort();throw e})));
-  $('uploadStatus').textContent='分片已上传，正在校验并加入片库…';
-  const response=await fetch('/api/uploads/'+meta.id+'/complete',{method:'POST'});if(!response.ok)throw new Error(await response.text());await response.json();session=null;
-  $('progress').value=100;$('file').value='';$('uploadStatus').textContent=response.status===202?'上传完成，已加入处理队列，完成后自动显示在片库。':'并行上传完成，在片库选片即可。';
-  library().catch(e=>status(e.message,true));conversions().catch(()=>{});
- }catch(e){failed=true;for(const xhr of requests)xhr.abort();$('uploadStatus').textContent='上传失败：'+e.message;}
+  ui('uploadStatus',m('upload.verifying'));
+  const response=await fetch('/api/uploads/'+meta.id+'/complete',{method:'POST'});if(!response.ok)throw await L.responseError(response);await response.json();session=null;
+  $('progress').value=100;$('file').value='';ui('uploadStatus',m(response.status===202?'upload.queued':'upload.done'));
+  library().catch(e=>status(L.error(e),true));conversions().catch(()=>{});
+ }catch(e){failed=true;for(const xhr of requests)xhr.abort();ui('uploadStatus',m('upload.failed',{error:L.error(e)}));}
  finally{
   if(session)await api('/api/uploads/'+session.id,{method:'DELETE'}).catch(()=>{});
   $('upload').disabled=false;$('file').disabled=false;$('progress').hidden=true;
@@ -540,16 +589,16 @@ async function conversions(){
  const data=await api('/api/conversions');
  const pending=data.jobs.filter(job=>['queued','running','failed'].includes(job.status));
  $('conversionPanel').hidden=!pending.length;
- const labels={queued:'等待处理',running:'处理中',failed:'处理失败'};
+ const labels={queued:'conversion.queued',running:'conversion.running',failed:'conversion.failed'};
  $('conversions').replaceChildren();let refresh=false;
  for(const job of data.jobs)if(job.status==='done'&&!completedJobs.has(job.id)){completedJobs.add(job.id);refresh=true}
  for(const job of pending){
   const row=document.createElement('div');row.style.cssText='margin:12px 0;overflow-wrap:anywhere';
   const title=document.createElement('div');title.textContent=job.name;row.append(title);
-  const detail=document.createElement('small');detail.textContent=labels[job.status]||job.status;row.append(detail);
+  const detail=document.createElement('small');L.text(detail,labels[job.status]?m(labels[job.status]):job.status);row.append(detail);
   if(job.status==='running'){const bar=document.createElement('progress');bar.max=100;bar.value=job.progress;row.append(bar);const percent=document.createElement('small');percent.textContent=job.progress+'%';row.append(percent)}
-  if(job.error){const error=document.createElement('div');error.className='error';error.textContent=job.error;row.append(error)}
-  if(['queued','running','failed'].includes(job.status)){const button=document.createElement('button');button.style.cssText='display:block;font-size:12px;padding:6px 9px;margin-top:6px';button.textContent=job.status==='failed'?'清理源文件':'取消处理';button.onclick=async()=>{if(!confirm('取消处理并清理服务器上的这份源文件？电脑上的原件不会被删除。'))return;try{await api('/api/conversions/'+job.id+'/cancel',{method:'POST'});button.disabled=true;await conversions()}catch(e){status(e.message,true)}};row.append(button)}
+  if(job.error){const error=document.createElement('div');error.className='error';L.text(error,L.error({code:job.error_code,message:job.error}));row.append(error)}
+  if(['queued','running','failed'].includes(job.status)){const button=document.createElement('button');button.style.cssText='display:block;font-size:12px;padding:6px 9px;margin-top:6px';L.text(button,m(job.status==='failed'?'conversion.cleanup':'conversion.cancel'));button.onclick=async()=>{if(!confirm(t('conversion.confirm')))return;try{await api('/api/conversions/'+job.id+'/cancel',{method:'POST'});button.disabled=true;await conversions()}catch(e){status(L.error(e),true)}};row.append(button)}
   $('conversions').append(row);
  }
  if(refresh)await library();
@@ -558,7 +607,7 @@ async function conversions(){
 let holdActive=false,holdStarted=0,holdTimer=null,holdRenew=null,pressPoint=null,suppressHoldClickUntil=0;
 function updateInteractiveState(){$('boostBadge').hidden=!(holdActive||state?.boosting)}
 function stopBoost(restore=true){clearTimeout(holdTimer);holdTimer=null;pressPoint=null;clearInterval(holdRenew);holdRenew=null;const active=holdActive;holdActive=false;if(active){if(restore&&isHost()&&selected)send({type:'boost',file:selected,active:false});video.playbackRate=state?.base_rate||1;suppressHoldClickUntil=Date.now()+500}$('boostBadge').hidden=!(state?.boosting&&!active)}
-function startBoost(){clearTimeout(holdTimer);holdTimer=null;if(holdActive||art.isLock)return;if(!isHost())return status('同步快进由房主控制；需要时先点“由我控制进度”。');if(!selected||video.paused)return status('先开始播放，再长按同步快进。');holdActive=true;holdStarted=Date.now();video.playbackRate=2;$('boostBadge').hidden=false;send({type:'boost',file:selected,active:true});holdRenew=setInterval(()=>{if(art.isLock||!isHost()||video.paused)stopBoost();else send({type:'boost',file:selected,active:true})},1000)}
+function startBoost(){clearTimeout(holdTimer);holdTimer=null;if(holdActive||art.isLock)return;if(!isHost())return status(m('player.boostHost'));if(!selected||video.paused)return status(m('player.boostPlayFirst'));holdActive=true;holdStarted=Date.now();video.playbackRate=2;$('boostBadge').hidden=false;send({type:'boost',file:selected,active:true});holdRenew=setInterval(()=>{if(art.isLock||!isHost()||video.paused)stopBoost();else send({type:'boost',file:selected,active:true})},1000)}
 videoStage.addEventListener('pointerdown',e=>{if(art.isLock)return;if(e.target.closest('button,input,select,a,summary,.art-controls,.art-settings,.art-contextmenus,.art-layer-lock'))return;if(e.button!==0||e.isPrimary===false)return;const r=video.getBoundingClientRect();if(e.clientY>r.bottom-60)return;video.setPointerCapture(e.pointerId);pressPoint={x:e.clientX,y:e.clientY};holdTimer=setTimeout(startBoost,450)});
 videoStage.addEventListener('pointermove',e=>{if(pressPoint&&Math.hypot(e.clientX-pressPoint.x,e.clientY-pressPoint.y)>14)stopBoost()});
 video.addEventListener('lostpointercapture',()=>stopBoost());document.addEventListener('pointerup',()=>stopBoost());document.addEventListener('pointercancel',()=>stopBoost());
@@ -578,22 +627,22 @@ function bindPlayerKeyboard(stage){
   if(!ready()||!isHost()||!Number.isFinite(video.duration))return false;
   const target=Math.max(0,Math.min(video.duration,604800,video.currentTime+seconds));
   video.currentTime=target;send({type:'control',file:selected,position:target,paused:video.paused});
-  hint((seconds>0?'前进':'后退')+' 5 秒');return seconds>0?target<video.duration:target>0;
+  hint(t(seconds>0?'player.forward':'player.backward'));return seconds>0?target<video.duration:target>0;
  }
- stage.tabIndex=0;stage.setAttribute('role','region');stage.setAttribute('aria-label','视频播放区域，方向键控制进度和音量');
+ stage.tabIndex=0;stage.setAttribute('role','region');L.text(stage,m('player.region'),'aria-label');
  stage.addEventListener('pointerdown',event=>{cancel();if(!event.target.closest(interactive))stage.focus({preventScroll:true})},true);
  stage.addEventListener('keydown',event=>{
   if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||event.isComposing||event.target.closest(interactive)||art.isLock)return;
   if(!focused())return;event.preventDefault();
   if(event.key==='ArrowUp'||event.key==='ArrowDown'){
-   const volume=Math.max(0,Math.min(1,Math.round(((video.muted?0:video.volume)+(event.key==='ArrowUp'?.05:-.05))*100)/100));video.volume=volume;video.muted=volume===0;hint('音量 '+Math.round(volume*100)+'%');return;
+   const volume=Math.max(0,Math.min(1,Math.round(((video.muted?0:video.volume)+(event.key==='ArrowUp'?.05:-.05))*100)/100));video.volume=volume;video.muted=volume===0;hint(t('player.volume',{volume:Math.round(volume*100)}));return;
   }
   if(event.repeat||press?.key===event.key)return;
-  cancel();if(!ready())return hint('请先连接房间并加载影片');if(!isHost())return hint('进度和同步倍速由房主控制');
+  cancel();if(!ready())return hint(t('player.connectFirst'));if(!isHost())return hint(t('player.progressHost'));
   stopBoost();const current={key:event.key,file:selected,long:false,boost:false,timer:null,repeat:null};press=current;
   current.timer=setTimeout(()=>{
    if(press!==current||!focused()||!ready()||!isHost()||selected!==current.file)return cancel();current.long=true;
-   if(current.key==='ArrowRight'){if(video.paused)return hint('播放时长按右键可同步 2×');startBoost();current.boost=holdActive;}
+   if(current.key==='ArrowRight'){if(video.paused)return hint(t('player.holdRight'));startBoost();current.boost=holdActive;}
    else if(seek(-5))current.repeat=setInterval(()=>{if(press!==current||!focused()||!ready()||!isHost()||selected!==current.file)return cancel();if(!seek(-5)){clearInterval(current.repeat);current.repeat=null}},300);
   },450);
  });
@@ -611,15 +660,15 @@ bindPlayerKeyboard(videoStage);
 let danmakuEngine=null,danmakuRows=new Map(),danmakuFile=null,danmakuGeneration=0,pendingDanmakuText=null;
 function clearDanmaku(){danmakuGeneration++;danmakuEngine?.destroy();danmakuEngine=null;danmakuRows=new Map();danmakuFile=null;$('danmakuLayer').replaceChildren()}
 const danmakuComment=row=>({text:row.text,time:row.time,mode:'rtl',style:{fontSize:'22px',fontWeight:'600',color:'#fff',textShadow:'-1px -1px 2px #000,1px 1px 2px #000'}});
-async function loadDanmaku(name){clearDanmaku();danmakuFile=name;const generation=danmakuGeneration;try{const [{default:Danmaku},data]=await Promise.all([import('/assets/danmaku-2.0.10.dom.js'),api('/api/danmaku/'+encodeURIComponent(name)+'?room='+encodeURIComponent(roomCode))]);if(generation!==danmakuGeneration||selected!==name)return;for(const row of data.comments)if(!danmakuRows.has(row.id))danmakuRows.set(row.id,row);danmakuEngine=new Danmaku({container:$('danmakuLayer'),media:video,comments:[...danmakuRows.values()].map(danmakuComment),speed:130});if(!$('danmakuVisible').checked)danmakuEngine.hide()}catch(e){if(generation===danmakuGeneration)status('弹幕加载失败：'+e.message,true)}}
-function receiveDanmaku(message){if(message.file!==selected||message.file!==danmakuFile)return;const row=message.comment;if(!danmakuRows.has(row.id)){danmakuRows.set(row.id,row);if(danmakuEngine){const live=danmakuComment(row);live.time=Math.max(row.time,video.currentTime+0.01);danmakuEngine.emit(live)}}if(message.sender===myId){if($('danmakuText').value.trim()===pendingDanmakuText)$('danmakuText').value='';pendingDanmakuText=null;if(video.paused)status('弹幕已发送，继续播放时显示。')}}
-$('danmakuVisible').checked=localStorage.getItem('watchDanmakuVisible')!=='0';$('danmakuVisible').onchange=()=>{localStorage.setItem('watchDanmakuVisible',$('danmakuVisible').checked?'1':'0');if($('danmakuVisible').checked)danmakuEngine?.show();else danmakuEngine?.hide()};
-$('danmakuForm').onsubmit=e=>{e.preventDefault();const text=$('danmakuText').value.trim();if(!selected||!ws||ws.readyState!==WebSocket.OPEN)return status('请先连接并选择影片。',true);if(!text)return;pendingDanmakuText=text;send({type:'danmaku',file:selected,text})};
+async function loadDanmaku(name){clearDanmaku();danmakuFile=name;const generation=danmakuGeneration;try{const [{default:Danmaku},data]=await Promise.all([import('/assets/danmaku-2.0.10.dom.js'),api('/api/danmaku/'+encodeURIComponent(name)+'?room='+encodeURIComponent(roomCode))]);if(generation!==danmakuGeneration||selected!==name)return;for(const row of data.comments)if(!danmakuRows.has(row.id))danmakuRows.set(row.id,row);danmakuEngine=new Danmaku({container:$('danmakuLayer'),media:video,comments:[...danmakuRows.values()].map(danmakuComment),speed:130});if(!$('danmakuVisible').checked)danmakuEngine.hide()}catch(e){if(generation===danmakuGeneration)status(m('danmaku.failed',{error:L.error(e)}),true)}}
+function receiveDanmaku(message){if(message.file!==selected||message.file!==danmakuFile)return;const row=message.comment;if(!danmakuRows.has(row.id)){danmakuRows.set(row.id,row);if(danmakuEngine){const live=danmakuComment(row);live.time=Math.max(row.time,video.currentTime+0.01);danmakuEngine.emit(live)}}if(message.sender===myId){if($('danmakuText').value.trim()===pendingDanmakuText)$('danmakuText').value='';pendingDanmakuText=null;if(video.paused)status(m('danmaku.sent'))}}
+$('danmakuVisible').checked=preferences.getItem('watchDanmakuVisible')!=='0';$('danmakuVisible').onchange=()=>{preferences.setItem('watchDanmakuVisible',$('danmakuVisible').checked?'1':'0');if($('danmakuVisible').checked)danmakuEngine?.show();else danmakuEngine?.hide()};
+$('danmakuForm').onsubmit=e=>{e.preventDefault();const text=$('danmakuText').value.trim();if(!selected||!ws||ws.readyState!==WebSocket.OPEN)return status(m('player.connectChoose'),true);if(!text)return;pendingDanmakuText=text;send({type:'danmaku',file:selected,text})};
 const interactiveResize=new ResizeObserver(()=>danmakuEngine?.resize());interactiveResize.observe($('danmakuLayer'));
 
 
 if(invitedRoom!==null)joinRoom(invitedRoom);
-else loadGalleryLibrary().catch(error=>{$('galleryLibraryStatus').textContent=error.message});
+else loadGalleryLibrary().catch(error=>{ui('galleryLibraryStatus',L.error(error))});
 </script>
 <script data-gallery-cover>
 (()=>{
@@ -630,13 +679,13 @@ else loadGalleryLibrary().catch(error=>{$('galleryLibraryStatus').textContent=er
   const cover=catalog?.covers.find(item=>item.id===(preview||catalog.current));if(!cover)return;
   gallery.dataset.cover=cover.builtin?cover.id:'custom';image.alt=cover.alt;image.width=cover.width;image.height=cover.height;
   source.srcset=cover.mobile;image.src=cover.desktop;
-  $('coverCredit').textContent=cover.credit;$('coverStatus').textContent=preview?'仅本页预览；刷新恢复全站封面。':'当前全站封面：'+cover.name;
+  $('coverCredit').textContent=cover.credit;ui('coverStatus',preview?m('cover.preview'):m('cover.current',{name:cover.builtin?m('cover.'+cover.id):cover.name}));
   for(const button of document.querySelectorAll('[data-cover-choice]'))button.setAttribute('aria-pressed',String(button.dataset.coverChoice===cover.id));
  }
- image.onerror=()=>{$('coverStatus').textContent='封面暂不可用，仍可输入房间码入房。'};
+ image.onerror=()=>ui('coverStatus',m('cover.failed'));
  for(const button of document.querySelectorAll('[data-cover-choice]'))button.onclick=()=>{preview=button.dataset.coverChoice;show()};
  document.addEventListener('viewchange',show);
- api('/api/covers').then(data=>{catalog=data;show()}).catch(()=>{$('coverStatus').textContent='封面暂不可用，仍可输入房间码入房。'});
+ api('/api/covers').then(data=>{catalog=data;show()}).catch(()=>ui('coverStatus',m('cover.failed')));
 })();
 </script>
 <script data-companion-controls>
@@ -652,12 +701,12 @@ else loadGalleryLibrary().catch(error=>{$('galleryLibraryStatus').textContent=er
  $('resetPicture').onclick=()=>{for(const id of ['pictureBrightness','pictureContrast']){$(id).value=100;$(id).dispatchEvent(new Event('input'))}$('textSubtitleSize').value='100';$('textSubtitleSize').dispatchEvent(new Event('change'))};
  $('micGain').oninput=()=>{const value=Number($('micGain').value);voiceMonitor.setMic(value/100);$('micGainValue').textContent=value+'%'};
  $('voiceSensitivity').oninput=()=>{const value=Number($('voiceSensitivity').value);voiceMonitor.threshold=.001+(100-value)/100*.07;$('voiceSensitivityValue').textContent=value};$('voiceSensitivity').dispatchEvent(new Event('input'));
- function clearAB(text='尚未设置片段循环'){abLoop.a=null;abLoop.b=null;abLoop.file=null;$('abStatus').textContent=text;}
+ function clearAB(text=m('settings.abEmpty')){abLoop.a=null;abLoop.b=null;abLoop.file=null;ui('abStatus',text);}
  const stamp=n=>Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');
- $('markA').onclick=()=>{if(!isHost()||!selected)return $('abStatus').textContent='请让房主选择影片并设置片段';abLoop.a=media.currentTime;abLoop.b=null;abLoop.file=selected;$('abStatus').textContent='A '+stamp(abLoop.a)+' · 请在后方标记 B'};
- $('markB').onclick=()=>{if(!isHost()||!selected||abLoop.a===null||abLoop.file!==selected)return $('abStatus').textContent='请先由房主标记 A';if(media.currentTime<abLoop.a+.5)return $('abStatus').textContent='B 至少应比 A 晚 0.5 秒';abLoop.b=media.currentTime;$('abStatus').textContent='循环 '+stamp(abLoop.a)+' → '+stamp(abLoop.b)+' · 房间同步'};
- $('clearAB').onclick=()=>clearAB();media.addEventListener('timeupdate',()=>{if(abLoop.a===null)return;if(abLoop.file!==selected||!isHost())return clearAB('影片或房主已变更，循环已取消');if(abLoop.b!==null&&!media.paused&&media.currentTime>=abLoop.b){media.currentTime=abLoop.a;control()}});media.addEventListener('emptied',()=>clearAB());
- $('captureFrame').onclick=async()=>{if(!media.videoWidth||!selected)return status('请先选择并加载影片');try{const canvas=document.createElement('canvas');canvas.width=media.videoWidth;canvas.height=media.videoHeight;const g=canvas.getContext('2d');g.filter=getComputedStyle(media).filter;g.drawImage(media,0,0,canvas.width,canvas.height);g.filter='none';const pgs=document.querySelector('.pgs-canvas');if(pgs)g.drawImage(pgs,0,0,canvas.width,canvas.height);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw new Error('无法生成图片');const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='一起看-'+Math.floor(media.currentTime)+'s.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);status('已生成当前画面截图 · 不含弹幕和原生文字字幕')}catch(e){status('截图失败：'+e.message,true)}};
+ $('markA').onclick=()=>{if(!isHost()||!selected)return ui('abStatus',m('settings.abHost'));abLoop.a=media.currentTime;abLoop.b=null;abLoop.file=selected;ui('abStatus',m('settings.abA',{time:stamp(abLoop.a)}))};
+ $('markB').onclick=()=>{if(!isHost()||!selected||abLoop.a===null||abLoop.file!==selected)return ui('abStatus',m('settings.abFirst'));if(media.currentTime<abLoop.a+.5)return ui('abStatus',m('settings.abLater'));abLoop.b=media.currentTime;ui('abStatus',m('settings.abLoop',{a:stamp(abLoop.a),b:stamp(abLoop.b)}))};
+ $('clearAB').onclick=()=>clearAB();media.addEventListener('timeupdate',()=>{if(abLoop.a===null)return;if(abLoop.file!==selected||!isHost())return clearAB(m('settings.abCancelled'));if(abLoop.b!==null&&!media.paused&&media.currentTime>=abLoop.b){media.currentTime=abLoop.a;control()}});media.addEventListener('emptied',()=>clearAB());
+ $('captureFrame').onclick=async()=>{if(!media.videoWidth||!selected)return status(m('settings.loadFilm'));try{const canvas=document.createElement('canvas');canvas.width=media.videoWidth;canvas.height=media.videoHeight;const g=canvas.getContext('2d');g.filter=getComputedStyle(media).filter;g.drawImage(media,0,0,canvas.width,canvas.height);g.filter='none';const pgs=document.querySelector('.pgs-canvas');if(pgs)g.drawImage(pgs,0,0,canvas.width,canvas.height);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw L.failure('settings.imageFailed');const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='一起看-'+Math.floor(media.currentTime)+'s.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);status(m('settings.captured'))}catch(e){status(m('settings.captureFailed',{error:L.error(e)}),true)}};
 })();
 
 </script></body></html>

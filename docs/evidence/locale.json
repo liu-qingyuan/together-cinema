@@ -1,0 +1,22 @@
+{
+  "fixture": "temporary generated 90s H.264/AAC film and original VTT",
+  "independent_contexts": 2,
+  "host_language": "en",
+  "guest_language": "zh-CN",
+  "media_reloads": 0,
+  "socket_reconnects": 0,
+  "language_triggered_messages": 0,
+  "playback_drift_seconds": 0.052,
+  "original_title_nickname_chat_danmaku_subtitle": "unchanged",
+  "player_menus_dates_accessible_names": "passed",
+  "refresh_preference": "passed",
+  "browser_matching_fallback": "passed",
+  "blocked_storage": "passed",
+  "stable_network_error": "passed",
+  "browser_errors": [],
+  "not_verified": [
+    "production deployment",
+    "real mobile devices",
+    "external media providers"
+  ]
+}

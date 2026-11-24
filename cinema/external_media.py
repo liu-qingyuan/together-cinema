@@ -223,7 +223,7 @@ class ExternalMedia:
   finally:self.resolve_busy=False
  def describe(self,source_id):
   source=self.sources.get(source_id)
-  if not source:raise web.HTTPGone(text='网络片源已过期，请重新解析')
+  if not source:raise web.HTTPGone(text='网络片源已过期，请重新解析',headers={'X-Cinema-Error':'source_expired'})
   source.touched=time.monotonic();info=source.info
   path=f'/api/network/{source_id}/play'
   return {'file':'net:'+source_id,'title':str(info.get('title') or '网络视频')[:180],'height':info.get('height'),'duration':info.get('duration'),'kind':info['kind'],'mode':source.mode,'url':info['url'] if source.mode=='direct' and info['kind']=='mp4' else path}
@@ -278,10 +278,10 @@ class ExternalMedia:
   finally:response.release()
  async def play(self,request):
   source=self.sources.get(request.match_info['source_id'])
-  if not source:raise web.HTTPGone(text='片源已释放，请重新解析')
-  if self.sem.locked():raise web.HTTPTooManyRequests(text='中转并发达到上限')
+  if not source:raise web.HTTPGone(text='片源已释放，请重新解析',headers={'X-Cinema-Error':'source_expired'})
+  if self.sem.locked():raise web.HTTPTooManyRequests(text='中转并发达到上限',headers={'X-Cinema-Error':'relay_busy'})
   if time.monotonic()-self.period>86400:self.bytes_sent=0;self.period=time.monotonic()
-  if self.bytes_sent>=self.daily_limit:raise web.HTTPTooManyRequests(text='中转24小时流量额度已用完')
+  if self.bytes_sent>=self.daily_limit:raise web.HTTPTooManyRequests(text='中转24小时流量额度已用完',headers={'X-Cinema-Error':'relay_quota'})
   source.touched=time.monotonic();source.was_active=True;url=source.info['url'];encoded=request.query.get('u')
   if encoded:
    try:url=base64.urlsafe_b64decode(encoded+'='*((-len(encoded))%4)).decode()
@@ -328,5 +328,5 @@ class ExternalMedia:
     finally:
      if response:response.release()
      self.streams-=1
-  except (aiohttp.ClientError,asyncio.TimeoutError,ValueError) as e:raise web.HTTPBadGateway(text='网络片源错误：'+str(e)[:400])
+  except (aiohttp.ClientError,asyncio.TimeoutError,ValueError) as e:raise web.HTTPBadGateway(text='网络片源错误：'+str(e)[:400],headers={'X-Cinema-Error':'network_source_failed'})
   finally:source.tasks.discard(task)

@@ -4,7 +4,7 @@ const renderMemory = (() => {
   const windowEl=section.querySelector('.memory-window'), list=document.getElementById('memoryList');
   const cues=stage.querySelectorAll('.film-cue');
   const samples=['你的名字。','天气之子','千与千寻','海街日记','心灵奇旅','龙猫','星际穿越','小森林','寻梦环游记','侧耳倾听'].map((title,i)=>({title,exampleDate:'2025.08.'+String(29-i*3).padStart(2,'0')}));
-  const dates=new Intl.DateTimeFormat('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});
+  const locale=CinemaLocale, message=locale.message;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
   let history=[], frame=0, visible=false, current=-1;
   function paint(){
@@ -49,13 +49,14 @@ const renderMemory = (() => {
     history=append?[...rows.filter(r=>!history.some(h=>h.id===r.id)),...history].slice(0,60):rows.slice(0,60);
     const demo=!history.length, items=demo?samples:history;
     section.dataset.mode=demo?'sample':'history';section.style.setProperty('--steps',items.length-1);
-    document.getElementById('memoryMode').textContent=demo?'片名示例 · 非观看记录':'本房间 · 真实放映记录';
-    document.getElementById('memoryCaption').textContent=demo?'这里的片名和日期仅作示例。播放第一部影片后，就换成你们自己的放映记录。':'把一起看过的日子，一场一场留下来。';
-    document.getElementById('memoryScrollHint').textContent=items.length>1?'滚动页面 · 翻阅片名':'继续下滑 ↓';
+    locale.text(document.getElementById('memoryMode'),message(demo?'memory.sample':'memory.history'));
+    locale.text(document.getElementById('memoryCaption'),message(demo?'memory.sampleHint':'memory.historyHint'));
+    locale.text(document.getElementById('memoryScrollHint'),message(items.length>1?'memory.scroll':'memory.continue'));
     list.replaceChildren(...items.map(r=>{
       const li=document.createElement('li'),label=document.createElement(demo?'small':'time'),name=document.createElement('b');
-      if(demo)label.textContent=r.exampleDate;
-      else{const date=new Date(r.started*1000);label.dateTime=date.toISOString();label.textContent=dates.format(date)}
+      const date=demo?new Date(r.exampleDate.replaceAll('.','-')+'T12:00:00'):new Date(r.started*1000);
+      if(!demo)label.dateTime=date.toISOString();
+      locale.text(label,locale.date(date.getTime(),{year:'numeric',month:'2-digit',day:'2-digit'}));
       name.textContent=r.title;li.append(name,label);return li;
     }));current=-1;paint();requestPaint();
   }

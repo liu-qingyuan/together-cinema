@@ -1,6 +1,7 @@
 /* Personal room appearance: no room messages, player commands, or shared writes. */
 (() => {
   const byId = id => document.getElementById(id);
+  const locale=CinemaLocale, message=locale.message, ui=(id,value)=>locale.text(byId(id),value);
   const body = document.body, world = byId('atmosphere'), media = byId('video');
   const art = world.querySelector('.atlas-art'), plate = world.querySelector('.atlas-plate');
   const grid = world.querySelector('.scene-grid'), controls = [], works = new Map();
@@ -20,7 +21,7 @@
         button.type='button'; button.className='scene-choice'; button.dataset.sceneChoice=work.key; button.setAttribute('aria-pressed','false');
         index.className='atlas-index';index.textContent=String(i+1).padStart(2,'0');
         thumb.src=artUrl(work,'thumb');thumb.alt='';thumb.loading='lazy';thumb.width=72;thumb.height=43;thumb.style.objectPosition='center '+(work.focus*100)+'%';
-        label.className='atlas-label';name.textContent=work.title;category.textContent=work.genre+' / '+index.textContent;label.append(name,category);
+        label.className='atlas-label';locale.text(name,message('atlas.scene.'+work.key));locale.text(category,message('atlas.category',{genre:message('atlas.genre.'+work.key),index:index.textContent}));label.append(name,category);
         dot.className='atlas-dot';dot.setAttribute('aria-hidden','true');
         button.append(index,thumb,label,dot);button.addEventListener('click',()=>choose(button,true));
         works.set(work.key,work);controls.push(button);grid.append(button);
@@ -93,20 +94,20 @@
     const url = artUrl(work, compact ? 'compact' : 'wide');
     const img = new Image(); img.src = url;
     try { await img.decode(); } catch {
-      if (version === generation) byId('sceneStatus').textContent = '图片未能加载，已保留当前风景。请重试。';
+      if (version === generation) ui('sceneStatus',message('atlas.imageFailed'));
       return;
     }
     if (version !== generation || body.dataset.view !== 'room') return;
-    const name = button.querySelector('b').textContent;
+    const name = message('atlas.scene.'+key);
     body.dataset.scene = key;plate.toggleAttribute('data-portrait',work.portrait);
     body.style.setProperty('--atlas-focus', (work.focus*100)+'%');
     document.documentElement.style.setProperty('--scene-image', 'url("' + url + '")');
     for (const c of controls) c.setAttribute('aria-pressed', String(c === button));
-    byId('atlasName').textContent = name; byId('atlasEnglish').textContent = work.english;
+    ui('atlasName',name); byId('atlasEnglish').textContent = work.english;
     const credit=byId('atlasCredit');credit.href=work.source;
-    credit.textContent=work.author+' · 原作 ↗';
+    locale.text(credit,message('atlas.original',{author:work.author}));
     byId('atlasNumber').textContent = button.querySelector('.atlas-index').textContent + ' / ' + String(controls.length).padStart(2,'0');
-    byId('sceneStatus').textContent = '当前 · ' + name + '（仅自己可见）';
+    ui('sceneStatus',message('atlas.current',{name}));
     if (active !== key && reveal && canMove() && typeof art.animate === 'function') {
       transition?.cancel();
       transition = art.animate([{clipPath:'inset(0 0 0 35%)',opacity:.32},{clipPath:'inset(0 0 0 0%)',opacity:1}],{duration:480,easing:'cubic-bezier(.16,1,.3,1)'});
@@ -118,7 +119,7 @@
     if (body.dataset.view !== 'room') { bookOpen = false; generation++; return; }
     if (bookOpen) return;
     bookOpen = true;
-    try { await loadCatalog(); } catch { bookOpen=false;byId('sceneStatus').textContent='壁纸目录未能加载，请刷新重试。';return; }
+    try { await loadCatalog(); } catch { bookOpen=false;ui('sceneStatus',message('atlas.catalogFailed'));return; }
     if (body.dataset.view !== 'room') return;
     choose(controls.find(c => c.dataset.sceneChoice === read('watchScene','anime')) || controls[0], false);
     const entry = {'#together':byId('together'), '#player': byId('player'), '#atmosphere': world, '#advancedControls': byId('advancedControls'), '#comfortSettings': byId('comfortSettings')}[location.hash];
