@@ -64,6 +64,17 @@ class Room:
         self.updated = now
         self.playback_rate, self.boost_until = self.base_rate, 0.0
 
+    def invalidate_source(self, source):
+        """Stop only if source is still selected; keep the chosen base rate and room identity.
+
+        The caller owns source cleanup and broadcasting. Repeated or stale notices are no-ops.
+        """
+        if not source or self.file != source:
+            return False
+        self.reset_boost()
+        self.file, self.paused, self.position = None, True, 0.0
+        return True
+
     def set_boost(self, actor, active, file):
         if actor != self.host or not isinstance(active, bool) or file != self.file or not file:
             return False
@@ -371,12 +382,7 @@ def create_app(data_dir=None, password=None, secure=None):
         remove_subtitles(data_dir, name)
         comments.remove(name)
         for room in list(rooms.values()):
-            if room.file == name:
-                room.reset_boost()
-                room.file = None
-                room.paused = True
-                room.position = 0.0
-                room.updated = time.monotonic()
+            room.invalidate_source(name)
             room.library_version += 1
             await room.broadcast()
         return web.json_response({'ok': True, 'deleted': name})
@@ -690,8 +696,9 @@ def create_app(data_dir=None, password=None, secure=None):
                             active.add(room.file)
                 await network.sweep(active)
                 for room in list(rooms.values()):
-                    if room.file and room.file.startswith('net:') and room.file[4:] not in network.sources:
-                        room.file=None;room.paused=True;room.position=0
+                    source = room.file
+                    if (source and source.startswith('net:') and source[4:] not in network.sources
+                            and room.invalidate_source(source)):
                         await room.broadcast()
         task = asyncio.create_task(run())
         yield

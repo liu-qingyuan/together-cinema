@@ -1,6 +1,6 @@
 # 当前代码地图
 
-这是一份源码导航，不是部署迁移方案。产品运行代码仍在仓库根目录；测试和素材集中在 `tests/`，不再按测试层级细分。本次目录整理不改变播放规则。
+这是一份源码导航，不是部署迁移方案。产品运行代码仍在仓库根目录；测试和素材集中在 `tests/`，不再按测试层级细分。目录整理的历史基线见下方记录；当前播放规则由下列运行入口拥有。
 
 ## 怎么运行与验证
 
@@ -21,7 +21,7 @@
 
 | 职责 | 入口与规则归属 | 对应测试 |
 | --- | --- | --- |
-| 播放与房间同步 | [`index.html`](../index.html) 的 `control()` 发送操作，`connect()` 接收消息，`apply()` 应用快照；[`server.py`](../server.py) 的 `Room.update()` 校验房主操作，`snapshot()` 计算进度，`set_rate()`／`set_boost()` 管理基础倍速与临时加速。`create_app()` 内 `websocket()` 是 `/ws` 入口，负责成员、房主交接和广播。 | [`test_server.py`](../tests/test_server.py) 的 `RoomTests` 与 WebSocket 同步／交接；[`test_rooms.py`](../tests/test_rooms.py) 的房间隔离、倍速与清理；[`test_interactive.py`](../tests/test_interactive.py) 的加速、弹幕存储和交互协议。 |
+| 播放与房间同步 | [`index.html`](../index.html) 的 `control()` 发送操作，`connect()` 接收消息，`apply()` 应用快照；[`server.py`](../server.py) 的 `Room.update()` 校验房主操作，`snapshot()` 计算进度，`set_rate()`／`set_boost()` 管理基础倍速与临时加速。`invalidate_source()` 统一处理当前片源失效：清片、暂停、进度保持为零，退出临时加速并恢复已选基础倍速；其他片源或重复通知不改变播放。本地删除与网络回收只报告失效，仍各自拥有清理和广播。`create_app()` 内 `websocket()` 是 `/ws` 入口，负责成员、房主交接和广播。 | [`test_server.py`](../tests/test_server.py) 的 `RoomTests` 与 WebSocket 同步／交接；[`test_rooms.py`](../tests/test_rooms.py) 的房间隔离、倍速与清理；[`test_interactive.py`](../tests/test_interactive.py) 的加速、弹幕存储和交互协议；[`test_source_unavailable.py`](../tests/test_source_unavailable.py) 经双成员 WebSocket 验证两条失效路径、迟到／重复通知及跨房间隔离。 |
 | 共享片库 | [`server.py`](../server.py) 的 `files()`／`library()` 列出已发布影片，`stream()` 提供媒体，`publish_upload()` 决定直接入库还是排队，`delete_video()` 删除影片及关联字幕／弹幕并刷新片库。[`parallel_upload.py`](../parallel_upload.py) 的 `ParallelUploads` 拥有分片校验、组装、容量与到期清理；前端入口是 `index.html` 的 `library()` 和上传处理。片库全站共享，房间码不是媒体权限隔离。 | [`test_server.py`](../tests/test_server.py) 的上传、Range、删除和安全路径；[`test_parallel_upload.py`](../tests/test_parallel_upload.py) 的分片与清理；[`test_room_entry.py`](../tests/test_room_entry.py) 的入房授权与片库访问。 |
 | 转码与字幕 | [`conversion.py`](../conversion.py) 的 `enqueue()`／`work_once()` 管任务队列，`conversion_command()` 决定保留视频、转音轨或视频转码，`process_job()` 运行 FFmpeg 并发布完成品。[`subtitles.py`](../subtitles.py) 提取和列出字幕、定位原始轨道；`server.py` 的转换路由提供查询／取消。未完成输出不进入片库。 | [`test_mkv.py`](../tests/test_mkv.py)、[`test_avi.py`](../tests/test_avi.py) 实际启动根目录的转换子进程并检查输出；[`test_subtitles.py`](../tests/test_subtitles.py)、[`test_original_pgs.py`](../tests/test_original_pgs.py) 验证文字／图片字幕提取及私有 HTTP 读取。PGS 样本随测试保存在 [`fixtures/test.sup`](../tests/fixtures/test.sup)。 |
 | 网络片源 | `server.py` 的 `network_resolve()` 等 `/api/network/` 路由连接房间与 [`external_media.py`](../external_media.py) 的 `ExternalMedia`；后者拥有 URL 安全校验、来源存活／回收、中转和 `SharedFragments` 缓存。可选 [`extractor.py`](../extractor.py) 调用 [`browser_resolver.py`](../browser_resolver.py) 探测动态网页；前端通过 `setPlaybackSource()` 选择本地／网络播放方式。 | [`test_external_media.py`](../tests/test_external_media.py) 的来源、安全与 HTTP 生命周期；[`test_dynamic_media.py`](../tests/test_dynamic_media.py) 的动态解析／网关／子进程；[`test_shared_fragments.py`](../tests/test_shared_fragments.py) 的共享缓存、并发、预算与清理。 |

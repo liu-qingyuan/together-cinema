@@ -10,6 +10,7 @@
     "scripts/room_atlas_smoke.py",
     "assets/room-art/*.webp",
     "server.py",
+    "tests/test_source_unavailable.py",
     "covers.py",
     "tests/test_covers.py",
     "requirements.txt",
@@ -23,7 +24,7 @@
     "scripts/gallery_smoke.py",
     "scripts/gallery_visual_smoke.py"
   ],
-  "fingerprint": "sha256:ee7ebf41efe34ed60cdf4e6eb7e7e5d63cf9c705115a687aa598b9b349c8003a"
+  "fingerprint": "sha256:606a7f4adb97ff6c4b6ac373c2e9639015118e1b5e230c33a3963c2b4956d407"
 }
 ---
 
@@ -43,7 +44,7 @@
 
 封面不绑定影片或房间，不更改个人主题，不广播播放命令。自定义图旁排字，手机宽度在入房表单后完整显示；放映室不加载展厅图片。`scripts/covers_smoke.py` 在本地隔离 Compose 上以两独立 Chrome 进程和另一无会话访客验证上传、选用、失败与删除；播放生成的带字幕测试片时检查零媒体重载、字幕保留、进度同步和实际 WebRTC 音频传输继续。使用模拟测试麦克风，不代表异地 TURN／真机通话验收，证据见 `docs/cover-acceptance.md`。
 
-播放器、聊天、弹幕、语音及房间同步沿用原实现。`scripts/gallery_smoke.py` 在本地 Compose 实例上通过两个独立浏览器进程验证入口、授权隔离和生成短片的同步播放／暂停／跳转，并清理自有测试影片。`scripts/gallery_visual_smoke.py` 验证两种构图的资源选择、焦点和片库滚动，以及减少动态／透明度和基础静态 CSS 下的真实入房；截图与明确未验收项见 `docs/gallery-visual-acceptance.md`。
+播放器、聊天、弹幕、语音及房间同步沿用既有协议。当前本地影片被删除或网络片源被回收时，放映室统一清空选片、暂停、将进度归零且保持为零，退出临时加速并恢复已选基础倍速；迟到或重复的失效通知不停止后来选的影片。房主、成员和放映记录保留，其他房间观看不同影片不受影响；本地删除仍刷新共享片库。`tests/test_source_unavailable.py` 用临时本地文件和受控网络片源，经双成员 WebSocket 验证这些状态，不代表浏览器解码或外网片源验收。`scripts/gallery_smoke.py` 在本地 Compose 实例上通过两个独立浏览器进程验证入口、授权隔离和生成短片的同步播放／暂停／跳转，并清理自有测试影片。`scripts/gallery_visual_smoke.py` 验证两种构图的资源选择、焦点和片库滚动，以及减少动态／透明度和基础静态 CSS 下的真实入房；截图与明确未验收项见 `docs/gallery-visual-acceptance.md`。
 
 放映室有独立的本机风景选集：八款有作者署名、原作链接的摄影或手绘壁纸，按设备请求单张大图；选择后同时更新放映室页首、背景和选景大图。通过缩略图列表选景。它不写全站封面，不驱动播放器；滚动视差与换景揭幕仅在风景可见或操作时响应，播放、全屏、隐藏页面、关闭动效或减少动态时停用。
 
