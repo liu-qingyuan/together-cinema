@@ -11,7 +11,7 @@ ROOT = HERE.parents[1]
 REPO = "https://github.com/liu-qingyuan/together-cinema"
 COPY = json.loads((HERE / "copy.json").read_text())
 SKY = ("v1-sky-mobile.webp", "v1-sky-desktop.webp")
-SHOTS = ("entry", "library", "direct", "relay")
+SHOTS = ("entry", "library", "direct", "relay", "upload", "voice")
 
 
 def template(name):

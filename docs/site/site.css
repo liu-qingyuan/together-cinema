@@ -115,3 +115,12 @@ footer {background:white;text-align:center}footer nav {margin:1.2rem 0 2rem}foot
   .reading aside {max-height:none}
   .chapters section,.reading aside {scroll-margin-top:7rem}
 }
+
+/* Two real UI close-ups belong to the library chapter, not a separate step. */
+.tool-shots {grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.tool-shots figure {min-width:0;display:flex;flex-direction:column;align-items:start;padding:clamp(1rem,2.8vw,2rem);gap:1rem;background:var(--silver);border-radius:1.5rem}
+.tool-shots strong {font-size:1.15rem;color:var(--ink)}
+.tool-shots p {margin-top:.35rem;color:var(--muted)}
+.tool-shots a {display:block;width:100%;margin-top:auto}
+.tool-shots img {width:100%;height:auto;border:1px solid var(--line);border-radius:.9rem}
+@media(max-width:740px){.tool-shots {grid-template-columns:minmax(0,1fr)}}

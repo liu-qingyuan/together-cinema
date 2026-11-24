@@ -33,14 +33,14 @@ class ProjectSiteTest(unittest.TestCase):
                               'deploy/zh-CN.html', 'deploy/en.html', 'assets/site.css', 'assets/v1-sky-desktop.webp',
                               'assets/v1-sky-mobile.webp',
                               *(f'assets/{lang}-{shot}.webp' for lang in ('en','zh-CN')
-                                for shot in ('entry','library','direct','relay'))})
+                                for shot in ('entry','library','direct','relay','upload','voice'))})
             for lang, page in [('en', root / 'index.html'), ('zh-CN', root / 'zh-CN/index.html')]:
                 urls = Links(page).urls
                 for chapter in ('#invitation', '#programme', '#routes'):
                     self.assertIn(chapter, urls)
                 pictures = {Path(url).name for url in urls if url.endswith('.webp')}
                 self.assertEqual(pictures, {'v1-sky-desktop.webp', 'v1-sky-mobile.webp',
-                                            *(f'{lang}-{s}.webp' for s in ('entry', 'library', 'direct', 'relay'))})
+                                            *(f'{lang}-{s}.webp' for s in ('entry', 'library', 'direct', 'relay', 'upload', 'voice'))})
             for doc in root.rglob('*.html'):
                 for raw in Links(doc).urls:
                     with self.subTest(doc=doc.relative_to(root), link=raw):

@@ -24,9 +24,11 @@ One friend paused the film at 00:13; both screens stopped on the same frame. [De
 
 | Enter a room | Choose a film beside the player |
 | --- | --- |
-| [![Room-code entry beneath a starry mountain sky](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![The shared library alongside the player](docs/showcase/library.webp)](docs/showcase/library.webp) |
+| [![Room-code entry beneath a starry mountain sky](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![Shared library and the new Library tools card](docs/site/shots/en-library.webp)](docs/site/shots/en-library.webp) |
 | **Browse the screening journal** | **Choose your personal scenery** |
 | [![Filmstrip of built-in sample titles and dates](docs/showcase/journal.webp)](docs/showcase/journal.webp) | [![Cherry-blossom scene in the personal gallery](docs/showcase/scenes.webp)](docs/showcase/scenes.webp) |
+
+[Upload progress and voice settings: see the screenshots](https://liu-qingyuan.github.io/together-cinema/#room-tools).
 
 [Full screenshot tour and artwork credits (Chinese, with English scene headings) →](docs/showcase/README.md). Journal titles and dates in that empty-room capture are explicitly built-in examples, not real viewing history.
 

@@ -24,9 +24,11 @@
 
 | 入房：输入房间码，和朋友会合 | 选片：片库就在播放器旁边 |
 | --- | --- |
-| [![雪山银河展厅与入房表单](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![房主在播放器右侧查看共享片库](docs/showcase/library.webp)](docs/showcase/library.webp) |
+| [![雪山银河展厅与入房表单](docs/showcase/entry.webp)](docs/showcase/entry.webp) | [![共享片库与新版片库工具卡](docs/site/shots/zh-CN-library.webp)](docs/site/shots/zh-CN-library.webp) |
 | **陪伴：沿着胶片翻看放映记录** | **风景：换一幅只属于自己的背景** |
 | [![带日期的黑白胶片手记，此处为内置示例](docs/showcase/journal.webp)](docs/showcase/journal.webp) | [![私人风景选集中的樱花小径](docs/showcase/scenes.webp)](docs/showcase/scenes.webp) |
+
+[看实拍：上传剩余时间与房间语音设置](https://liu-qingyuan.github.io/together-cinema/zh-CN/#room-tools)。
 
 [继续看：开场大图、房间成员、夜间字幕设置与素材署名 →](docs/showcase/README.md)
 

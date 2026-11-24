@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>$title · Together Cinema</title>
 <meta name="description" content="$lead">
-<link rel="stylesheet" href="${base}assets/site.css?v=manual-1">
+<link rel="stylesheet" href="${base}assets/site.css?v=room-tools-1">
 </head><body>
 <main>
 <div class="overture">
@@ -31,6 +31,10 @@
 <section id="programme" class="feature" data-chapter aria-labelledby="pick"><div class="spread split">
   <div class="feature-copy"><p class="eyebrow">02 &nbsp; / &nbsp; $libraryLabel</p><h2 id="pick">$libraryTitle</h2><p>$libraryText</p><p class="note">$libraryNext</p></div>
   <figure class="stage"><a href="${base}assets/$lang-library.webp"><img src="${base}assets/$lang-library.webp" alt="$libraryAlt" loading="lazy" decoding="async"></a></figure>
+  <div class="tool-shots" id="room-tools">
+    <figure><figcaption><strong>$uploadTitle</strong><p>$uploadText</p></figcaption><a href="${base}assets/$lang-upload.webp"><img src="${base}assets/$lang-upload.webp" alt="$uploadAlt" loading="lazy" decoding="async"></a></figure>
+    <figure><figcaption><strong>$voiceTitle</strong><p>$voiceText</p></figcaption><a href="${base}assets/$lang-voice.webp"><img src="${base}assets/$lang-voice.webp" alt="$voiceAlt" loading="lazy" decoding="async"></a></figure>
+  </div>
 </div></section>
 <section id="routes" data-chapter aria-labelledby="modes"><div class="spread">
   <div class="routes-heading"><p class="eyebrow">03 &nbsp; / &nbsp; $modeLabel</p><h2 id="modes">$modeTitle</h2><p>$modeIntro</p></div>
